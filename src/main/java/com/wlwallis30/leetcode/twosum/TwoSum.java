@@ -1,13 +1,14 @@
-package com.wlwallis30.leetcode.twosum;
-
-/**
- * Created by larrywang on 6/13/18.
+/*
+ * Created by larrywang in 2018
+ * Copyright (c) https://github.com/wlwallis30/ 2018. All rights reserved.
+ * Last modified on 6/15/18 1:37 AM
  */
+package com.wlwallis30.leetcode.twosum;
 
 import java.util.*;
 
 public class TwoSum {
-    public int[] twoSum(int[] nums, int target) {
+    public int[] twoSum_1(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
@@ -19,7 +20,7 @@ public class TwoSum {
         throw new IllegalArgumentException("No two sum solution");
     }
 
-    public List<List<Integer>> threeSum(int[] nums) {
+    public List<List<Integer>> threeSum_15(int[] nums) {
         List<List<Integer>> res = new LinkedList<>();
         Arrays.sort(nums);
         for (int i = 0; i < nums.length - 2; ++i) {
