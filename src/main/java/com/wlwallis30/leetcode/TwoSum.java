@@ -5,7 +5,7 @@
  */
 package com.wlwallis30.leetcode;
 
-import java.lang.reflect.Array;
+//import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -134,5 +134,22 @@ public class TwoSum {
       else --right;
     }
     return res;
+  }
+
+  public int threeSum_259(int[] nums, int target) {
+	  int res = 0;
+	  if(nums.length < 3) return res;
+	  Arrays.sort(nums);
+	  for(int i=0; i<nums.length-2; ++i) {
+		  int left = i+1, right = nums.length-1;
+		  while(left < right) {
+			  if(nums[i] + nums[left] + nums[right]<target) {
+				  res += right - left;
+				  ++left;
+			  }
+			  else --right; 
+		  }
+	  }
+	  return res;
   }
 }

@@ -113,6 +113,18 @@ public class TwoSumTest {
     this.debugPrint(this.resultStr + res);
     assertTrue(String.format(this.expectedIntStr, expected), res == expected);
   }
+  
+  @Test
+  public void testThreeSumSmaller_259() {
+	  int[] nums = new int[] {-2, 0, 1, 3};
+	  int target = 2;
+	  int res = twoSum.threeSum_259(nums, target);
+	  int expected = 2;
+	  this.printQuestionInfo(5);
+	  this.debugPrint(this.expectedStr + expected);
+	  this.debugPrint(this.resultStr + res);
+	  assertTrue(String.format(this.expectedIntStr,  expected), res == expected);
+  }
 
   @Test
   public void testFourSum_18() {

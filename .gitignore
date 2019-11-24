@@ -5,3 +5,4 @@ out/**
 .gradle/**
 lib/
 bin/**
+/bin/
