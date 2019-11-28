@@ -76,7 +76,7 @@ public class AddTwoNums {
 		if (b == 0) return a;
         int sum = a ^ b;
         int carry = (a & b & 0x7fffffff) << 1;
-        return getSum(sum, carry);    
+        return getSum_371(sum, carry);    
         //  only one line solution
         //return b == 0 ? a : getSum(a ^ b, (a & b & 0x7fffffff) << 1);
     }
