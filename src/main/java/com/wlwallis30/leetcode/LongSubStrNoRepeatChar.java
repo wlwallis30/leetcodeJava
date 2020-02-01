@@ -47,6 +47,7 @@ public class LongSubStrNoRepeatChar {
 		return res;
 	}
 	
+	// hard
 	public int[] slidingWindowMax_239(int[] nums, int k) {
 		int size = nums.length;
         if(size * k == 0) return new int[0];
