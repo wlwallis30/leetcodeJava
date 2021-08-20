@@ -92,9 +92,12 @@ public class TwoSum {
 
   public List<List<Integer>> fourSum_18(int[] nums, int target) {
     List<List<Integer>> res = new LinkedList<>();
-    if (nums.length < 4) return res;
+    if (nums.length < 4)
+      return res;
     Arrays.sort(nums);
-    for(int i = 0; i < nums.length - 3; i++)
+    for (int i = 0; i < nums.length - 3; i++) {
+      // this would prevent using res.stream().distinct()....
+      if (i > 0 && nums[i] == nums[i-1]) { continue; }
       for (int j = i + 1; j < nums.length - 2; j++) {
         if (j > i + 1 && nums[j] == nums[j - 1]) {
           continue;
@@ -105,21 +108,27 @@ public class TwoSum {
           if (sum == target) {
             res.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
             ++left;
-            while (nums[left] == nums[left - 1] && left < right) ++left;
+            while (nums[left] == nums[left - 1] && left < right)
+              ++left;
             --right;
-            while (nums[right] == nums[right + 1] && left < right) --right;
+            while (nums[right] == nums[right + 1] && left < right)
+              --right;
           } else if (sum > target) {
             --right;
-            while (nums[right] == nums[right + 1] && left < right) --right;
+            while (nums[right] == nums[right + 1] && left < right)
+              --right;
           } else {
             ++left;
-            while (nums[left] == nums[left - 1] && left < right) ++left;
+            while (nums[left] == nums[left - 1] && left < right)
+              ++left;
           }
         }
       }
+  }
     //List xyz = new LinkedList(new HashSet<>(res));this will make not ordered,
     //Collections.sort(xyz) will throw since inside it is a ArrayList, not sortable
-    return res.stream().distinct().collect(Collectors.toList());
+    //return res.stream().distinct().collect(Collectors.toList());
+    return res;
   }
 
   public int[] twoSumSorted_167(int[] nums, int target) {
