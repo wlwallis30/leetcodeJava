@@ -1,7 +1,7 @@
 package com.wlwallis30.leetcode;
 
 public class FindMedianIn2SortedArray {
-  public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+  public double findMedianSortedArrays_4(int[] nums1, int[] nums2) {
     int m = nums1.length, n=nums2.length;
     int total = (m+n);
     if(total%2==1) return findKth(nums1, 0, nums2, 0, total/2+1);
