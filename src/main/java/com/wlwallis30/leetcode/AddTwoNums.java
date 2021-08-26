@@ -80,4 +80,46 @@ public class AddTwoNums {
         //  only one line solution
         //return b == 0 ? a : getSum(a ^ b, (a & b & 0x7fffffff) << 1);
     }
+
+	public int[] plusOne_66(int[] digits) {
+		int len = digits.length;
+		for(int i = digits.length-1; i >= 0; i--) {
+			if(digits[i] < 9) {
+				++digits[i];
+				return digits;
+			}
+			digits[i] = 0;
+		}
+		int[] res = new int[len+1];
+		res[0] = 1;
+		return res;
+	}
+
+	public ListNode plusOne_369(ListNode head) {
+	  ListNode cur = head;
+	  // the first non 9 number from the right
+	  ListNode theRightNot9 = null;
+	  // find the first non 9 number along the list
+	  while(cur != null) {
+	    // this can also jump the middle 9s as long as it can find an non 9 number b4 right most;
+	    if(cur.val != 9) theRightNot9 = cur;
+	    cur = cur.next;
+    }
+
+    // handle addition
+    // the case of all 9 in the list
+    if (theRightNot9 == null) {
+	    theRightNot9 = new ListNode(0);
+	    theRightNot9.next = head;
+	    head = theRightNot9;
+    }
+    ++theRightNot9.val;
+	  // the case of all 9 in the list, now setting all to 0 except the head
+    cur = theRightNot9.next;
+    while(cur != null) {
+      cur.val = 0;
+      cur = cur.next;
+    }
+	  return head;
+	}
 }

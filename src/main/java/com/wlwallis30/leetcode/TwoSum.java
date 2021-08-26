@@ -9,6 +9,7 @@ package com.wlwallis30.leetcode;
 import java.util.*;
 import java.util.stream.Collectors;
 
+//the problem 170 is to design the class as following
 public class TwoSum {
   private Map<Integer, Integer> twoSumMap = new HashMap<>();
   //private HashMap<Integer, Integer> xyz = new HashMap<>();
