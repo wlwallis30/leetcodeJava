@@ -176,5 +176,55 @@ public class Palindrom {
   }
 
   //to do: 132, 214, both hard,
+
+  //need to be global to avoid pass-by-value for obj ref in java.
+  private ListNode frontPointer;
+  private boolean dfsAsStack(ListNode currentNode) {
+    if (currentNode != null) {
+      if (!dfsAsStack(currentNode.next)) return false;
+      if (currentNode.val != frontPointer.val) return false;
+      frontPointer = frontPointer.next;
+    }
+    return true;
+  }
+
+  public boolean isPalinLinkedList_234(ListNode head) {
+    frontPointer = head;
+    return dfsAsStack(head);
+  }
+
+  public boolean isPalinLinedList_234_1(ListNode head) {
+    if (head == null) return true;
+
+    // Find the end of first half
+    ListNode fast = head;
+    ListNode slow = head;
+    while (fast.next != null && fast.next.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+    // now firstHalfEnd = slow;
+    ListNode prev2 = null;
+    ListNode curr = slow.next;
+    while (curr != null) {
+      ListNode nextTemp = curr.next;
+      curr.next = prev2;
+      prev2 = curr;
+      curr = nextTemp;
+    }
+    // Check whether or not there is a palindrome.
+    ListNode prev1 = head;
+    boolean result = true;
+    while (result && prev2 != null) {
+      if (prev1.val != prev2.val) result = false;
+      prev1 = prev1.next;
+      prev2 = prev2.next;
+    }
+
+    // Restore the list and return the result.
+    //firstHalfEnd.next = reverseList(secondHalfStart); no need to reverse if just to pass test, but good to reverse
+    return result;
+  }
+
 }
 
