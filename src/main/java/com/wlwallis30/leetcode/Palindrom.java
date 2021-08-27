@@ -113,4 +113,68 @@ public class Palindrom {
       }
     }
   }
+
+  public boolean validPalindromNum_9(int num) {
+    if(num < 0) return false;
+    int div = 1;
+    while(num/div >= 10) div *= 10;
+    int left=Integer.MAX_VALUE, right=Integer.MIN_VALUE;
+    while(num > 0) {
+      left = num/div;
+      right = num%10;
+      if(left != right) return false;
+      num = (num%div)/10;
+      div /= 100;
+    }
+    return true;
+  }
+
+  public boolean isPalindrom_125(String str) {
+    int left = 0, right = str.length()-1;
+    while(left < right) {
+      while( left < right
+          && !Character.isLetterOrDigit(str.charAt(left))) ++left;
+      while(left < right
+          && !Character.isLetterOrDigit(str.charAt(right))) --right;
+      if(Character.toLowerCase(str.charAt(left))
+          != Character.toLowerCase(str.charAt(right))) return false;
+      ++left;
+      --right;
+    }
+    return true;
+  }
+
+  public List<List<String>> partitionPalinDrom_131(String str) {
+    List<List<String>> result = new ArrayList<List<String>>();
+    palinSubstrDfs(0, result, new ArrayList<String>(), str);
+    return result;
+  }
+
+  void palinSubstrDfs(int start, List<List<String>> result, List<String> currentList, String str) {
+    if (start >= str.length()) {
+      // java always pass by value, for object, it pass the obj reference's value, not the ref itself
+      result.add(new ArrayList<String>(currentList));
+      // not really necessory since for loop will jump out, but good to have return here.
+      return;
+    }
+    for (int end = start; end < str.length(); end++) {
+      if (isPalindrome(str, start, end)) {
+        // add current substring in the currentList
+        currentList.add(str.substring(start, end + 1));
+        palinSubstrDfs(end + 1, result, currentList, str);
+        // backtrack and remove the current substring from currentList
+        currentList.remove(currentList.size() - 1);
+      }
+    }
+  }
+
+  boolean isPalindrome(String str, int low, int high) {
+    while (low < high) {
+      if (str.charAt(low++) != str.charAt(high--)) return false;
+    }
+    return true;
+  }
+
+  //to do: 132, 214, both hard,
 }
+
