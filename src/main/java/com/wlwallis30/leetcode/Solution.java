@@ -9,7 +9,7 @@ public class Solution {
 }
 
 /*
- *Similar problem catalogs: total 33
+ *Similar problem catalogs: total 35
  * Two sum 1: 15, 16, 18, 167, 170, 259.......total: 7
  * Add two numbers 2: 67, 43, 66, 369, 371.... total: 6
  * Length of longest sub string 3: 159, 239, 340.....total: 4
@@ -18,7 +18,9 @@ public class Solution {
  * Reverse integer 7: 8  .....total: 2
  * reverse bits 190: 191, 231, 338....total: 4
  * most water area 11    ....total: 1
- * roman to int 13    ........total 1
+ * roman to int 13:    ........total 1
+ * common longest prefix substring 14:  ...total 1
+ * valid parenthesis 20   .....total 1
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {

@@ -1,3 +1,7 @@
+plugins {
+    id 'java'
+}
+
 group 'LeetCodeJava'
 version '1.0-SNAPSHOT'
 
@@ -21,7 +25,7 @@ repositories {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 sourceSets {
