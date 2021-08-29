@@ -29,14 +29,15 @@ public class Solution {
  * Reverse integer 7: 8  .....total: 2
  * reverse bits 190: 191, 231, 338....total: 4
  * most water area 11    ....total: 1
- * roman to int 13:    ........total 1
- * common longest prefix substring 14:  ...total 1
- * valid parenthesis 20: 22   .....total 2
- * remove nth node from end 19    ....total 1
- * merge two sorted linklist 21: 88    ....total 2
- * remove dup from sorted array in place 26: 27, 203, 283    ....total 4
- * substring pattern strStr 28:      ....total 1
- * swap two nodes in pair 24:    ....total 1
+ * roman to int 13:    ........total: 1
+ * common longest prefix substring 14:  ...total: 1
+ * valid parenthesis 20: 22   .....total: 2
+ * remove nth node from end 19: 1721    ....total: 2
+ * merge two sorted linklist 21: 88    ....total: 2
+ * remove dup from sorted array in place 26: 27, 203, 283    ....total: 4
+ * substring pattern strStr 28:      ....total: 1
+ * swap two nodes in pair 24:    ....total: 1
+ * search insert position 35: 278    ....total: 2
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {

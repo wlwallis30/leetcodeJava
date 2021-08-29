@@ -35,4 +35,6 @@ public class SwapNodesInPair {
 
     return dummy.next;
   }
+
+  //1721 is also similar, but put in RemoveNfromEnd.java
 }
