@@ -28,5 +28,20 @@ public class ValidParenthesis {
     return charStack.empty();
   }
 
-
+  public List<String> genParenthesis_22(int n) {
+    List<String> res = new ArrayList<String>();
+    GPDFS(n, n, "", res);
+    return res;
+  }
+  void GPDFS(int left, int right, String out, List<String> res) {
+    // to avoid something like )))(((, or )(...,
+    // coz it is possible to call GPDFS with left=3, right=2, etc, when first all GPDFS calls come back to call stack.
+    if (left > right) return;
+    if (left == 0 && right == 0) {
+      res.add(out);
+      return;
+    }
+    if(left > 0) GPDFS(left - 1, right, out + "(", res);
+    if(right > 0) GPDFS(left, right - 1, out + ")", res);
+  }
 }
