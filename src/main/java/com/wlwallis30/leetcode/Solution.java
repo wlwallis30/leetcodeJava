@@ -29,7 +29,7 @@ public class Solution {
 }
 
 /*
- *Similar problem catalogs: total  50
+ *Similar problem catalogs: total  53
  * Two sum 1: 15, 16, 18, 167, 170, 259.......total: 7
  * Add two numbers 2: 67, 43, 66, 369, 371.... total: 6
  * Length of longest sub string 3: 159, 239, 340.....total: 4
