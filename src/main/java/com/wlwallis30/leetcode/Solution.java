@@ -5,20 +5,23 @@
  */
 
 package com.wlwallis30.leetcode;
+
+import com.sun.istack.internal.NotNull;
+
 public class Solution {
- static void swap(char[] str, int i, int j) {
+ static void swap(@NotNull char[] str, int i, int j) {
   char temp = str[i];
   str[i] = str[j];
   str[j] = temp;
  }
 
- static void swap(int[] nums, int i, int j) {
+ static void swap(@NotNull int[] nums, int i, int j) {
   int temp = nums[i];
   nums[i] = nums[j];
   nums[j] = temp;
  }
 
- static void reverse(int[] nums, int start) {
+ static void reverse(@NotNull int[] nums, int start) {
   int i = start, j = nums.length - 1;
   while (i < j) {
    swap(nums, i, j);
@@ -29,7 +32,7 @@ public class Solution {
 }
 
 /*
- *Similar problem catalogs: total  57
+ *Similar problem catalogs: total  61
  * Two sum 1: 15, 16, 18, 167, 170, 259.......total: 7
  * Add two numbers 2: 67, 43, 66, 369, 371.... total: 6
  * Length of longest sub string 3: 159, 239, 340.....total: 4
@@ -51,6 +54,8 @@ public class Solution {
  * max sub array 53: 121     ....total: 2
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50     total: 3
+ * climb chairs 70:     total: 1
+ * binary tree inorder traversal 94: 144, 145     total: 3
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
@@ -59,4 +64,15 @@ class ListNode {
  ListNode(int x) { val = x; }
  }
 
- 
+class TreeNode {
+  int val;
+  TreeNode left;
+  TreeNode right;
+  TreeNode() {}
+  TreeNode(int val) { this.val = val; }
+  TreeNode(int val, TreeNode left, TreeNode right) {
+  this.val = val;
+  this.left = left;
+  this.right = right;
+  }
+}
