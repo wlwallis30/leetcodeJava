@@ -32,7 +32,7 @@ public class Solution {
 }
 
 /*
- *Similar problem catalogs: total  66
+ *Similar problem catalogs: total  67
  * Two sum 1: 15, 16, 18, 167, 170, 259.......total: 7
  * Add two numbers 2: 67, 43, 66, 369, 371.... total: 6
  * Length of longest sub string 3: 159, 239, 340.....total: 4
@@ -55,7 +55,7 @@ public class Solution {
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50     total: 3
  * climb chairs 70:     total: 1
- * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111     total: 8
+ * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102     total: 9
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
