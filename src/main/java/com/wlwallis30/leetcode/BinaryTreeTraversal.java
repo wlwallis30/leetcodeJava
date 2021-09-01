@@ -93,7 +93,49 @@ public class BinaryTreeTraversal {
     else return 1 + Math.max(left, right); //must use max, otherwise not reflecting enough diff, e.g. [1,null,2,null,3]
   }
 
-  // need to add 111
+  public int minDepth_111Recur(TreeNode root) {
+    if (root == null) {
+      return 0;
+    }
+
+    if ((root.left == null) && (root.right == null)) {
+      return 1;
+    }
+
+    int min_depth = Integer.MAX_VALUE;
+    if (root.left != null) {
+      min_depth = Math.min(minDepth_111Recur(root.left), min_depth);
+    }
+    if (root.right != null) {
+      min_depth = Math.min(minDepth_111Recur(root.right), min_depth);
+    }
+
+    return min_depth + 1;
+  }
+
+  List<List<Integer>> levels = new ArrayList<List<Integer>>();
+  public List<List<Integer>> levelOrder_102Recur(TreeNode root) {
+    if (root == null) return levels;
+    levelOrderDFS(root, 0);
+    return levels;
+  }
+
+  public void levelOrderDFS(TreeNode node, int curLevel) {
+    if(node == null) return;
+    // start the current level
+    if (levels.size() == curLevel)
+      levels.add(new ArrayList<Integer>());
+
+    // fulfil the current level
+    List<Integer> curLevelList = levels.get(curLevel);
+    curLevelList.add(node.val);
+
+    // process child nodes for the next level
+    if (node.left != null)
+      levelOrderDFS(node.left, curLevel + 1);
+    if (node.right != null)
+      levelOrderDFS(node.right, curLevel + 1);
+  }
 //////////////////////////////////////////////// iterations///////////////////////////////////////////////////////////////////////////////////
   public List < Integer > inorderTraversal94_stack(TreeNode root) {
     List < Integer > res = new ArrayList < > ();
@@ -197,6 +239,7 @@ public class BinaryTreeTraversal {
   // ArrayDequeue can be used for both Stack and Queue, and it might be faster than Stack and LinkedList
   public boolean isSymmetric_101LevelOrder(TreeNode root) {
     Queue<TreeNode> q = new LinkedList<>();
+    // small trick here, add root twice.
     q.add(root);
     q.add(root);
     while (!q.isEmpty()) {
@@ -231,5 +274,64 @@ public class BinaryTreeTraversal {
       }
     }
     return depth;
+  }
+
+  public int minDepth_111LeverOrder(TreeNode root) {
+    LinkedList<Pair<TreeNode, Integer>> queue = new LinkedList<>();
+    if (root == null) {
+      return 0;
+    }
+    else {
+      queue.add(new Pair(root, 1));
+    }
+
+    int current_depth = 0;
+    while (!queue.isEmpty()) {
+      Pair<TreeNode, Integer> current = queue.poll();
+      root = current.getKey();
+      current_depth = current.getValue();
+      if ((root.left == null) && (root.right == null)) {
+        // find the leaf node(not null), then break out of while loop, then it is the min and no need to use min comparison
+        break;
+      }
+      if (root.left != null) {
+        queue.add(new Pair(root.left, current_depth + 1));
+      }
+      if (root.right != null) {
+        queue.add(new Pair(root.right, current_depth + 1));
+      }
+    }
+    return current_depth;
+  }
+
+  public List<List<Integer>> levelOrder_102Que(TreeNode root) {
+    List<List<Integer>> levels = new ArrayList<List<Integer>>();
+    if (root == null) return levels;
+
+    Queue<TreeNode> queue = new LinkedList<TreeNode>();
+    queue.add(root);
+    int level = 0;
+    while ( !queue.isEmpty() ) {
+      // start the current level
+      levels.add(new ArrayList<Integer>());
+
+      // number of elements in the current level
+      int level_length = queue.size();
+      for(int i = 0; i < level_length; ++i) {
+        // in Linkedlist, remove will throw if empty while poll will return null
+        TreeNode node = queue.remove();
+
+        // fulfill the current level
+        levels.get(level).add(node.val);
+
+        // add child nodes of the current level
+        // in the queue for the next level
+        if (node.left != null) queue.add(node.left);
+        if (node.right != null) queue.add(node.right);
+      }
+      // go to next level
+      level++;
+    }
+    return levels;
   }
 }
