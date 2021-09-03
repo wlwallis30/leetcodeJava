@@ -62,7 +62,9 @@ public class Solution {
  * linked list cycle 141: 142, 202  total: 3
  * add digits 258: (202) 263, 204    total: 3
  * word pattern 205: 290   total: 2
- *********************Similar problem catalogs: total 83
+ * reverse linkedlist 206:(234Iterative), 92     total 2
+ * min stack 155: 716    total 2
+ *********************Similar problem catalogs: total 87
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
