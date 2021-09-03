@@ -37,7 +37,7 @@ And each of $T(k,i)$ will compute with 2 items:
 $$T(k, i) = T(k-1, i-1) + T(k-1, i)$$
 so it will be $T(k-1,i)$ and $T(k-1, i-1)$ will go down to $T(k-2,)$, there are $k$ calls to recursive function till $1$, so roughly it is $2^k$ 
 
->@260 Single number III:
+>## @260 Single number III:
 
 1. x & -x keep the right most bit
 
@@ -59,3 +59,7 @@ so it will be $T(k-1,i)$ and $T(k-1, i-1)$ will go down to $T(k-2,)$, there are 
     //now 
     y = bitmaskForBoth ^ x;
 ```
+>## @258 Add digits:
+Math solution:
+
+<img src="pics/258DigitalRoot.jpg" width="800" title="BrutalForce Big O">
