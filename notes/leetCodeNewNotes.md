@@ -1,14 +1,18 @@
+- [LeetCode solution new notes](#leetcode-solution-new-notes)
+  - [@119@ Pascal triangle:](#119-pascal-triangle)
+  - [@260 Single number III:](#260-single-number-iii)
+  - [@258 Add digits:](#258-add-digits)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
 <!-------- comment here, sample -->
 
->## @119@ Pascal triangle:
-Brutal force big O:   
+## @119@ Pascal triangle:
+>Brutal force big O:   
 
-<img src="pics/118BrutalForceFormula.jpg" width="800" title="BrutalForce Big O">   
+<img src="pics/118BrutalForceFormula.jpg" width="800" title="BrutalForce Big O">
 
->Brutal force code:
+>Brutal force code: 
 
 ```java
 private int getNum(int row, int col) {
@@ -37,7 +41,7 @@ And each of $T(k,i)$ will compute with 2 items:
 $$T(k, i) = T(k-1, i-1) + T(k-1, i)$$
 so it will be $T(k-1,i)$ and $T(k-1, i-1)$ will go down to $T(k-2,)$, there are $k$ calls to recursive function till $1$, so roughly it is $2^k$ 
 
->## @260 Single number III:
+## @260 Single number III:
 
 1. x & -x keep the right most bit
 
@@ -59,7 +63,7 @@ so it will be $T(k-1,i)$ and $T(k-1, i-1)$ will go down to $T(k-2,)$, there are 
     //now 
     y = bitmaskForBoth ^ x;
 ```
->## @258 Add digits:
-Math solution:
+## @258 Add digits: 
+>Math solution:
 
 <img src="pics/258DigitalRoot.jpg" width="800" title="BrutalForce Big O">
