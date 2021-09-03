@@ -58,8 +58,8 @@ public class Solution {
  * convert sorted array to BST 108:     total: 1
  * binary tree path sum 112:     total: 1
  * pascal triangle 118:119    total: 2
- * single num 136: 137, 268     total: 3
- *********************Similar problem catalogs: total  74
+ * single num 136: 137, 268, 260     total: 4
+ *********************Similar problem catalogs: total  75
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {

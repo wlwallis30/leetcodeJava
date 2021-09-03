@@ -39,6 +39,22 @@ public class SingleNum {
     return res;
   }
 
+  //using hashmap is also a solution, but here only listing the bit ops:
+  public int[] singleNumberIII_260BitOps(int[] nums) {
+    // bits kept for both of x and y which were seen only once
+    int bitmaskForBoth = 0;
+    for (int num : nums) bitmaskForBoth ^= num;
+
+    // rightmost 1-bit diff between x and y
+    int diffTeller = bitmaskForBoth & (-bitmaskForBoth);
+
+    int x = 0;
+    // bitmask which will contain only x, other repeated a will be off set by ^ Xor since it appears twice.
+    for (int num : nums) if ((num & diffTeller) != 0) x ^= num;
+
+    return new int[]{x, bitmaskForBoth^x};
+  }
+
   public int missingNumber_268Hashset(int[] nums) {
     Set<Integer> numSet = new HashSet<Integer>();
     for (int num : nums) numSet.add(num);
