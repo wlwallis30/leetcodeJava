@@ -20,6 +20,32 @@ public class LinkedListCycle {
     return false;
   }
 
+
+  //c is the distance b4 intersection, a is where slow and fast meet.
+  // when slow and fast meet: 2(c+a) is twice the distance slow has gone, c+a+b+a is the distance fast goes
+  // so 2(c+a) = c+a+b+a, so c+a = b+a, so c=b
+  public ListNode hasCycle_142(ListNode head) {
+    if (head == null) {
+      return null;
+    }
+
+    ListNode slow = head;
+    ListNode fast = head;
+    // && is needed
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+      if(slow == fast) break;
+    }
+    if(fast == null || fast.next == null) return null;
+    ListNode nodeFrom0 = head;
+    ListNode intersectNode = slow;
+    while(nodeFrom0 != intersectNode) {
+      nodeFrom0 = nodeFrom0.next;
+      intersectNode = intersectNode.next;
+    }
+    return intersectNode;
+  }
   /*
   Digits	LargestNum	NextNum
     1	    9	          81

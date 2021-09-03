@@ -59,9 +59,9 @@ public class Solution {
  * binary tree path sum 112:     total: 1
  * pascal triangle 118:119    total: 2
  * single num 136: 137, 268, 260     total: 4
- * linked list cycle 141: 202  total: 2
- * add digits 258: (202)    total: 1
- *********************Similar problem catalogs: total  78
+ * linked list cycle 141: 142, 202  total: 3
+ * add digits 258: (202) 263, 204    total: 3
+ *********************Similar problem catalogs: total 81
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
