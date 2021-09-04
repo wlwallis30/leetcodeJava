@@ -67,7 +67,8 @@ public class Solution {
  * read n chars via read4 157:    total: 1
  * missing range 163: 228   total: 2
  * majority element 169:    total: 1
- *********************Similar problem catalogs: total: 92
+ * excel column sheet 168: 171    total: 2
+ *********************Similar problem catalogs: total: 94
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
