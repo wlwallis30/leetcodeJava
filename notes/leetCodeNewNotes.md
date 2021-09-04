@@ -2,6 +2,7 @@
   - [@119@ Pascal triangle:](#119-pascal-triangle)
   - [@260 Single number III:](#260-single-number-iii)
   - [@258 Add digits:](#258-add-digits)
+  - [@163 Missing range](#163-missing-range)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -32,7 +33,7 @@ private int getNum(int row, int col) {
 
     return ans;
   }
-```
+``` 
 
 Explain: 
 so for $k$ row, in the loop `for(int i = 0; i <= rowIndex; i++)`, you need to do $k=0-> rownIdx$, that will be:
@@ -67,3 +68,7 @@ so it will be $T(k-1,i)$ and $T(k-1, i-1)$ will go down to $T(k-2,)$, there are 
 >Math solution:
 
 <img src="pics/258DigitalRoot.jpg" width="800" title="BrutalForce Big O">
+
+## @163 Missing range
+> Normal and edge scenarios. one can use two pointers to advance 
+<img src="pics/163MissingRange.jpg" width="800" title="BrutalForce Big O">
