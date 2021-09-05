@@ -13,7 +13,7 @@ public class BinaryTreePathSum {
     return hasPathSum_112Recur(root.left, sum) || hasPathSum_112Recur(root.right, sum);
   }
 
-  List<String> binaryTreePaths(TreeNode root) {
+  List<String> binaryTreePaths257(TreeNode root) {
     List<String> res = new ArrayList<String>();;
     if (root == null) return res;
     binaryTreePathsDFS(root, "", res);

@@ -70,7 +70,9 @@ public class Solution {
  * excel column sheet 168: 171    total: 2
  * factorial trailing zeros 172:      total:1
  * meeting room 252:     total: 1
- *********************Similar problem catalogs: total: 97
+ * closest int in BST 270:  total: 1
+ * nim game 292:     total: 1
+ *********************Similar problem catalogs: total: 99
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
