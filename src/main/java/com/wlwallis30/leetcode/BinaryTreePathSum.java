@@ -13,6 +13,19 @@ public class BinaryTreePathSum {
     return hasPathSum_112Recur(root.left, sum) || hasPathSum_112Recur(root.right, sum);
   }
 
+  List<String> binaryTreePaths(TreeNode root) {
+    List<String> res = new ArrayList<String>();;
+    if (root == null) return res;
+    binaryTreePathsDFS(root, "", res);
+    return res;
+  }
+  void binaryTreePathsDFS(TreeNode root, String out, List<String> res) {
+    if(root == null) return;
+    out += root.val;
+    if (root.left == null && root.right == null) res.add(out);
+    if(root.left != null)binaryTreePathsDFS(root.left, out+"->", res);
+    if(root.right != null)binaryTreePathsDFS(root.right, out+"->", res);
+  }
   //////////////////////////////////////////////iterative//////////////////////////////////////////////////
   public boolean hasPathSum_112Stack(TreeNode root, int sum) {
     if (root == null)

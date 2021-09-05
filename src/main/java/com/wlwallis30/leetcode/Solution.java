@@ -56,7 +56,7 @@ public class Solution {
  * climb chairs 70:     total: 1
  * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102     total: 9
  * convert sorted array to BST 108:     total: 1
- * binary tree path sum 112:     total: 1
+ * binary tree path sum 112:257     total: 2
  * pascal triangle 118:119    total: 2
  * single num 136: 137, 268, 260     total: 4
  * linked list cycle 141: 142, 202  total: 3
@@ -68,7 +68,9 @@ public class Solution {
  * missing range 163: 228   total: 2
  * majority element 169:    total: 1
  * excel column sheet 168: 171    total: 2
- *********************Similar problem catalogs: total: 94
+ * factorial trailing zeros 172:      total:1
+ * meeting room 252:     total: 1
+ *********************Similar problem catalogs: total: 97
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
