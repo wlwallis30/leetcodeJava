@@ -73,7 +73,8 @@ public class Solution {
  * closest int in BST 270:  total: 1
  * nim game 292:     total: 1
  * search in rotated sorted array 33: 81, 153     total: 3
- *********************Similar problem catalogs: total: 105
+ * valid sudoku 36:    total: 1
+ *********************Similar problem catalogs: total: 106
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
