@@ -28,7 +28,7 @@ public class ValidParenthesis {
     return charStack.empty();
   }
 
-  public List<String> genParenthesis_17(int n) {
+  public List<String> genParenthesis_22(int n) {
     List<String> res = new ArrayList<String>();
     GPDFS(n, n, "", res);
     return res;
@@ -62,7 +62,7 @@ public class ValidParenthesis {
   }};
   private String phoneDigits;
 
-  public List<String> letterCombinations22(String digits) {
+  public List<String> letterCombinations17(String digits) {
     // If the input is empty, immediately return an empty answer array
     if (digits.length() == 0) {
       return combinations;
