@@ -48,7 +48,7 @@ public class Solution {
  * remove dup from sorted array in place 26: 27, 203, 283    ....total: 4
  * substring pattern strStr 28:      ....total: 1
  * swap two nodes in pair 24:    ....total: 1
- * search insert position 35: 278    ....total: 2
+ * search insert position 35: 278, 34    ....total: 3
  * next pemutation 31: 46, 47     total: 3
  * max sub array 53: 121     ....total: 2
  * length of last word 58:      total: 1
@@ -72,7 +72,8 @@ public class Solution {
  * meeting room 252:     total: 1
  * closest int in BST 270:  total: 1
  * nim game 292:     total: 1
- *********************Similar problem catalogs: total: 101
+ * search in rotated sorted array 33: 81, 153     total: 3
+ *********************Similar problem catalogs: total: 105
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
