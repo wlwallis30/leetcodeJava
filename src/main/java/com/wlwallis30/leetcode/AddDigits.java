@@ -72,4 +72,53 @@ public class AddDigits {
     for(boolean each:isPrime) if(each) ++res;
     return res;
   }
+
+  // int range is: -2147483648 ~ 2147483647
+  public int divide29Substraction(int dividend, int divisor) {
+    if (dividend == -Integer.MIN_VALUE && divisor == -1) return Integer.MAX_VALUE;
+    // Count the number of negatives + convert parameters to positives.
+    //If dividend = -2147483648, then converting it to a positive number will behave differently depending on the language/compiler/interpreter you're using.
+    // This is because the positive form (2147483648) is outside of the 32-bit signed integer range
+    // luckily java does not have this problem, it will auto convert  -2^32 to 2^32-1
+    int negatives = 0;
+    if (dividend < 0) {
+      negatives++;
+      dividend = -dividend;
+    }
+    if (divisor < 0) {
+      negatives++;
+      divisor = -divisor;
+    }
+
+    // Count the number of subtractions.
+    int subtractions = 0;
+    while (dividend - divisor >= 0) {
+      subtractions++;
+      dividend -= divisor;
+    }
+
+    return negatives == 1? -subtractions: subtractions;
+  }
+
+  //divisor != 0
+  int divide29BitShift(int dividend, int divisor) {
+    if (dividend == Integer.MIN_VALUE && divisor == -1) return Integer.MAX_VALUE;
+    // Math.abs(Integer.Min) will still give Min since Max will be out of int range, so need a long first.
+    long m = (long)dividend, n = (long)divisor, res = 0;
+    m = Math.abs(m);
+    n = Math.abs(n);
+    int sign = ((dividend < 0) ^ (divisor < 0)) ? -1 : 1;
+    if (n == 1) return sign == 1 ? (int)m : -(int)m;
+    while (m >= n) {
+      long t = n, cnt = 1;
+      //如下循环，t扩大一倍，p扩大一倍
+      while (m >= (t << 1)) {
+        t <<= 1;
+        cnt <<= 1;
+      }
+      res += cnt;
+      m -= t;
+    }
+    return (int)res*sign;
+  }
 }

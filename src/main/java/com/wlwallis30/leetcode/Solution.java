@@ -42,7 +42,7 @@ public class Solution {
  * most water area 11    ....total: 1
  * roman to int 13:    ........total: 1
  * common longest prefix substring 14:  ...total: 1
- * valid parenthesis 20: 22   .....total: 2
+ * valid parenthesis 20: 22, 17   .....total: 3
  * remove nth node from end 19: 1721    ....total: 2
  * merge two sorted linklist 21: 88    ....total: 2
  * remove dup from sorted array in place 26: 27, 203, 283    ....total: 4
@@ -60,7 +60,7 @@ public class Solution {
  * pascal triangle 118:119    total: 2
  * single num 136: 137, 268, 260     total: 4
  * linked list cycle 141: 142, 202  total: 3
- * add digits 258: (202) 263, 204    total: 3
+ * add digits 258: (202) 263, 204, 29   total: 4
  * word pattern 205: 290   total: 2
  * reverse linkedlist 206:(234Iterative), 92,160     total: 3
  * min stack 155: 716    total: 2
@@ -72,7 +72,7 @@ public class Solution {
  * meeting room 252:     total: 1
  * closest int in BST 270:  total: 1
  * nim game 292:     total: 1
- *********************Similar problem catalogs: total: 99
+ *********************Similar problem catalogs: total: 101
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
