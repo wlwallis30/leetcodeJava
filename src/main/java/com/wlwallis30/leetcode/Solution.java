@@ -78,7 +78,8 @@ public class Solution {
  * combination sum 39: 40, (17, 22), 216, 254 total: 4
  * rotate image 48:     total: 1
  * valid anagram 49: 272    total: 2
- *********************Similar problem catalogs: total: 116
+ * jump game 55:    total: 1
+ *********************Similar problem catalogs: total: 117
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
