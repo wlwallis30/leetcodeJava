@@ -83,4 +83,30 @@ public class CombinationSum {
       }
     }
   }
+
+  List<List<Integer>> factorCombination254(int n) {
+    List<List<Integer>> res = new ArrayList<>();
+    LinkedList<Integer> out = new LinkedList<>();
+    factorDFS(res, 2, out, n);
+    return res;
+  }
+
+  // backtracking
+  void factorDFS(List<List<Integer>> res, Integer startFactor, LinkedList<Integer> out, int curNum)
+  {
+    // size > 1 to avoid n itself
+    if(curNum == 1 && out.size()>1) res.add(new ArrayList<>(out));
+    else
+    {
+      // need to be <=, since curNum is previous num/i
+      for(int i=startFactor; i<=curNum; ++i)
+      {
+        if(curNum%i == 0) {
+          out.add(i);
+          factorDFS(res, i, out, curNum/i);
+          out.removeLast();
+        }
+      }
+    }
+  }
 }

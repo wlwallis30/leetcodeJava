@@ -1,5 +1,7 @@
 package com.wlwallis30.leetcode;
 
+import java.util.*;
+
 public class CoundNSay {
   String countAndSay38(int n) {
     if (n <= 0) return "";
@@ -22,5 +24,28 @@ public class CoundNSay {
     }
 
     return toSay;
+  }
+
+  public String encode271(List<String> strs) {
+    if (strs.size() == 0) return Character.toString((char)282);
+
+    String delimiter = Character.toString((char)283);
+    StringBuilder strToBuild = new StringBuilder();
+    for(String str: strs) {
+      strToBuild.append(str);
+      strToBuild.append(delimiter);
+    }
+    strToBuild.deleteCharAt(strToBuild.length() - 1);
+    return strToBuild.toString();
+  }
+
+  // Decodes a single string to a list of strings.
+  public List<String> decode(String str) {
+    String delimiter = Character.toString((char)282);
+    if (str.equals(delimiter)) return new ArrayList();
+
+    delimiter = Character.toString((char)283);
+    // limit = negative number, pattern will be applied as many as possible
+    return Arrays.asList(str.split(delimiter, -1));
   }
 }

@@ -74,9 +74,9 @@ public class Solution {
  * nim game 292:     total: 1
  * search in rotated sorted array 33: 81, 153     total: 3
  * valid sudoku 36:    total: 1
- * count and say 38:    total: 1
- * combination sum 39: 40, (17, 22), 216 total: 3
- *********************Similar problem catalogs: total: 111
+ * count and say 38:271    total: 2
+ * combination sum 39: 40, (17, 22), 216, 254 total: 4
+ *********************Similar problem catalogs: total: 113
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
