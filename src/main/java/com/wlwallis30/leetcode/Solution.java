@@ -75,8 +75,8 @@ public class Solution {
  * search in rotated sorted array 33: 81, 153     total: 3
  * valid sudoku 36:    total: 1
  * count and say 38:    total: 1
- * combination sum 39: 40, (17, 22) total: 2
- *********************Similar problem catalogs: total: 109
+ * combination sum 39: 40, (17, 22), 216 total: 3
+ *********************Similar problem catalogs: total: 111
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
