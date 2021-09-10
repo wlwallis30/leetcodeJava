@@ -76,7 +76,9 @@ public class Solution {
  * valid sudoku 36:    total: 1
  * count and say 38:271    total: 2
  * combination sum 39: 40, (17, 22), 216, 254 total: 4
- *********************Similar problem catalogs: total: 113
+ * rotate image 48:     total: 1
+ * valid anagram 49: 272    total: 2
+ *********************Similar problem catalogs: total: 116
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
