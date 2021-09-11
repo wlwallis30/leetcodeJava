@@ -92,7 +92,9 @@ public class Solution {
  * rotate linkedlist by k nodes 61: 189    total:2
  * unique path 62: 63, 64     total: 3
  * search in 2D matrix 74: 240    total: 2
- *********************Similar problem catalogs: total: 128
+ * set matrix to zero 73: 289    total: 2
+ * sort colors 75:    total: 1
+ *********************Similar problem catalogs: total: 131
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
