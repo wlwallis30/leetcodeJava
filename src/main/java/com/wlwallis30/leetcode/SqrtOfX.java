@@ -42,4 +42,23 @@ public class SqrtOfX {
 
     return false;
   }
+
+  //c mod m = (a ⋅ b) mod m,  c mod m = [(a mod m) ⋅ (b mod m)] mod m,
+  // proof: M= 5p+x (x<5), N=5q+y (y<5), (M*N)%5 = (xy)%5
+  //e.g. a=2, b=[1,2] a^12 = a^10*a^2
+  int superPow372(int a, int[] b) {
+    int res =1;
+    for(int i=0;i<b.length;++i)
+    {
+      res = (mod1337Helper(res,10)*mod1337Helper(a,b[i]))%1337;
+    }
+    return res;
+  }
+
+  int mod1337Helper(int x, int n)
+  {
+    if(n==0) return 1;
+    if(n==1) return x%1337;
+    return (mod1337Helper(x, n/2)*mod1337Helper(x, n-n/2))%1337;
+  }
 }

@@ -52,7 +52,7 @@ public class Solution {
  * next pemutation 31: 46, 47     total: 3
  * max sub array 53: 121     ....total: 2
  * length of last word 58:      total: 1
- * sqrt of x 69: 367, 50     total: 3
+ * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
  * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102     total: 9
  * convert sorted array to BST 108:     total: 1
@@ -78,8 +78,8 @@ public class Solution {
  * combination sum 39: 40, (17, 22), 216, 254 total: 4
  * rotate image 48:     total: 1
  * valid anagram 49: 272    total: 2
- * jump game 55:    total: 1
- *********************Similar problem catalogs: total: 117
+ * jump game 55: 45    total: 2
+ *********************Similar problem catalogs: total: 119
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {

@@ -3,6 +3,7 @@
   - [@260 Single number III:](#260-single-number-iii)
   - [@258 Add digits:](#258-add-digits)
   - [@163 Missing range](#163-missing-range)
+  - [@45 Jump Game](#45-jump-game)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -72,3 +73,10 @@ so it will be $T(k-1,i)$ and $T(k-1, i-1)$ will go down to $T(k-2,)$, there are 
 ## @163 Missing range
 > Normal and edge scenarios. one can use two pointers to advance 
 <img src="pics/163MissingRange.jpg" width="800" title="BrutalForce Big O">
+
+## @45 Jump Game
+> Proof of greedy algo(local optimal) can lead to global optimal: keep updating local optimal.
+Approach A will still lead to a better solution when differences happen at 3 and update happens after that.
+
+<img src="pics/45JumpGame.jpg" width="800" title="BrutalForce Big O">
+
