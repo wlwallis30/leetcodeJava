@@ -29,6 +29,15 @@ public class Solution {
    j--;
   }
  }
+  static void reverse(int[] nums, int start, int end) {
+    while (start < end) {
+      int temp = nums[start];
+      nums[start] = nums[end];
+      nums[end] = temp;
+      start++;
+      end--;
+    }
+  }
 }
 
 /*
@@ -80,7 +89,8 @@ public class Solution {
  * valid anagram 49: 272    total: 2
  * jump game 55: 45    total: 2
  * spiral matrix 54: 59   total: 2
- *********************Similar problem catalogs: total: 121
+ * rotate linkedlist by k nodes 61: 189    total:2
+ *********************Similar problem catalogs: total: 123
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
