@@ -109,4 +109,26 @@ public class CombinationSum {
       }
     }
   }
+
+  // combination nums.  O( k * (n,k) ) since appending/adding combination will run k times for each combination
+  public List<List<Integer>> combine77(int n, int k) {
+    List<List<Integer>> res = new ArrayList<>();
+    LinkedList<Integer> out = new LinkedList<>();
+    int curNum = 1;
+    cDFS(res, out, curNum, n, k);
+    return res;
+  }
+
+  //backtrack
+  void cDFS(List<List<Integer>> res, LinkedList<Integer> out, int curNum, int n, int k)
+  {
+    if(out.size() ==k) res.add(new ArrayList<>(out));
+    else {
+      for(int i = curNum; i<= n; ++i) {
+        out.add(i);
+        cDFS(res, out,i+1, n, k);
+        out.removeLast();
+      }
+    }
+  }
 }
