@@ -30,4 +30,18 @@ public class Merge2SortedList {
     while (m >= 0 && n >= 0) nums1[count--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
     while (n >= 0) nums1[count--] = nums2[n--];
   }
+
+  ListNode sortList148(ListNode head) {
+    if (head == null || head.next == null) return head;
+    ListNode fast = head, slow = head;
+    while (fast.next != null && fast.next.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    fast = slow.next;
+    slow.next = null;
+    slow = sortList148(head);
+    fast = sortList148(fast);
+    return mergeTwoLists_21(slow, fast);
+  }
 }
