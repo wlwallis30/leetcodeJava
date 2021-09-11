@@ -55,7 +55,9 @@ public class AddTwoNums {
 		int[] vals = new int[m+n];
 		//Arrays.fill(vals, 100);
 		//Array.setInt(vals, 0, 1000); 
-		
+
+    //result are stored in the right order in vals, e.g. 213 is sotre in [2, 1, 3]
+		// so m-1, n-1 will be pushed to m-1 + n-1 +1 = m+n-1 position in array, which is the last idx
 		for(int i=m-1; i>=0; i--) {
 			for(int j=n-1; j>=0; j--) {
 				int mul = (num1.charAt(i)-'0') * (num2.charAt(j)-'0');
@@ -67,6 +69,7 @@ public class AddTwoNums {
 		}
 		
 		for(int val: vals) {
+		  //the highest num is store at 0 idx, it might be 0, e.g. [0, 2, 1, 3], so you need to skip 0
 			if(!res.isEmpty() || val != 0) res = res + Integer.toString(val);
 		}
 		return res.isEmpty() ? "0": res;

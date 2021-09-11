@@ -79,7 +79,8 @@ public class Solution {
  * rotate image 48:     total: 1
  * valid anagram 49: 272    total: 2
  * jump game 55: 45    total: 2
- *********************Similar problem catalogs: total: 119
+ * spiral matrix 54: 59   total: 2
+ *********************Similar problem catalogs: total: 121
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
