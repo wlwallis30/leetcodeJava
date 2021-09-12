@@ -97,7 +97,8 @@ public class Solution {
  * simplify dir path 71:    total: 1
  * word search 79:    total: 1
  * subset 78: 90    total: 2
- *********************Similar problem catalogs: total: 138
+ * remove dup from sorted linkedlist 83:    total: 1
+ *********************Similar problem catalogs: total: 139
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
