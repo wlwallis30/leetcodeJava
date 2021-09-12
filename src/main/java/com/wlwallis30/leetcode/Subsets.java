@@ -72,4 +72,25 @@ public class Subsets {
     }
     return res;
   }
+
+  List<List<Integer>> subsetsDup90(int[] nums) {
+    Arrays.sort(nums);
+    List<List<Integer>> res = new ArrayList<>();
+    LinkedList<Integer> out = new LinkedList<>();
+    helperDupDFS(nums, 0, out, res);
+    return res;
+  }
+  // to use removeLast, the it has to be LinkedList when passing
+  void helperDupDFS(int[] nums, int curPos, LinkedList<Integer> out, List<List<Integer>> res) {
+    res.add(new ArrayList<>(out));
+    for (int i = curPos; i < nums.length; ++i) {
+      out.add(nums[i]);
+      helperDupDFS(nums, i + 1, out, res);
+      out.removeLast();
+      //skip the same num to go next DFS call, but the previous call still add same num, [1 2] -> [1 2 2]
+      while (i + 1 < nums.length && nums[i] == nums[i + 1]) ++i;
+    }
+  }
+
+  //320, word abbreviation
 }

@@ -24,6 +24,39 @@ public class RemoveDupInSortedArray {
     return fillPos;
   }
 
+  //in place moving
+  public int removeDuplicates80(int[] nums) {
+    if (nums.length == 0) return 0;
+    int keepPos = 0, cnt = 1, k = 2;
+    //probe start from 1, so cnt = 1 for the first element
+    for (int probe = 1; probe < nums.length; probe++) {
+      if (nums[probe] != nums[keepPos] || cnt<k) {
+        if(cnt<k && nums[probe] == nums[keepPos]) cnt++;
+        else cnt = 1; //probe meet a new num
+        keepPos++; // keepPos is position to be filled with num at original position or at num moving to left(due to previous dup > k)
+        nums[keepPos] = nums[probe];
+      }
+      //this imply: else condition of nums[probe] == nums[keepPos] && cnt==k) probe++, just moving when same numb appear more than k times.
+    }
+    return keepPos + 1;
+  }
+
+  public int removeDuplicates80AnotherWay(int[] nums) {
+    if (nums.length == 0) return 0;
+    int keepPos = 0, cnt = 1, k = 2;
+    //probe start from 1, so cnt = 1 for the first element
+    for (int probe = 1; probe < nums.length; probe++) {
+      if (nums[probe] == nums[keepPos] && cnt >= k) {} // just moving probe when same numb appear more than k times.
+      else {
+        if(cnt<k && nums[probe] == nums[keepPos]) cnt++;
+        else cnt = 1; //probe meet a new num
+        keepPos++; // keepPos is position to be filled with num at original position or at num moving to left(due to previous dup > k)
+        nums[keepPos] = nums[probe];
+      }
+    }
+    return keepPos + 1;
+  }
+
   public ListNode removeElements_203(ListNode head, int val) {
     ListNode dummy = new ListNode(0);
     dummy.next = head;

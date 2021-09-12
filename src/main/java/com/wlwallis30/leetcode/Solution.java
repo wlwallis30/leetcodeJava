@@ -54,7 +54,7 @@ public class Solution {
  * valid parenthesis 20: 22, 17   .....total: 3
  * remove nth node from end 19: 1721    ....total: 2
  * merge two sorted linklist 21: 88 148    ....total: 3
- * remove dup from sorted array in place 26: 27, 203, 283    ....total: 4
+ * remove dup from sorted array in place 26: 27, 203, 283, 80    ....total: 5
  * substring pattern strStr 28:      ....total: 1
  * swap two nodes in pair 24:    ....total: 1
  * search insert position 35: 278, 34    ....total: 3
@@ -96,8 +96,8 @@ public class Solution {
  * sort colors 75: (148)    total: 1
  * simplify dir path 71:    total: 1
  * word search 79:    total: 1
- * subset 78:    total: 1
- *********************Similar problem catalogs: total: 136
+ * subset 78: 90    total: 2
+ *********************Similar problem catalogs: total: 138
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
