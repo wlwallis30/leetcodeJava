@@ -95,7 +95,9 @@ public class Solution {
  * set matrix to zero 73: 289    total: 2
  * sort colors 75: (148)    total: 1
  * simplify dir path 71:    total: 1
- *********************Similar problem catalogs: total: 134
+ * word search 79:    total: 1
+ * subset 78:    total: 1
+ *********************Similar problem catalogs: total: 136
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
