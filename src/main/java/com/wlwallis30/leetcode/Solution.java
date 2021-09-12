@@ -53,7 +53,7 @@ public class Solution {
  * common longest prefix substring 14:  ...total: 1
  * valid parenthesis 20: 22, 17   .....total: 3
  * remove nth node from end 19: 1721    ....total: 2
- * merge two sorted linklist 21: 88    ....total: 2
+ * merge two sorted linklist 21: 88 148    ....total: 3
  * remove dup from sorted array in place 26: 27, 203, 283    ....total: 4
  * substring pattern strStr 28:      ....total: 1
  * swap two nodes in pair 24:    ....total: 1
@@ -84,7 +84,7 @@ public class Solution {
  * search in rotated sorted array 33: 81, 153     total: 3
  * valid sudoku 36:    total: 1
  * count and say 38:271    total: 2
- * combination sum 39: 40, (17, 22), 216, 254 total: 4
+ * combination sum 39: 40, (17, 22), 216, 254, 77 total: 5
  * rotate image 48:     total: 1
  * valid anagram 49: 272    total: 2
  * jump game 55: 45    total: 2
@@ -93,8 +93,9 @@ public class Solution {
  * unique path 62: 63, 64     total: 3
  * search in 2D matrix 74: 240    total: 2
  * set matrix to zero 73: 289    total: 2
- * sort colors 75:    total: 1
- *********************Similar problem catalogs: total: 131
+ * sort colors 75: (148)    total: 1
+ * simplify dir path 71:    total: 1
+ *********************Similar problem catalogs: total: 134
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
