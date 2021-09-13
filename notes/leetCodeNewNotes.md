@@ -6,6 +6,7 @@
   - [@45 Jump Game](#45-jump-game)
   - [@189 Rotate array by k](#189-rotate-array-by-k)
   - [@91 Decode ways:](#91-decode-ways)
+  - [@98 Valid BST](#98-valid-bst)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -89,3 +90,9 @@ Approach A will still lead to a better solution when differences happen at 3 and
 ## @91 Decode ways:
 
 <img src="pics/91DecodeWay.jpg" width="800" title="BrutalForce Big O">
+
+## @98 Valid BST
+
+> Diagram for traveral orders for BT or BST, good to see.
+
+<img src="pics/98ValidBST.jpg" width="800" title="BrutalForce Big O">
