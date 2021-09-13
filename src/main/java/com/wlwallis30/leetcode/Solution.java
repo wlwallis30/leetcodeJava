@@ -67,7 +67,7 @@ public class Solution {
  * convert sorted array to BST 108:     total: 1
  * binary tree path sum 112:257     total: 2
  * pascal triangle 118:119    total: 2
- * single num 136: 137, 268, 260     total: 4
+ * single num 136: 137, 268, 260, 89     total: 5
  * linked list cycle 141: 142, 202  total: 3
  * add digits 258: (202) 263, 204, 29   total: 4
  * word pattern 205: 290   total: 2
@@ -98,7 +98,10 @@ public class Solution {
  * word search 79:    total: 1
  * subset 78: 90    total: 2
  * remove dup from sorted linkedlist 83: 82   total: 2
- *********************Similar problem catalogs: total: 140
+ * partition list 86:    total: 1
+ * decode way 91:   total: 1
+ * unique BST 96:    total: 1
+ *********************Similar problem catalogs: total: 144
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {

@@ -5,6 +5,7 @@
   - [@163 Missing range](#163-missing-range)
   - [@45 Jump Game](#45-jump-game)
   - [@189 Rotate array by k](#189-rotate-array-by-k)
+  - [@91 Decode ways:](#91-decode-ways)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -85,3 +86,6 @@ Approach A will still lead to a better solution when differences happen at 3 and
 
 <img src="pics/189RotateArray.jpg" width="800" title="BrutalForce Big O">
 
+## @91 Decode ways:
+
+<img src="pics/91DecodeWay.jpg" width="800" title="BrutalForce Big O">

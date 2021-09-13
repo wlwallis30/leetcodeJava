@@ -92,4 +92,11 @@ public class SingleNum {
     }
     return  (n * (n + 1))/2 - sum;
   }
+
+  public List<Integer> grayCode89(int n) {
+    int max = 1 << n; // will give 2^n, while n << 1 will do one left shift for n.
+    List<Integer> res = new ArrayList<>();
+    for(int i = 0; i < max; ++i) res.add((i>>1) ^ i);
+    return  res;
+  }
 }
