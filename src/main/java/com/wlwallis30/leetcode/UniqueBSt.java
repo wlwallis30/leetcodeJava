@@ -1,5 +1,8 @@
 package com.wlwallis30.leetcode;
 
+import apple.laf.JRSUIUtils.Tree;
+import java.util.*;
+
 public class UniqueBSt {
   /*
   total number of unique BST G(n), is the sum of BST F(i,n) enumerating each number i (1 <= i <= n) as a root.
@@ -20,5 +23,31 @@ public class UniqueBSt {
       }
     }
     return dp[n];
+  }
+
+  List<TreeNode> generateTrees95(int n) {
+    if(n ==0) return (new ArrayList<>());
+    return generateTreesDFS(1, n);
+  }
+  List<TreeNode> generateTreesDFS(int start, int end) {
+    List<TreeNode> subTree = new ArrayList<>();
+    if (start > end) {subTree.add(null); return subTree;}
+    else {
+      for (int i = start; i <= end; ++i) {
+        List<TreeNode> leftSubTree = generateTreesDFS(start, i - 1);
+        List<TreeNode> rightSubTree = generateTreesDFS(i + 1, end);
+        for (TreeNode oneLeftNode: leftSubTree) {
+          for (TreeNode oneRightNode: rightSubTree) {
+            TreeNode curRoot = new TreeNode(i);
+            // if using curRoot.left = leftSubTree.get(leftSubTreeIdx), leftSubTree finally will be null during recursive
+            // coz java pass-by-value, for List<TN>, it pass the reference by value, ref is not changed during current, you need to create a new copy!!!
+            curRoot.left = oneLeftNode;
+            curRoot.right = oneRightNode;
+            subTree.add(curRoot);
+          }
+        }
+      }
+    }
+    return subTree;
   }
 }
