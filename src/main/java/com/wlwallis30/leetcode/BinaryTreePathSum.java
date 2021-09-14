@@ -13,6 +13,29 @@ public class BinaryTreePathSum {
     return hasPathSum_112Recur(root.left, sum) || hasPathSum_112Recur(root.right, sum);
   }
 
+  private void recurseTree(TreeNode node, int remainingSum, List<Integer> pathNodes, List<List<Integer>> res) {
+    if (node == null) { return; }
+    // try adding the current node to the path's list
+    pathNodes.add(node.val);
+
+    //leaf ? and remain is cur val
+    if (remainingSum == node.val && node.left == null && node.right == null) {
+      res.add(new ArrayList<>(pathNodes));
+    } else {
+      this.recurseTree(node.left, remainingSum - node.val, pathNodes, res); // no worries left is null, it will returned by null from next call
+      this.recurseTree(node.right, remainingSum - node.val, pathNodes, res);
+    }
+    // tried adding b4, removing it
+    pathNodes.remove(pathNodes.size() - 1);
+  }
+
+  public List<List<Integer>> pathSum113Recur(TreeNode root, int sum) {
+    List<List<Integer>> res = new ArrayList<>();
+    List<Integer> pathNodes = new ArrayList<>();
+    this.recurseTree(root, sum, pathNodes, res);
+    return res;
+  }
+
   List<String> binaryTreePaths257(TreeNode root) {
     List<String> res = new ArrayList<String>();;
     if (root == null) return res;
