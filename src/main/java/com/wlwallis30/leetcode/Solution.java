@@ -100,9 +100,10 @@ public class Solution {
  * remove dup from sorted linkedlist 83: 82   total: 2
  * partition list 86:    total: 1
  * decode way 91:   total: 1
- * unique BST 96: 95, 98    total: 3
+ * unique BST 96: 95, 98, 99    total: 4
  * retore IP address 93:    total: 1
- *********************Similar problem catalogs: total: 147
+ * build BT from inorder and preorder 105: 106   total: 2
+ *********************Similar problem catalogs: total: 150
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {

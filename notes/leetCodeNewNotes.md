@@ -7,6 +7,8 @@
   - [@189 Rotate array by k](#189-rotate-array-by-k)
   - [@91 Decode ways:](#91-decode-ways)
   - [@98 Valid BST](#98-valid-bst)
+  - [@105 BuildBTViaInorderPreorder](#105-buildbtviainorderpreorder)
+  - [@106 BuildBTViaInorderPostorder](#106-buildbtviainorderpostorder)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -96,3 +98,12 @@ Approach A will still lead to a better solution when differences happen at 3 and
 > Diagram for traveral orders for BT or BST, good to see.
 
 <img src="pics/98ValidBST.jpg" width="800" title="BrutalForce Big O">
+
+## @105 BuildBTViaInorderPreorder
+
+<img src="pics/105BuildBTViaInorderPreorder.jpg" width="800" title="BrutalForce Big O">
+
+
+## @106 BuildBTViaInorderPostorder
+
+<img src="pics/106BuildBTViaInorderPostorder.jpg" width="800" title="BrutalForce Big O">

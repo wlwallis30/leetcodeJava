@@ -115,10 +115,74 @@ public class UniqueBST {
     if (!isBSTInorderDFS(root.left)) {
       return false;
     }
+    //you visit the left subtree first always, by using prev, b4 visit right subtree, you wanna compare cur.val and pre.val
+    //it should be always > pre.val(coming from left subtree if it is cur root or from cur root if left subtree is done), otherwise invalid.
     if (prev != null && root.val <= prev) {
       return false;
     }
     prev = root.val;
     return isBSTInorderDFS(root.right);
+  }
+
+  public void swap(TreeNode a, TreeNode b) {
+    int tmp = a.val;
+    a.val = b.val;
+    b.val = tmp;
+  }
+  TreeNode first = null, second = null, preVisit = null;
+  //三个指针，first，second 分别表示第一个和第二个错乱位置的节点，pre 指向当前节点的中序遍历的前一个节点。
+  // 这里用传统的中序遍历递归来做，不过在应该输出节点值的地方，换成了判断 pre 和当前节点值的大小
+  /*
+       1
+      /
+     3
+      \
+       2
+       in this tree, the first will be 3, and second will be 2 then to be 1 due to inorder
+        2
+      /
+     1
+      \
+       3
+       the first will still be 3, second will just be 2 due to inorder.
+       in both cases, first is 3, that is why we call preVisit and assign the preVisit to the first
+   */
+  public void findTwoSwapped(TreeNode cur) {
+    if (cur == null) return;
+    findTwoSwapped(cur.left);
+    if (preVisit != null && cur.val < preVisit.val) {
+      second = cur;
+      if (first == null) first = preVisit;
+      else return;
+    }
+    preVisit = cur;// let preVisit to be the cur, the second will be
+    findTwoSwapped(cur.right);
+  }
+
+  public void recoverTree99InorderRecur(TreeNode root) {
+    findTwoSwapped(root);
+    swap(first, second);
+  }
+
+  // stack ops is very similar with BinaryTreeTraversal.inorderTraversal94_stack
+  public void recoverTree99InorderStack(TreeNode root) {
+    Deque<TreeNode> stack = new ArrayDeque();
+    TreeNode x = null, y = null, pred = null;
+
+    while (!stack.isEmpty() || root != null) {
+      while (root != null) {
+        stack.add(root);
+        root = root.left;
+      }
+      root = stack.removeLast();
+      if (pred != null && root.val < pred.val) {
+        y = root;
+        if (x == null) x = pred;
+        else break;
+      }
+      pred = root;
+      root = root.right;
+    }
+    swap(x, y);
   }
 }
