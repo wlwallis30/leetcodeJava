@@ -63,8 +63,8 @@ public class Solution {
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
- * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102     total: 9
- * convert sorted array to BST 108:     total: 1
+ * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107   total:  10
+ * convert sorted array to BST 108: 109   total: 2
  * binary tree path sum 112:257     total: 2
  * pascal triangle 118:119    total: 2
  * single num 136: 137, 268, 260, 89     total: 5
@@ -103,7 +103,7 @@ public class Solution {
  * unique BST 96: 95, 98, 99    total: 4
  * retore IP address 93:    total: 1
  * build BT from inorder and preorder 105: 106   total: 2
- *********************Similar problem catalogs: total: 150
+ *********************Similar problem catalogs: total: 152
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {

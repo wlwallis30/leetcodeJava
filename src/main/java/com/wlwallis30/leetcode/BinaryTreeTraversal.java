@@ -120,6 +120,13 @@ public class BinaryTreeTraversal {
     return levels;
   }
 
+  public List<List<Integer>> levelOrderBottom107Recur(TreeNode root) {
+    if (root == null) return levels;
+    levelOrderDFS(root, 0);
+    Collections.reverse(levels);
+    return levels;
+  }
+
   public void levelOrderDFS(TreeNode node, int curLevel) {
     if(node == null) return;
     // start the current level
@@ -332,6 +339,15 @@ public class BinaryTreeTraversal {
       // go to next level
       level++;
     }
+    return levels;
+  }
+
+  public List<List<Integer>> levelOrderBottom107Que(TreeNode root) {
+    List<List<Integer>> levels = new ArrayList<>();
+    if (root == null) return levels;
+    levels = levelOrder_102Que(root);
+
+    Collections.reverse(levels);
     return levels;
   }
 }
