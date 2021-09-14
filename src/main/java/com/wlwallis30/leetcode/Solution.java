@@ -103,7 +103,9 @@ public class Solution {
  * unique BST 96: 95, 98, 99    total: 4
  * retore IP address 93:    total: 1
  * build BT from inorder and preorder 105: 106   total: 2
- *********************Similar problem catalogs: total: 153
+ * flatten BT to linkedlist 114:    total:1
+ * connect next pointers for perfect BT 116: 117    total: 2
+ *********************Similar problem catalogs: total: 156
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
