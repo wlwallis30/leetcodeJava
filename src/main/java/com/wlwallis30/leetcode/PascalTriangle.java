@@ -49,4 +49,30 @@ public class PascalTriangle {
 
     return prev;
   }
+
+  // triangle, find the minimum sum path, return the sum
+  public int minimumTotal120BottomUp(List<List<Integer>> triangle) {
+    // assigning the last row
+    List<Integer> bottomUpDp = triangle.get(triangle.size()-1);
+    //List<Integer> bottomUpDp = new ArrayList(triangle.get(triangle.size()-1));
+    int n = triangle.size();
+    for(int i=n-2; i>=0;--i) {
+      for(int j=0; j<=i;++j) {
+        int tmp = Math.min(bottomUpDp.get(j), bottomUpDp.get(j+1)) + triangle.get(i).get(j);
+        bottomUpDp.set(j, tmp);
+      }
+    }
+
+    /*  actually, the first line only created List ref to the trianglei's last row
+        so basically this solution is inplace space, O(1)
+        if you want to have a new, then new ArrayList(someOldArrayList)
+     triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+    for(List<Integer> eachRow: triangle) System.out.println(eachRow); will give:
+      [2]
+      [3, 4]
+      [6, 5, 7]
+      [11, 10, 10, 3], yes, you are changing the last row due to the ref.
+     */
+    return bottomUpDp.get(0);
+  }
 }

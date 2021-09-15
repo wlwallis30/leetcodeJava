@@ -71,4 +71,42 @@ public class BinaryTreePointNext {
   public Node connect117(Node root) {
     return connect116(root);
   }
+  /* space O(1)
+   void connect(TreeLinkNode *root) {
+        if(!root) return;
+
+        // lm means means left most
+        TreeLinkNode* lm =root;
+        while(lm)
+        {
+            TreeLinkNode* dad =lm;
+            while(dad&&!dad->left&&!dad->right) dad=dad->next;
+            if(!dad)return;
+            lm=dad->left?dad->left:dad->right;
+            TreeLinkNode* cur=lm;
+            while(dad)
+            {
+                if(cur==dad->left)
+                {
+                    if(dad->right)
+                    {
+                        cur->next=dad->right;
+                        cur=cur->next;
+                    }
+                  dad=dad->next;
+                }
+                else if(cur==dad->right) dad=dad->next;
+                else
+                {
+                    if(!dad->left&&!dad->right) {dad=dad->next; continue;}
+
+                    // this is the case where dad x with child jump some non child nodes to another dad y with child
+                    cur->next = dad->left?dad->left:dad->right;
+                    cur=cur->next;
+                }
+            }
+
+        }
+    }
+   */
 }
