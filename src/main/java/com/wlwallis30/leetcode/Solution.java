@@ -59,14 +59,14 @@ public class Solution {
  * swap two nodes in pair 24:    ....total: 1
  * search insert position 35: 278, 34    ....total: 3
  * next pemutation 31: 46, 47     total: 3
- * max sub array 53: 121     ....total: 2
+ * max sub array 53: 121, 122     ....total: 3
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
  * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107   total:  10
  * convert sorted array to BST 108: 109   total: 2
  * binary tree path sum 112:257, 113     total: 3
- * pascal triangle 118:119    total: 2
+ * pascal triangle 118:119, 120    total: 3
  * single num 136: 137, 268, 260, 89     total: 5
  * linked list cycle 141: 142, 202  total: 3
  * add digits 258: (202) 263, 204, 29   total: 4
@@ -105,7 +105,7 @@ public class Solution {
  * build BT from inorder and preorder 105: 106   total: 2
  * flatten BT to linkedlist 114:    total:1
  * connect next pointers for perfect BT 116: 117    total: 2
- *********************Similar problem catalogs: total: 156
+ *********************Similar problem catalogs: total: 158
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
