@@ -49,6 +49,16 @@ public class BinaryTreePathSum {
     if(root.left != null)binaryTreePathsDFS(root.left, out+"->", res);
     if(root.right != null)binaryTreePathsDFS(root.right, out+"->", res);
   }
+
+  int sumNumbers129Recur(TreeNode root) {
+    return sumNumbersDFS(root, 0);
+  }
+  int sumNumbersDFS(TreeNode root, int sum) {
+    if (root == null) return 0;
+    sum = sum  + root.val;
+    if (root.left == null && root.right == null) return sum;
+    return sumNumbersDFS(root.left, sum*10) + sumNumbersDFS(root.right, sum*10);
+  }
   //////////////////////////////////////////////iterative//////////////////////////////////////////////////
   public boolean hasPathSum_112Stack(TreeNode root, int sum) {
     if (root == null)
