@@ -1,6 +1,5 @@
 package com.wlwallis30.leetcode;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class LongSubStrNoRepeatChar {
@@ -62,5 +61,23 @@ public class LongSubStrNoRepeatChar {
 		}
 		
 		return res;
+	}
+
+	public int longestConsecutive128(int[] nums) {
+		Set<Integer> num_set = new HashSet<>();
+		for (int num : nums) { num_set.add(num); }
+		int globalMaxCnt = 0;
+
+		for (int num : num_set) {
+		  // 2, 3, 4, 5, it is smart we skip 3, 4, 5, and start with 2 and count
+			if (!num_set.contains(num-1)) {
+				int currentNum = num;
+				int curCnt = 1;
+				while (num_set.contains(++currentNum)) { curCnt += 1; }
+				globalMaxCnt = Math.max(globalMaxCnt, curCnt);
+			}
+		}
+
+		return globalMaxCnt;
 	}
 }

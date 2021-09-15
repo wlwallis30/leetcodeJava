@@ -43,7 +43,7 @@ public class Solution {
 /*
  * Two sum 1: 15, 16, 18, 167, 170, 259.......total: 7
  * Add two numbers 2: 67, 43, 66, 369, 371.... total: 6
- * Length of longest sub string 3: 159, 239, 340.....total: 4
+ * Length of longest sub string 3: 159, 239, 340, 128.....total: 5
  * Find median for two sorted arrays 4........total: 1
  * Longest palindrome substring 5: 266, 267, 9, 125, 131, 234......total: 7
  * Reverse integer 7: 8  .....total: 2
@@ -59,7 +59,7 @@ public class Solution {
  * swap two nodes in pair 24:    ....total: 1
  * search insert position 35: 278, 34    ....total: 3
  * next pemutation 31: 46, 47     total: 3
- * max sub array 53: 121, 122     ....total: 3
+ * max sub array 53: 121, 122, 309    ....total: 4
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
@@ -105,7 +105,7 @@ public class Solution {
  * build BT from inorder and preorder 105: 106   total: 2
  * flatten BT to linkedlist 114:    total:1
  * connect next pointers for perfect BT 116: 117    total: 2
- *********************Similar problem catalogs: total: 158
+ *********************Similar problem catalogs: total: 160
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {

@@ -28,6 +28,7 @@ public class MaxSubArray {
     return res;
   }
 
+  //buy sell stock II
   int maxProfit122(int[] prices) {
     if(prices.length == 0) return 0;
     int res=0;
@@ -35,5 +36,22 @@ public class MaxSubArray {
       if(prices[i]>prices[i-1]) res += prices[i]-prices[i-1];
     }
     return res;
+  }
+
+  // buy sell stock with cool down, check the markdown file to see the diagram
+  // sold[i]=hold[i−1]+price[i]
+  // held[i]=max(held[i−1],reset[i−1]−price[i])
+  // reset[i]=max(reset[i−1],sold[i−1])
+  public int maxProfit309(int[] prices) {
+    int sold = Integer.MIN_VALUE, held = Integer.MIN_VALUE, reset = 0;
+    for (int price : prices) {
+      int preSold = sold;
+
+      sold = held + price;
+      held = Math.max(held, reset - price);
+      reset = Math.max(reset, preSold);
+    }
+
+    return Math.max(sold, reset);
   }
 }

@@ -9,6 +9,7 @@
   - [@98 Valid BST](#98-valid-bst)
   - [@105 BuildBTViaInorderPreorder](#105-buildbtviainorderpreorder)
   - [@106 BuildBTViaInorderPostorder](#106-buildbtviainorderpostorder)
+  - [@309 Buy and sell stock with cooldown](#309-buy-and-sell-stock-with-cooldown)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -107,3 +108,13 @@ Approach A will still lead to a better solution when differences happen at 3 and
 ## @106 BuildBTViaInorderPostorder
 
 <img src="pics/106BuildBTViaInorderPostorder.jpg" width="800" title="BrutalForce Big O">
+
+## @309 Buy and sell stock with cooldown
+> sold[i]=hold[i−1]+price[i]
+
+> held[i]=max(held[i−1],reset[i−1]−price[i])
+ 
+> reset[i]=max(reset[i−1],sold[i−1])
+
+<img src="pics/309BuySellStockCoolDown.jpg" width="800" title="BrutalForce Big O">
+<img src="pics/309BuySellStockCoolDown1.jpg" width="800" title="BrutalForce Big O">
