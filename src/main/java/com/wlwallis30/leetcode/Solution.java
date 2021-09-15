@@ -65,7 +65,7 @@ public class Solution {
  * climb chairs 70:     total: 1
  * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107   total:  10
  * convert sorted array to BST 108: 109   total: 2
- * binary tree path sum 112:257, 113, 129     total: 4
+ * binary tree path sum 112:257, 113, 129    total: 4
  * pascal triangle 118:119, 120    total: 3
  * single num 136: 137, 268, 260, 89     total: 5
  * linked list cycle 141: 142, 202  total: 3
