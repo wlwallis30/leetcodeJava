@@ -80,4 +80,29 @@ public class LongSubStrNoRepeatChar {
 
 		return globalMaxCnt;
 	}
+
+	int longestConsecutive298(TreeNode root) {
+		if(root == null) return 0;
+		return helper(root, null, 1);
+	}
+	int helper(TreeNode cur, TreeNode curParent, int maxLen)
+	{
+		if(cur == null) return maxLen;
+		// curParent != null, just for the root node since you pass a null!
+		maxLen = (curParent != null && cur.val == curParent.val+1) ? maxLen+1:1;
+		return Math.max(maxLen, Math.max(helper(cur.left,cur, maxLen),helper(cur.right,cur, maxLen)));
+	}
+	/*
+	void helper(TreeNode* root, int len, int& res) {
+        res = max(res, len);
+        if(root->left) {
+            if(root->left->val == root->val+1) helper(root->left, len+1, res);
+            else helper(root->left, 1, res);
+        }
+        if(root->right) {
+            if(root->right->val == root->val+1) helper(root->right, len+1, res);
+            else helper(root->right, 1, res);
+        }
+    }
+	 */
 }
