@@ -109,7 +109,8 @@ public class Solution {
  * clone graph 133:  (323), (261), 138    total: 2
  * gas station 134:     total:1
  * word break 139:    total: 1
- *********************Similar problem catalogs: total: 172
+ * LRU cache 146: 460   total: 2
+ *********************Similar problem catalogs: total: 174
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
