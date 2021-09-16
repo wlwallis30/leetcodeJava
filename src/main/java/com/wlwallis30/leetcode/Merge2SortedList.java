@@ -44,4 +44,34 @@ public class Merge2SortedList {
     fast = sortList148(fast);
     return mergeTwoLists_21(slow, fast);
   }
+  // when finding the middle in linkedlist, you could use pattern while (fast.next != null && fast.next.next != null)
+  void reorderList143(ListNode head) {
+    if (head == null || head.next == null || head.next.next == null) return;
+    ListNode fast = head;
+    ListNode slow = head;
+    while (fast.next != null && fast.next.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    // slow is the middle for the odd num of list, is the last of 1st half for the even num of list
+    ListNode last = slow.next;
+    slow.next = null;
+    ListNode pre = null;
+    //reversing the second half
+    while (last != null) {
+      ListNode next = last.next;
+      last.next = pre;
+      pre = last;
+      last = next;
+    }
+    while (head != null && pre != null) {
+      ListNode tmp1 = head.next;
+      ListNode tmp2 = pre.next;
+
+      head.next = pre;
+      pre.next = tmp1;
+      pre=tmp2;
+      head = tmp1;
+    }
+  }
 }
