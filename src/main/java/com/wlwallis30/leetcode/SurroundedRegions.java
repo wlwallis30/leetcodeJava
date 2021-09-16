@@ -103,4 +103,182 @@ public class SurroundedRegions {
       }
     }
   }
+
+  private void graphDFS(List<Integer>[] adjList, int[] visited, int startNode) {
+    visited[startNode] = 1;
+
+    for (int i = 0; i < adjList[startNode].size(); i++) {
+      if (visited[adjList[startNode].get(i)] == 0) {
+        graphDFS(adjList, visited, adjList[startNode].get(i));
+      }
+    }
+  }
+
+  public int countComponents323(int n, int[][] edges) {
+    int components = 0;
+    int[] visited = new int[n];
+
+    List<Integer>[] adjList = new ArrayList[n];
+    for (int i = 0; i < n; i++) {
+      adjList[i] = new ArrayList<>();
+    }
+
+    for (int i = 0; i < edges.length; i++) {
+      adjList[edges[i][0]].add(edges[i][1]);
+      adjList[edges[i][1]].add(edges[i][0]);
+    }
+
+    for (int i = 0; i < n; i++) {
+      if (visited[i] == 0) {
+        components++;
+        graphDFS(adjList, visited, i);
+      }
+    }
+    return components;
+  }
+
+  // node from 0 ~ n-1
+  // undirected graph, A-B-A is not a cyclic. DFS by stack, you can also use BFS by que
+  //delete the opposite direction edges from the adjacency list to detect cycle while exclude trivial cycles like A-B-A
+  public boolean validTree261Stack(int n, int[][] edges) {
+    List<Integer>[] adjList = new ArrayList[n];
+    for (int i = 0; i < n; i++) { adjList[i] = new ArrayList<>(); }
+    for (int i = 0; i < edges.length; i++) {
+      adjList[edges[i][0]].add(edges[i][1]);
+      adjList[edges[i][1]].add(edges[i][0]);
+    }
+    Stack<Integer> stack = new Stack<>();
+    stack.push(0);
+// Use a set to keep track of already seen nodes to
+// avoid infinite looping.
+    Set<Integer> seen = new HashSet<>();
+    seen.add(0);
+    while (!stack.isEmpty()) {
+      int node = stack.pop(); // Take one off to visit.
+      // Check for unseen neighbours of this node:
+      for (int neighbour : adjList[node]) {
+        // Check if we've already seen this node., checking cycle
+        if (seen.contains(neighbour)) {
+          return false;
+        }
+        // Otherwise, put this neighbour onto stack
+        // and record that it has been seen.
+        stack.push(neighbour);
+        seen.add(neighbour);
+        // Remove the link that goes in the opposite direction.
+        // need to convert into Integer object, otherwise it is removing by index !!
+        adjList[neighbour].remove((Integer)node);
+      }
+    }
+
+    return seen.size() == n; //check fully connected
+  }
+
+  // similar with above, List<Integer>[] or List<List<Integer>>
+  private List<List<Integer>> adjacencyList = new ArrayList<>();
+  private Set<Integer> visited = new HashSet<>();
+  //  O(N + E) and space O(N+E).
+  public boolean validTree261Recur(int n, int[][] edges) {
+    if (edges.length != n - 1) return false;
+    for (int i = 0; i < n; i++) { adjacencyList.add(new ArrayList<>()); }
+    for (int[] edge : edges) {
+      adjacencyList.get(edge[0]).add(edge[1]);
+      adjacencyList.get(edge[1]).add(edge[0]);
+    }
+    // We return true iff no cycles were detected, // AND the entire graph has been reached.
+    return validtreeDFS(0, -1) && visited.size() == n;
+  }
+
+  // parent is to avoid the trivial cycle, like A-B-A, and detecting the real cycles.
+  public boolean validtreeDFS(int node, int parent) {
+    if (visited.contains(node)) return false;
+    visited.add(node);
+    for (int neighbour : adjacencyList.get(node)) {
+      if (parent != neighbour) {
+        boolean result = validtreeDFS(neighbour, node);
+        if (!result) return false;
+      }
+    }
+    return true;
+  }
+
+  //a valid tree => exactly n - 1 edges.
+  // if < n-1, then it is not fully connected.
+  // if > n-1, cyclic
+  // if == n-1,  could be: not fully connected, and has cycle. such as 0 1 2 form a cycle, 2 edges, 3, 4 connected, so 4 edges in total.
+  // n-1, also could be fully connected without cycle.
+  public boolean validTree261AdvGraphTheory(int n, int[][] edges) {
+    if (edges.length != n - 1) return false;
+    // Make the adjacency list.
+    List<List<Integer>> adjacencyList = new ArrayList<>();
+    for (int i = 0; i < n; i++) { adjacencyList.add(new ArrayList<>()); }
+    for (int[] edge : edges) {
+      adjacencyList.get(edge[0]).add(edge[1]);
+      adjacencyList.get(edge[1]).add(edge[0]);
+    }
+
+    Stack<Integer> stack = new Stack<>();
+    Set<Integer> seen = new HashSet<>();
+    stack.push(0);
+    seen.add(0);
+
+    while (!stack.isEmpty()) {
+      int node = stack.pop();
+      for (int neighbour : adjacencyList.get(node)) {
+        // to avoid trivial cycle, A-B-A
+        if (seen.contains(neighbour)) continue;
+        seen.add(neighbour);
+        stack.push(neighbour);
+      }
+    }
+
+    return seen.size() == n;
+  }
+
+  boolean validTree261UnionFind(int n, int[][] edges) {
+    int[] parents = new int[n];
+    Arrays.fill(parents, -1);
+    // for loop is as same as UnionFind class's union
+    for (int[] oneEdge : edges) {
+      int rootA = find(parents, oneEdge[0]), rootB = find(parents, oneEdge[1]);
+      // cycle detected
+      if (rootA == rootB) return false;
+      parents[rootA] = rootB;
+    }
+    return edges.length == n - 1;
+  }
+  // this is as same as UnionFind class's find and part of the constructor
+  int find(int[] parents, int node) {
+    while (parents[node] != -1) node = parents[node];
+    return node;
+  }
+  class UnionFind {
+    private int[] parent;
+    // For efficiency, we aren't using makeset, but instead initialising
+    // all the sets at the same time in the constructor.
+    public UnionFind(int n) {
+      parent = new int[n];
+      for (int node = 0; node < n; node++) { parent[node] = node; }
+    }
+
+    // The find method, without any optimizations. It traces up the parent
+    // links until it finds the root node for A, and returns that root.
+    public int find(int A) {
+      while (parent[A] != A) { A = parent[A]; }
+      return A;
+    }
+
+    // The union method, without any optimizations. It returns True if a
+    // merge happened, False if otherwise.
+    public boolean union(int A, int B) {
+      // Find the roots for A and B.
+      int rootA = find(A), rootB = find(B);
+      // Check if A and B are already in the same set.
+      if (rootA == rootB) { return false; }
+      // Merge the sets containing A and B.
+      parent[rootA] = rootB;
+      return true;
+    }
+  }
+
 }

@@ -10,6 +10,7 @@
   - [@105 BuildBTViaInorderPreorder](#105-buildbtviainorderpreorder)
   - [@106 BuildBTViaInorderPostorder](#106-buildbtviainorderpostorder)
   - [@309 Buy and sell stock with cooldown](#309-buy-and-sell-stock-with-cooldown)
+  - [@261 Valid tree by union find:](#261-valid-tree-by-union-find)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -118,3 +119,7 @@ Approach A will still lead to a better solution when differences happen at 3 and
 
 <img src="pics/309BuySellStockCoolDown.jpg" width="800" title="BrutalForce Big O">
 <img src="pics/309BuySellStockCoolDown1.jpg" width="800" title="BrutalForce Big O">
+
+## @261 Valid tree by union find:
+
+<img src="pics/261ValidTreeByUnionFind.jpg" width="800" title="BrutalForce Big O">
