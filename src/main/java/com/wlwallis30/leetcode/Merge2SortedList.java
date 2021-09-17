@@ -31,6 +31,23 @@ public class Merge2SortedList {
     while (n >= 0) nums1[count--] = nums2[n--];
   }
 
+  ListNode insertionSortList147(ListNode head) {
+    ListNode res = new ListNode(-1);
+    ListNode cur;// now cur.next is null to make while loop generic even for a starting dummy node.
+    ListNode toInsert = head;
+    while (toInsert != null) {
+      ListNode toInsertNext = toInsert.next;
+      cur = res;
+      while (cur.next != null && cur.next.val <= toInsert.val) {
+        cur = cur.next;
+      }
+      toInsert.next = cur.next;
+      cur.next = toInsert;
+      toInsert = toInsertNext;
+    }
+    return res.next;
+  }
+
   ListNode sortList148(ListNode head) {
     if (head == null || head.next == null) return head;
     ListNode fast = head, slow = head;

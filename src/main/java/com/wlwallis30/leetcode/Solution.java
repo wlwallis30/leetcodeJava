@@ -53,7 +53,7 @@ public class Solution {
  * common longest prefix substring 14:  ...total: 1
  * valid parenthesis 20: 22, 17   .....total: 3
  * remove nth node from end 19: 1721    ....total: 2
- * merge two sorted linklist 21: 88, 148, 143   ....total: 4
+ * merge two sorted linklist 21: 88, 148, 143, 147   ....total: 5
  * remove dup from sorted array in place 26: 27, 203, 283, 80    ....total: 5
  * substring pattern strStr 28:      ....total: 1
  * swap two nodes in pair 24:    ....total: 1
@@ -110,7 +110,7 @@ public class Solution {
  * gas station 134:     total:1
  * word break 139:    total: 1
  * LRU cache 146: 460, 588   total: 3
- *********************Similar problem catalogs: total: 175
+ *********************Similar problem catalogs: total: 176
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
