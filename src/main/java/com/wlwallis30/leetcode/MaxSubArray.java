@@ -54,4 +54,22 @@ public class MaxSubArray {
 
     return Math.max(sold, reset);
   }
+
+  int maxProduct152DP(int[] nums) {
+    if(nums.length == 0) return 0;
+
+    int curLocalMax=1, curLocalMin=1;
+    int globalMax = Integer.MIN_VALUE;
+    int tmpMx, tmpMn;
+    for(int num:nums)
+    {
+      tmpMx=curLocalMax;
+      tmpMn=curLocalMin;
+      curLocalMax = Math.max(num,Math.max(num*tmpMx,num*tmpMn));
+      curLocalMin = Math.min(num,Math.min(num*tmpMx,num*tmpMn));
+      globalMax = Math.max(globalMax,Math.max(curLocalMax,curLocalMin));
+    }
+
+    return globalMax;
+  }
 }
