@@ -215,3 +215,65 @@ class LFUCache {
     }
   }
 }
+
+//588
+class FileSystem {
+  class Dir {
+    HashMap < String, Dir > dirMap = new HashMap < > ();
+    HashMap < String, String > fileMap = new HashMap < > ();
+  }
+  Dir root;
+  public FileSystem() { root = new Dir(); }
+
+  public List < String > ls(String path) {
+    Dir curDir = root;
+    List < String > filesOrWithDir = new ArrayList < > ();
+    if (!path.equals("/")) {
+      String[] d = path.split("/");
+      // going down to the last level b4 final
+      for (int i = 1; i < d.length - 1; i++) {
+        curDir = curDir.dirMap.get(d[i]);
+      } // check if the last part is a file or dir
+      if (curDir.fileMap.containsKey(d[d.length - 1])) {
+        filesOrWithDir.add(d[d.length - 1]);
+        return filesOrWithDir;
+      } else {
+        curDir = curDir.dirMap.get(d[d.length - 1]);
+      }
+    }
+    filesOrWithDir.addAll(new ArrayList < > (curDir.dirMap.keySet()));
+    filesOrWithDir.addAll(new ArrayList < > (curDir.fileMap.keySet()));
+    Collections.sort(filesOrWithDir);
+    return filesOrWithDir;
+  }
+
+  public void mkdir(String path) {
+    Dir curDir = root;
+    String[] d = path.split("/");
+    //split "/..." with "/" gives "" an empty string in Java, so the d[0] is ""
+    for (int i = 1; i < d.length; i++) {
+      if (!curDir.dirMap.containsKey(d[i])) curDir.dirMap.put(d[i], new Dir());
+      curDir = curDir.dirMap.get(d[i]);
+      //curDir = curDir.dirMap.getOrDefault(d[i], new Dir());
+      // above can not be used, if key not exist, getOrDefault will NOT create, only return a default value!
+    }
+  }
+
+  public void addContentToFile(String filePath, String content) {
+    Dir curDir = root;
+    String[] d = filePath.split("/");
+    for (int i = 1; i < d.length - 1; i++) {
+      curDir = curDir.dirMap.get(d[i]);
+    }
+    curDir.fileMap.put(d[d.length - 1], curDir.fileMap.getOrDefault(d[d.length - 1], "") + content);
+  }
+
+  public String readContentFromFile(String filePath) {
+    Dir curDir = root;
+    String[] d = filePath.split("/");
+    for (int i = 1; i < d.length - 1; i++) {
+      curDir = curDir.dirMap.get(d[i]);
+    }
+    return curDir.fileMap.get(d[d.length - 1]);
+  }
+}
