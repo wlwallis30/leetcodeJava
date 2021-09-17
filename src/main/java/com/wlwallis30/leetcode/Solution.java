@@ -59,7 +59,7 @@ public class Solution {
  * swap two nodes in pair 24:    ....total: 1
  * search insert position 35: 278, 34    ....total: 3
  * next pemutation 31: 46, 47     total: 3
- * max sub array 53: 121, 122, 309, 152    ....total: 5
+ * max sub array 53: 121, 122, 309, 152, 198, 213    ....total: 7
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
@@ -112,7 +112,7 @@ public class Solution {
  * LRU cache 146: 460, 588   total: 3
  * reverse words 151: 186    total: 2
  * evaluate reversed poland notation 150:    total: 1
- *********************Similar problem catalogs: total: 180
+ *********************Similar problem catalogs: total: 182
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 class ListNode {
