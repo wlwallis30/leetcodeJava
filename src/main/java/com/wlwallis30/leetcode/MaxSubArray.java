@@ -141,4 +141,64 @@ public class MaxSubArray {
 
     return max_1;
   }
+
+  public int[] productExceptSelf238(int[] nums) {
+    int length = nums.length;
+    int[] L = new int[length];
+    int[] R = new int[length];
+    int[] answer = new int[length];
+    L[0] = 1;
+    R[length - 1] = 1;
+    // L[i] will contain product of the all left nums
+    for (int i = 1; i < length; i++) { L[i] = nums[i - 1] * L[i - 1]; }
+    for (int i = length - 2; i >= 0; i--) { R[i] = nums[i + 1] * R[i + 1]; }
+    for (int i = 0; i < length; i++) { answer[i] = L[i] * R[i]; }
+
+    return answer;
+  }
+
+  public int[] productExceptSelf238NoExtraspace(int[] nums) {
+    int length = nums.length;
+    int[] res = new int[length];
+    res[0] = 1;
+    int R = 1;
+    // L[i] will contain product of the all left nums
+    for (int i = 1; i < length; i++) { res[i] = nums[i - 1] * res[i - 1]; }
+    for (int i = length - 1; i >= 0; i--) {
+      res[i] = res[i] * R;
+      R *= nums[i];
+    }
+
+    return res;
+  }
+
+  //O(m*n) and space O(1)
+  public int minCost256(int[][] costs) {
+    int rows = costs.length;
+    if (rows == 0) return 0;
+    for(int row = 1; row < rows; ++row) {
+      for(int color = 0; color < 3; ++color) {
+        costs[row][color] += Math.min(costs[row-1][(color+1)%3], costs[row-1][(color+2)%3]);
+      }
+    }
+
+    return Math.min(Math.min(costs[rows-1][0], costs[rows-1][1]), costs[rows-1][2]);
+  }
+
+  // paint fence
+  public int numWays276(int n, int k) {
+    if (n == 1) return k;
+    //base case, dp_2 means dp[i-2], two posts back, dp_1 means 1 post back.
+    int dp_2 = k;
+    int dp_1 = k * k;
+    for (int i = 3; i <= n; i++) {
+      int diffFromPrev = (k-1)*dp_1;
+      int sameFromPrev = (k-1)*dp_2; // same as one back, it also means diff from two posts back
+      //advance for next iteration
+      dp_2 = dp_1;
+      dp_1 = diffFromPrev + sameFromPrev;
+    }
+
+    return dp_1;
+  }
 }
