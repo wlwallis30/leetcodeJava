@@ -8,38 +8,6 @@ package com.wlwallis30.leetcode;
 
 import com.sun.istack.internal.NotNull;
 
-public class Solution {
- static void swap(@NotNull char[] str, int i, int j) {
-  char temp = str[i];
-  str[i] = str[j];
-  str[j] = temp;
- }
-
- static void swap(@NotNull int[] nums, int i, int j) {
-  int temp = nums[i];
-  nums[i] = nums[j];
-  nums[j] = temp;
- }
-
- static void reverse(@NotNull int[] nums, int start) {
-  int i = start, j = nums.length - 1;
-  while (i < j) {
-   swap(nums, i, j);
-   i++;
-   j--;
-  }
- }
-  static void reverse(int[] nums, int start, int end) {
-    while (start < end) {
-      int temp = nums[start];
-      nums[start] = nums[end];
-      nums[end] = temp;
-      start++;
-      end--;
-    }
-  }
-}
-
 /*
  * Two sum 1: 15, 16, 18, 167, 170, 259.......total: 7
  * Add two numbers 2: 67, 43, 66, 369, 371.... total: 6
@@ -71,7 +39,7 @@ public class Solution {
  * linked list cycle 141: 142, 202  total: 3
  * add digits 258: (202) 263, 204, 29   total: 4
  * word pattern 205: 290   total: 2
- * reverse linkedlist 206:(234Iterative), 92,160     total: 3
+ * reverse linkedlist 206:(234Iterative), 92,160, 156     total: 4
  * min stack 155: 716    total: 2
  * read n chars via read4 157:    total: 1
  * missing range 163: 228   total: 2
@@ -112,9 +80,53 @@ public class Solution {
  * LRU cache 146: 460, 588   total: 3
  * reverse words 151: 186    total: 2
  * evaluate reversed poland notation 150:    total: 1
- *********************Similar problem catalogs: total: 185
+ * one edit distance 161:   total: 1
+ *********************Similar problem catalogs: total: 187
  */
 // single-linked list where java LinkedList is a double linked list via Deque
+
+public class Solution {
+  static void swap(@NotNull char[] str, int i, int j) {
+    char temp = str[i];
+    str[i] = str[j];
+    str[j] = temp;
+  }
+
+  static void swap(@NotNull int[] nums, int i, int j) {
+    int temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
+  }
+
+  // calling this will not swap due to pass-by-value for object ref
+//  static void swap(String str1, String str2) {
+//    String tmp = str1;
+//    str1 = str2;
+//    str2 = tmp;
+//  }
+  // Strings are constant, String name="SO"; name="SE";
+  // name="SE" by doing this, you are changing the value of name variable, not the String object SO itself. String are immutable in the sense, String object SO can't be modified
+  //https://stackoverflow.com/questions/20396767/string-confusion-in-java
+
+  static void reverse(@NotNull int[] nums, int start) {
+    int i = start, j = nums.length - 1;
+    while (i < j) {
+      swap(nums, i, j);
+      i++;
+      j--;
+    }
+  }
+  static void reverse(int[] nums, int start, int end) {
+    while (start < end) {
+      int temp = nums[start];
+      nums[start] = nums[end];
+      nums[end] = temp;
+      start++;
+      end--;
+    }
+  }
+}
+
 class ListNode {
  int val;
  ListNode next;

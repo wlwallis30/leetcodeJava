@@ -83,4 +83,38 @@ public class ReverseLinkedList {
 
     return a;
   }
+
+  //Every right node in the tree has a sibling (a left node that shares the same parent).
+  //Every right node in the tree has no children.
+  TreeNode upsideDownBinaryTree156(TreeNode root) {
+    if(root == null || root.left == null) return root;
+
+    TreeNode res = upsideDownBinaryTree156(root.left);
+    root.left.left= root.right;
+    root.left.right=root;
+
+    root.left=null;
+    root.right=null;
+    return res;
+  }
+
+  TreeNode upsideDownBinaryTree156Iteration(TreeNode root) {
+    TreeNode cur=root, nowLeft=null, nowRight=null, next;
+    while(cur != null) {
+      //save this left for next time.
+      next=cur.left;
+
+      // rotate for left and save
+      cur.left=nowLeft;
+      nowLeft=cur.right;
+
+      //rotate for right and save
+      cur.right=nowRight;
+      nowRight=cur;
+
+      cur=next;
+    }
+
+    return nowRight;
+  }
 }
