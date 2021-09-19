@@ -63,5 +63,25 @@ public class SearchInRotatedSortArray {
     }
     return nums[right];
   }
+
+  //constrains: nums[-1] = nums[n] = -∞, you can assume this. nums[i] != nums[i + 1]. Peak must exist
+  //如果第二个数字比第一个数字小，说明此时第一个数字就是一个局部峰值；否则就往后继续遍历，现在是个递增趋势，如果此时某个数字小于前面那个数字，说明前面数字就是一个局部峰值
+  public int findPeakElement162Linear(int[] nums) {
+    for (int i = 1; i < nums.length; ++i) {
+      if (nums[i] < nums[i - 1]) return i - 1;
+    }
+    return nums.length - 1;
+  }
+  int findPeakElement162BinarySearch(int[] nums) {
+    int left = 0;
+    int right = nums.length - 1;
+    //since you will be using mid+1, better use left<right in while
+    while (left < right) {
+      int mid = (left + right) / 2;
+      if (nums[mid] < nums[mid + 1]) left = mid + 1;
+      else right = mid;
+    }
+    return right;
+  }
 }
 

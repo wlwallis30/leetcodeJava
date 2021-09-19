@@ -49,7 +49,7 @@ import com.sun.istack.internal.NotNull;
  * meeting room 252:     total: 1
  * closest int in BST 270:  total: 1
  * nim game 292:     total: 1
- * search in rotated sorted array 33: 81, 153     total: 3
+ * search in rotated sorted array 33: 81, 153, 162     total: 4
  * valid sudoku 36:    total: 1
  * count and say 38:271    total: 2
  * combination sum 39: 40, (17, 22), 216, 254, 77 total: 5
@@ -81,7 +81,8 @@ import com.sun.istack.internal.NotNull;
  * reverse words 151: 186    total: 2
  * evaluate reversed poland notation 150:    total: 1
  * one edit distance 161:   total: 1
- *********************Similar problem catalogs: total: 187
+ * compare two versions 165:    total: 1
+ *********************Similar problem catalogs: total: 189
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
