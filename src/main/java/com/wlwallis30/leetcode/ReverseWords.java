@@ -59,7 +59,7 @@ public class ReverseWords {
     reverseEachWord(sb);
     return sb.toString();
   }
-//------------------------181---much easier due to char[]-------
+//------------------------186---much easier due to char[]-------
   public void reverse(char[] s, int left, int right) {
     while (left < right) { char tmp = s[left]; s[left++] = s[right]; s[right--] = tmp; }
   }
@@ -76,7 +76,7 @@ public class ReverseWords {
     }
   }
 
-  public void reverseWords181(char[] s) {
+  public void reverseWords186(char[] s) {
     reverse(s, 0, s.length - 1);
     reverseEachWord(s);
   }

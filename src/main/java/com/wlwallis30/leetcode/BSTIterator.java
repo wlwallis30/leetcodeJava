@@ -153,3 +153,38 @@ class PeekingIterator implements Iterator<Integer> {
     return this.iter.hasNext() || peekVal != null;
   }
 }
+
+ interface NestedInteger {
+  boolean isInteger();
+  Integer getInteger();
+  List<NestedInteger> getList();
+  }
+
+  //341
+class NestedIterator implements Iterator<Integer> {
+  private Deque<NestedInteger> stack;// could also use LinkedList
+  public NestedIterator(List<NestedInteger> nestedList) {
+    this.stack = new ArrayDeque(nestedList);
+  }
+
+  @Override
+  public Integer next() {
+    return stack.pop().getInteger();
+  }
+
+  @Override
+  public boolean hasNext() {
+    //[1,[4,[6]]], keep unpacking when it is still a list
+    while(!stack.isEmpty() && !stack.peek().isInteger()) {
+      //peek is peekFirst, pop is remove first
+      List<NestedInteger> curList = stack.pop().getList();
+      for(int idx =curList.size()-1; idx>= 0; --idx){ stack.addFirst(curList.get(idx)); }
+      // [[1], 2, [3]]this will not work coz the constructor already put [1], 2 [3] in the stack, [1] is on top,
+      // not putting [[1], 2, [3]] on top! so the first curList is [1], not [[1], 2, [3]]
+      // for(int idx = 0; idx < curList.size(); ++idx){ stack.addLast(curList.get(idx)); }
+
+    }
+
+    return !stack.isEmpty();
+  }
+}
