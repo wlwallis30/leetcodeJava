@@ -85,7 +85,10 @@ import com.sun.istack.internal.NotNull;
  * BST iterator 173: 251, 281, 284, 341    total: 5
  * zig zag string 6: 103     total: 2
  * largest num 179:   total: 1
- *********************Similar problem catalogs: total: 197
+ * repeated DNA 187:    total: 1
+ * fraction to decimal string 166:    total: 1
+ * interleaving strings 97:   total: 1
+ *********************Similar problem catalogs: total:  200
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
