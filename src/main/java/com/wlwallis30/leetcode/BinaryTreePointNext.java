@@ -109,4 +109,31 @@ public class BinaryTreePointNext {
         }
     }
    */
+
+  public List<Integer> rightSideView199(TreeNode root) {
+    if (root == null) return new ArrayList<Integer>();
+
+    ArrayDeque<TreeNode> queue = new ArrayDeque(){{ offer(root); }};
+    List<Integer> rightside = new ArrayList();
+
+    while (!queue.isEmpty()) {
+      int levelLength = queue.size();
+
+      for(int i = 0; i < levelLength; ++i) {
+        TreeNode node = queue.poll();
+        // if it's the rightmost element
+        if (i == levelLength - 1) {
+          rightside.add(node.val);
+        }
+
+        if (node.left != null) {
+          queue.offer(node.left);
+        }
+        if (node.right != null) {
+          queue.offer(node.right);
+        }
+      }
+    }
+    return rightside;
+  }
 }

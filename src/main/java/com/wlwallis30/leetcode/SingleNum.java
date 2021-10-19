@@ -99,4 +99,12 @@ public class SingleNum {
     for(int i = 0; i < max; ++i) res.add((i>>1) ^ i);
     return  res;
   }
+
+  public int rangeBitwiseAnd201(int m, int n) {
+    int d = Integer.MAX_VALUE;
+    while ((m & d) != (n & d)) {
+      d <<= 1;
+    }
+    return m & d;
+  }
 }
