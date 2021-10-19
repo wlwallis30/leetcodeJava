@@ -100,6 +100,7 @@ public class SingleNum {
     return  res;
   }
 
+  // find the left most bits, that is the answer.
   public int rangeBitwiseAnd201(int m, int n) {
     int d = Integer.MAX_VALUE;
     while ((m & d) != (n & d)) {
