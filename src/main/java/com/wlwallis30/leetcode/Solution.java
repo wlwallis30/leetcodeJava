@@ -47,7 +47,7 @@ import com.sun.istack.internal.NotNull;
  * excel column sheet 168: 171    total: 2
  * factorial trailing zeros 172:      total:1
  * meeting room 252:     total: 1
- * closest int in BST 270:  total: 1
+ * closest int in BST 270:426, 938  total: 3
  * nim game 292:     total: 1
  * search in rotated sorted array 33: 81, 153, 162     total: 4
  * valid sudoku 36:    total: 1
@@ -91,7 +91,7 @@ import com.sun.istack.internal.NotNull;
  * course schedule 207: 210, 269, 953    total: 4
  * building with ocean view 1762:    total: 1
  * dot product of sparse vectors 1570:     total:1
- *********************Similar problem catalogs: total:  210
+ *********************Similar problem catalogs: total:  212
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

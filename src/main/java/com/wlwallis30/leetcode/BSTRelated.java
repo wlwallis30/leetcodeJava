@@ -12,4 +12,60 @@ public class BSTRelated {
 
     return res;
   }
+
+  // 938
+  public int rangeSumBST(TreeNode root, int L, int R) {
+    if (root == null) return 0;
+    if (root.val < L) return rangeSumBST(root.right, L, R);
+    if (root.val > R) return rangeSumBST(root.left, L, R);
+    return root.val + rangeSumBST(root.left, L, R) + rangeSumBST(root.right, L, R);
+  }
+
+  // the smallest (head) and the pre(last) nodes. Node.left used to be the previous node, right to be next
+  Node head = null;
+  Node pre = null;
+  public Node treeToDoublyList426(Node root) {
+    if (root == null) return null;
+    helper(root);
+    // close DLL
+    pre.right = head;
+    head.left = pre;
+    return head;
+  }
+
+  public void helper(Node node) {
+    if (node != null) {
+      helper(node.left);
+      if (pre != null) {
+        // link the previous node (pre)
+        // with the current one (node)
+        pre.right = node;
+        node.left = pre;
+      }
+      else {
+        // keep the smallest node
+        // to close DLL later on
+        head = node;
+      }
+      pre = node;
+      // right
+      helper(node.right);
+    }
+  }
+
+  public void helper1(Node node) {
+    if (node != null) {
+      helper1(node.left);
+      // the first node case is here
+      if (head == null) {
+        head = node;
+        pre = node;
+      } else {
+        pre.right = node;
+        node.left= pre;
+        pre = node;
+      }
+      helper1(node.right);
+    }
+  }
 }
