@@ -19,7 +19,7 @@ import com.sun.istack.internal.NotNull;
  * most water area 11    ....total: 1
  * roman to int 13:    ........total: 1
  * common longest prefix substring 14:  ...total: 1
- * valid parenthesis 20: 22, 17   .....total: 3
+ * valid parenthesis 20: 22, 17, 1249   .....total: 4
  * remove nth node from end 19: 1721    ....total: 2
  * merge two sorted linklist 21: 88, 148, 143, 147   ....total: 5
  * remove dup from sorted array in place 26: 27, 203, 283, 80    ....total: 5
@@ -88,8 +88,10 @@ import com.sun.istack.internal.NotNull;
  * repeated DNA 187:    total: 1
  * fraction to decimal string 166:    total: 1
  * interleaving strings 97:   total: 1
- * course schedule 207: 210, 269    total: 3
- *********************Similar problem catalogs: total:  206
+ * course schedule 207: 210, 269, 953    total: 4
+ * building with ocean view 1762:    total: 1
+ * dot product of sparse vectors 1570:     total:1
+ *********************Similar problem catalogs: total:  210
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

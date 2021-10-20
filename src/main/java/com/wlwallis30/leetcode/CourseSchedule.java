@@ -145,4 +145,31 @@ public class CourseSchedule {
     }
     return sb.toString();
   }
+
+  public boolean isAlienSorted953(String[] words, String order) {
+    int[] orderMap = new int[26];
+    for (int i = 0; i < order.length(); i++){ orderMap[order.charAt(i) - 'a'] = i; }
+
+    for (int i = 0; i < words.length - 1; i++) {
+      String word1 = words[i];
+      String word2 = words[i + 1];
+      // Check that word2 is not a prefix of word1.
+      if (word1.length() > word2.length() && word1.startsWith(word2)) {
+        return false;
+      }
+      for (int j = 0; j < Math.min(word1.length(), word2.length()); j++) {
+        if (word1.charAt(j) != word2.charAt(j)) {
+          int currentWordChar = word1.charAt(j) - 'a';
+          int nextWordChar = word2.charAt(j) - 'a';
+          if (orderMap[currentWordChar] > orderMap[nextWordChar])
+            return false;
+            // if we find the first different letter and they are sorted,
+            // then there's no need to check remaining letters
+          else
+            break;
+        }
+      }
+    }
+    return true;
+  }
 }
