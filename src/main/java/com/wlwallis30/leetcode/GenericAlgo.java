@@ -40,29 +40,27 @@ public class GenericAlgo {
      }
     }
   }
-}
-/*
-static void QuickSort(vector<int>& nums, int left, int right)
-	{
-		if (nums.empty() || left > right) return;
-		int i = left, j = right;
-		int pivotValue = nums[(left + right) / 2];
-		while (i <= j)
-		{
-			while (nums[i] < pivotValue) ++i;
-			while (nums[j] > pivotValue) --j;
-			if (i <= j)
-			{
-				swap(nums[i], nums[j]);
-				++i;
-				--j;
-			}
-		}
-		// i > j now!!!
-		if (left < j) QuickSort(nums, left, j);
-		if (i < right) QuickSort(nums, i, right);
 
-	}
+  void QuickSort(int[] nums, int left, int right) {
+    if (nums.length == 0 || left > right) return;
+    int i = left, j = right;
+    int pivotValue = nums[(left + right) / 2];
+    while (i <= j) {
+      while (nums[i] < pivotValue) ++i;
+      while (nums[j] > pivotValue) --j;
+      if (i <= j) {
+        Solution.swap(nums, i, j);
+        ++i;
+        --j;
+      }
+    }
+    // i > j now!!!
+    if (left < j) QuickSort(nums, left, j);
+    if (i < right) QuickSort(nums, i, right);
+  }
+}
+
+/*
 	static void HeapSort(vector<int>& nums)
 	{
 		int heapBoundary = nums.size() - 1;

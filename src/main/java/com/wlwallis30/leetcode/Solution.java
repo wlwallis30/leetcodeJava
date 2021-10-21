@@ -91,7 +91,8 @@ import com.sun.istack.internal.NotNull;
  * course schedule 207: 210, 269, 953    total: 4
  * building with ocean view 1762:    total: 1
  * dot product of sparse vectors 1570:     total:1
- *********************Similar problem catalogs: total:  212
+ * k th largest element in array 215: 347,  692, 1779, 973    total: 5
+ *********************Similar problem catalogs: total:  217
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
