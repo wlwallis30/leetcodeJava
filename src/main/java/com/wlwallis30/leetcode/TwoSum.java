@@ -162,4 +162,32 @@ public class TwoSum {
 	  }
 	  return res;
   }
+
+  public int subarraySum560(int[] nums, int k) {
+    int count = 0;
+    for (int start = 0; start < nums.length; start++) {
+      int sum=0;
+      for (int end = start; end < nums.length; end++) {
+        sum+=nums[end];
+        if (sum == k)
+          count++;
+      }
+    }
+    return count;
+  }
+
+  public int subarraySum560_map(int[] nums, int target) {
+    int count = 0, sum = 0;
+    HashMap <Integer, Integer> sumOccurMap = new HashMap<>();
+    //init condition for sum = 0
+    sumOccurMap.put(0, 1);
+    for (int i = 0; i < nums.length; i++) {
+      sum += nums[i];
+      // 3 4 7 2 -3 1 7, target = 7
+      //(0,1) (3, 1) (7, 1) (14,1 later will become 2), (16,1), (13, 1), (14, 1->2), (14, 2->3)
+      if (sumOccurMap.containsKey(sum - target)) count += sumOccurMap.get(sum - target);
+      sumOccurMap.put(sum, sumOccurMap.getOrDefault(sum, 0) + 1);
+    }
+    return count;
+  }
 }
