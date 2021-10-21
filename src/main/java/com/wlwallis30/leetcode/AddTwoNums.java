@@ -125,4 +125,26 @@ public class AddTwoNums {
     }
 	  return head;
 	}
+
+	public String addStrings415(String num1, String num2) {
+		StringBuilder res = new StringBuilder();
+
+		int carry = 0;
+		int idx1 = num1.length() - 1;
+		int idx2 = num2.length() - 1;
+		while (idx1 >= 0 || idx2 >= 0) {
+			int x1 = idx1 >= 0 ? num1.charAt(idx1) - '0' : 0;
+			int x2 = idx2 >= 0 ? num2.charAt(idx2) - '0' : 0;
+			int value = (x1 + x2 + carry) % 10;
+			carry = (x1 + x2 + carry) / 10;
+			res.append(value);
+			idx1--;
+			idx2--;
+		}
+
+		if (carry != 0)
+			res.append(carry);
+
+		return res.reverse().toString();
+	}
 }

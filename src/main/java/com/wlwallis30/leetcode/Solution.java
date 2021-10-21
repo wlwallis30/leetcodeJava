@@ -10,7 +10,7 @@ import com.sun.istack.internal.NotNull;
 
 /*
  * Two sum 1: 15, 16, 18, 167, 170, 259, 560.......total: 8
- * Add two numbers 2: 67, 43, 66, 369, 371.... total: 6
+ * Add two numbers 2: 67, 43, 66, 369, 371, 415.... total: 7
  * Length of longest sub string 3: 159, 239, 340, 128, 298.....total: 6
  * Find median for two sorted arrays 4........total: 1
  * Longest palindrome substring 5: 266, 267, 9, 125, 131, 234, 680......total: 8
@@ -92,8 +92,8 @@ import com.sun.istack.internal.NotNull;
  * building with ocean view 1762:    total: 1
  * dot product of sparse vectors 1570:     total:1
  * k th largest element in array 215: 347,  692, 1779, 973    total: 5
- * lowest common ancestor 235: 236, 1644        total: 3
- *********************Similar problem catalogs: total:  221
+ * lowest common ancestor 235: 236, 1644, 1650        total: 4
+ *********************Similar problem catalogs: total:  223
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
