@@ -19,7 +19,7 @@ import com.sun.istack.internal.NotNull;
  * most water area 11    ....total: 1
  * roman to int 13:    ........total: 1
  * common longest prefix substring 14:  ...total: 1
- * valid parenthesis 20: 22, 17, 1249   .....total: 4
+ * valid parenthesis 20: 22, 17, 1249, 921   .....total: 5
  * remove nth node from end 19: 1721    ....total: 2
  * merge two sorted linklist 21: 88, 148, 143, 147   ....total: 5
  * remove dup from sorted array in place 26: 27, 203, 283, 80    ....total: 5
@@ -72,7 +72,7 @@ import com.sun.istack.internal.NotNull;
  * retore IP address 93:    total: 1
  * build BT from inorder and preorder 105: 106   total: 2
  * flatten BT to linkedlist 114:    total:1
- * connect next pointers for perfect BT 116: 117, 199    total: 3
+ * connect next pointers for perfect BT 116: 117, 199, 314    total: 4
  * surrounded region 130: 200, 286, 323, 261   total:5
  * clone graph 133:  (323), (261), 138    total: 2
  * gas station 134:     total:1
@@ -93,7 +93,9 @@ import com.sun.istack.internal.NotNull;
  * dot product of sparse vectors 1570:     total:1
  * k th largest element in array 215: 347,  692, 1779, 973    total: 5
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
- *********************Similar problem catalogs: total:  223
+ * basic calculator 227:     total: 1
+ * account merge 721:    total: 1
+ *********************Similar problem catalogs: total:  227
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

@@ -147,4 +147,22 @@ public class ValidParenthesis {
 
     return result.toString();
   }
+
+  public int minAddToMakeValid921(String s) {
+    char[] arr = s.toCharArray();
+    int openCount = 0;
+    int closeCount = 0;
+    for(char c : arr){
+      if(c == '('){
+        openCount++;
+      }else if(c == ')'){
+        if(openCount > 0){
+          openCount--;
+        }else{
+          closeCount++;
+        }
+      }
+    }
+    return closeCount + openCount;
+  }
 }
