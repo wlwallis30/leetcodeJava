@@ -1,5 +1,7 @@
 package com.wlwallis30.leetcode;
 
+import java.util.*;
+
 public class SearchIn2DMatrix {
   // O(log(m*n))
   public boolean searchMatrix74MimicArray(int[][] matrix, int target) {
@@ -74,5 +76,30 @@ public class SearchIn2DMatrix {
     }
 
     return false;
+  }
+
+  interface BinaryMatrix {
+    int get(int row, int col);
+    List<Integer> dimensions();
+  }
+
+  public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {
+    int rows = binaryMatrix.dimensions().get(0);
+    int cols = binaryMatrix.dimensions().get(1);
+    int smallestIndex = cols;
+    for (int row = 0; row < rows; row++) {
+      // Binary Search for the first 1 in the row.
+      int left = 0;
+      int right = cols - 1;
+      while (left < right) {
+        int mid = (left + right) / 2;
+        if (binaryMatrix.get(row, mid) == 0) { left = mid + 1; }
+        else { right = mid; }
+      }
+      // If the last element in the search space is a 1, then this row contained a 1.
+      if (binaryMatrix.get(row, left) == 1) { smallestIndex = Math.min(smallestIndex, left); }
+    }
+    // If smallest_index is still set to cols, then there were no 1's in the grid.
+    return smallestIndex == cols ? -1 : smallestIndex;
   }
 }

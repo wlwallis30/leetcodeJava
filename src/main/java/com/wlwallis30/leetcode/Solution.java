@@ -59,7 +59,7 @@ import com.sun.istack.internal.NotNull;
  * spiral matrix 54: 59   total: 2
  * rotate linkedlist by k nodes 61: 189    total:2
  * unique path 62: 63, 64     total: 3
- * search in 2D matrix 74: 240    total: 2
+ * search in 2D matrix 74: 240, 1428    total: 3
  * set matrix to zero 73: 289    total: 2
  * sort colors 75: (148)    total: 1
  * simplify dir path 71:    total: 1
@@ -95,7 +95,8 @@ import com.sun.istack.internal.NotNull;
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721:    total: 1
- *********************Similar problem catalogs: total:  227
+ * Facebook high frequency alone: 636        total: 1
+ *********************Similar problem catalogs: total:  229
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

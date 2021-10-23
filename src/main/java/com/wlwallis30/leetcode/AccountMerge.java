@@ -2,7 +2,7 @@ package com.wlwallis30.leetcode;
 
 import java.util.*;
 
-// best solution is union find. 
+// best solution is union find.
 public class AccountMerge {
   public List<List<String>> accountsMerge721_hashmap(List<List<String>> accounts) {
     Map<Integer, Set<String>> emailToAccounts = new HashMap<>(); // accountID: email sets
@@ -114,5 +114,41 @@ public class AccountMerge {
       node = granpa;
     }
     return node;
+  }
+
+  public boolean areSentencesSimilar734(String[] words1, String[] words2, List<List<String>> pairs) {
+    if (words1.length != words2.length) return false;
+    if (words1.length == 0) return true;
+
+    boolean res = false;
+    for (int i = 0; i < words1.length; i++) {
+      String word1 = words1[i];
+      String word2 = words2[i];
+      if (word1.equals(word2)) return true;
+      for (int j = 0; j < pairs.size(); j++) {
+        if (pairs.get(j).contains(word1) && pairs.get(j).contains(word2)) {
+          res = true;
+        }
+      }
+    }
+
+    return res;
+  }
+
+  public boolean areSentencesSimilar734_hashmap(String[] sen1, String[] sen2, List<List<String>> similarPairs) {
+    if (sen1.length != sen2.length) return false;
+
+    Map<String, Set<String>>map = new HashMap<>();
+    for (List<String>pair : similarPairs) {
+      map.computeIfAbsent(pair.get(0),k -> new HashSet<>()).add(pair.get(1));
+      map.computeIfAbsent(pair.get(1),k -> new HashSet<>()).add(pair.get(0));
+    }
+
+    for (int i = 0; i < sen1.length; i++) {
+      if (sen1[i].equals(sen2[i])) continue;
+      Set<String> similarWords = map.get(sen1[i]);
+      if (similarWords == null || !similarWords.contains(sen2[i])) return false;
+    }
+    return true;
   }
 }
