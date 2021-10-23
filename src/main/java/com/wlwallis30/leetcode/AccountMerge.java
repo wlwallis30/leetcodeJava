@@ -135,6 +135,7 @@ public class AccountMerge {
     return res;
   }
 
+  // better solution in time O(N)
   public boolean areSentencesSimilar734_hashmap(String[] sen1, String[] sen2, List<List<String>> similarPairs) {
     if (sen1.length != sen2.length) return false;
 

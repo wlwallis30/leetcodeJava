@@ -94,9 +94,9 @@ import com.sun.istack.internal.NotNull;
  * k th largest element in array 215: 347,  692, 1779, 973    total: 5
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
- * account merge 721:    total: 1
+ * account merge 721: 734    total: 2
  * Facebook high frequency alone: 636        total: 1
- *********************Similar problem catalogs: total:  229
+ *********************Similar problem catalogs: total:  230
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

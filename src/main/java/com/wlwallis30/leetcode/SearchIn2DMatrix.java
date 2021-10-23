@@ -83,7 +83,7 @@ public class SearchIn2DMatrix {
     List<Integer> dimensions();
   }
 
-  public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {
+  public int leftMostColumnWithOne1428(BinaryMatrix binaryMatrix) {
     int rows = binaryMatrix.dimensions().get(0);
     int cols = binaryMatrix.dimensions().get(1);
     int smallestIndex = cols;
