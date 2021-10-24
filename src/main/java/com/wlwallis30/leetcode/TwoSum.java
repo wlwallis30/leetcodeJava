@@ -163,6 +163,7 @@ public class TwoSum {
 	  return res;
   }
 
+  // culmulative sum, O(n^2)
   public int subarraySum560(int[] nums, int k) {
     int count = 0;
     for (int start = 0; start < nums.length; start++) {
@@ -176,6 +177,7 @@ public class TwoSum {
     return count;
   }
 
+  // first, people can think of culmulative sum, then upgrade to hashmap
   public int subarraySum560_map(int[] nums, int target) {
     int count = 0, sum = 0;
     HashMap <Integer, Integer> sumOccurMap = new HashMap<>();
@@ -189,5 +191,52 @@ public class TwoSum {
       sumOccurMap.put(sum, sumOccurMap.getOrDefault(sum, 0) + 1);
     }
     return count;
+  }
+
+  // a % c = b % c ==>  (a-b) % c = 0, building a hashmap with the mod as key and idx as value
+  public boolean checkSubarraySum523(int[] nums, int k) {
+    // maintain a hash map to store <sum % k, index>
+    Map<Integer, Integer> modIdx = new HashMap<>();
+    int sum = 0;
+    for (int i = 0; i < nums.length; i++) {
+      sum += nums[i];
+      sum %= k;
+      // // case 1: culmulitive sum % k = 0, [23,2,4,6,6], k=7
+      if (sum == 0 && i > 0) { return true; }
+      // case 2: regular case
+      if (modIdx.containsKey(sum) && i - modIdx.get(sum) > 1) { return true; }
+      if (!modIdx.containsKey(sum)) { modIdx.put(sum, i); }
+    }
+    return false;
+  }
+}
+
+//528
+class RandomPickWeight {
+  private int[] prefixSums;
+  private int totalSum;
+
+  public RandomPickWeight(int[] w) {
+    this.prefixSums = w;
+    for (int i = 1; i < w.length; ++i) {
+      this.prefixSums[i] = w[i] + this.prefixSums[i-1];
+    }
+    this.totalSum = this.prefixSums[w.length-1];
+    // prefixSums is the ref of w, so w is also changed!!! even with prefixSums = new int[w.length]
+    System.out.println(Arrays.toString(w));
+  }
+
+  public int pickIndex528() {
+    double target = this.totalSum * Math.random();
+    int low = 0, high = this.prefixSums.length-1;
+    while (low < high) {
+      // better to avoid the overflow
+      int mid = low + (high - low) / 2;
+      if (target > this.prefixSums[mid])
+        low = mid + 1;
+      else
+        high = mid;
+    }
+    return low;
   }
 }

@@ -9,7 +9,7 @@ package com.wlwallis30.leetcode;
 import com.sun.istack.internal.NotNull;
 
 /*
- * Two sum 1: 15, 16, 18, 167, 170, 259, 560.......total: 8
+ * Two sum 1: 15, 16, 18, 167, 170, 259, 560, 523, 528.......total: 10
  * Add two numbers 2: 67, 43, 66, 369, 371, 415.... total: 7
  * Length of longest sub string 3: 159, 239, 340, 128, 298.....total: 6
  * Find median for two sorted arrays 4........total: 1
@@ -96,7 +96,8 @@ import com.sun.istack.internal.NotNull;
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
  * Facebook high frequency alone: 636        total: 1
- *********************Similar problem catalogs: total:  230
+ * random pick index 398:  328, (528)      total: 2
+ *********************Similar problem catalogs: total:  234
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
