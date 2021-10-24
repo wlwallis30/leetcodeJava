@@ -39,4 +39,29 @@ public class FacebookHiFreq {
 
     return result;
   }
+
+  // java's char and int are so hard to use for conversion
+  int maximumSwap670(int num) {
+    char[] res = Integer.toString(num).toCharArray();
+    char[] back = Integer.toString(num).toCharArray(); // can not assign res to back, it will just copy the array ref to back
+    for (int i = back.length - 2; i >= 0; --i) {
+      int digit = Character.getNumericValue(back[i]);
+      int digit1 = Character.getNumericValue(back[i+1]);
+      // char c=Character.forDigit(a,REDIX=10); also good
+      back[i] = (char)(Math.max(digit, digit1) + '0');
+    }
+    for (int i = 0; i < res.length; ++i) {
+      if (res[i] == back[i]) continue;
+      for (int j = res.length - 1; j > i; --j) {
+        //scan from the left for back array and try to find corresponding max element which matches.
+        if (res[j] == back[i]) {
+          Solution.swap(res, i, j);
+          // res.toString will just give the string of res object ref, fuxxxxxxxxxxxxxxxxk
+          return Integer.parseInt(String.valueOf(res));
+        }
+      }
+    }
+    //System.out.println(back);
+    return Integer.parseInt(String.valueOf(res));
+  }
 }

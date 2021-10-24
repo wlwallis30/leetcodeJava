@@ -95,9 +95,9 @@ import com.sun.istack.internal.NotNull;
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
- * Facebook high frequency alone: 636        total: 1
+ * Facebook high frequency alone: 636, 670        total: 2
  * random pick index 398:  328, (528)      total: 2
- *********************Similar problem catalogs: total:  234
+ *********************Similar problem catalogs: total:  235
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
@@ -112,6 +112,13 @@ public class Solution {
     int temp = nums[i];
     nums[i] = nums[j];
     nums[j] = temp;
+  }
+
+  static String swapStr(@NotNull char[] str, int i, int j) {
+    char temp = str[i];
+    str[i] = str[j];
+    str[j] = temp;
+    return str.toString();
   }
 
   // calling this will not swap due to pass-by-value for object ref
