@@ -14,6 +14,7 @@
   - [@138 Copy Random list:](#138-copy-random-list)
   - [java collection cheat sheet:](#java-collection-cheat-sheet)
   - [interleaving string match](#interleaving-string-match)
+  - [string to int, int to string, char to int, int to char, char array to String](#string-to-int-int-to-string-char-to-int-int-to-char-char-array-to-string)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -139,3 +140,20 @@ Approach A will still lead to a better solution when differences happen at 3 and
 ## interleaving string match
 
 <img src="pics/97InterleavingStr.jpg" width="800" title="BrutalForce Big O">
+
+## string to int, int to string, char to int, int to char, char array to String
+> better use Integer or Character's built in function
+```java
+Integer.toString(num);
+// res is a char[]
+Integer.parseInt(String.valueOf(res));
+
+//char to int, first might be better
+Character.getNumericValue(aChar);
+Integer.parseInt(String.valueOf(aChar))
+
+//int to char
+(char)(num + '0');
+int REDIX=10;//redix 10 is for decimal number, for hexa use redix 16  
+char c=Character.forDigit(num,REDIX)
+```

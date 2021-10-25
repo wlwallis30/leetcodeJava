@@ -1,5 +1,7 @@
 package com.wlwallis30.leetcode;
 
+import java.util.*;
+
 public class RemoveDupInSortedArray {
   public int removeDuplicates_26(int[] nums) {
     if (nums.length == 0) return 0;
@@ -81,5 +83,40 @@ public class RemoveDupInSortedArray {
         right++;
       }
     }
+  }
+
+  // removing the adjacent dup
+  public String removeDuplicates1047Stack(String S) {
+    StringBuilder sb = new StringBuilder();
+    int sbLength = 0;
+    for(char character : S.toCharArray()) {
+      if (sbLength != 0 && character == sb.charAt(sbLength - 1))
+        sb.deleteCharAt(sbLength-- - 1);
+      else {
+        sb.append(character);
+        sbLength++;
+      }
+    }
+    return sb.toString();
+  }
+
+  public String removeDuplicates1209(String s, int k) {
+    StringBuilder sb = new StringBuilder(s);
+    Stack<Integer> counts = new Stack<>();
+    for (int i = 0; i < sb.length(); ++i) {
+      if (i == 0 || sb.charAt(i) != sb.charAt(i - 1)) {
+        counts.push(1);
+      } else {
+        int incremented = counts.pop() + 1;
+        if (incremented == k) {
+          // delete(start, end),  will do for [start, end)
+          sb.delete(i - k + 1, i + 1);
+          i = i - k;
+        } else {
+          counts.push(incremented);
+        }
+      }
+    }
+    return sb.toString();
   }
 }

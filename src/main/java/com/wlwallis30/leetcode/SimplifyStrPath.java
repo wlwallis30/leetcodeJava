@@ -3,6 +3,7 @@ package com.wlwallis30.leetcode;
 import java.util.*;
 
 public class SimplifyStrPath {
+  // 71
   public String simplifyPath(String path) {
     Stack<String> stack = new Stack<String>();
     // Split the input string on "/" as the delimiter

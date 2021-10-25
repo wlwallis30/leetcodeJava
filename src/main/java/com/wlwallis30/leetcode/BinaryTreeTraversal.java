@@ -143,6 +143,22 @@ public class BinaryTreeTraversal {
     if (node.right != null)
       levelOrderDFS(node.right, curLevel + 1);
   }
+
+  private int diameter;
+  public int diameterOfBinaryTree543(TreeNode root) {
+    diameter = 0;
+    longestPath(root);
+    return diameter;
+  }
+  private int longestPath(TreeNode node){
+    if(node == null) return 0;
+    int leftPath = longestPath(node.left);
+    int rightPath = longestPath(node.right);
+    diameter = Math.max(diameter, leftPath + rightPath);
+
+    // return the longest one between left_path and right_path;
+    return Math.max(leftPath, rightPath) + 1;
+  }
 //////////////////////////////////////////////// iterations///////////////////////////////////////////////////////////////////////////////////
   public List < Integer > inorderTraversal94_stack(TreeNode root) {
     List < Integer > res = new ArrayList < > ();

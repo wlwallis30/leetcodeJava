@@ -22,7 +22,7 @@ import com.sun.istack.internal.NotNull;
  * valid parenthesis 20: 22, 17, 1249, 921   .....total: 5
  * remove nth node from end 19: 1721    ....total: 2
  * merge two sorted linklist 21: 88, 148, 143, 147   ....total: 5
- * remove dup from sorted array in place 26: 27, 203, 283, 80    ....total: 5
+ * remove dup from sorted array in place 26: 27, 203, 283, 80, 1047, 1209    ....total: 7
  * substring pattern strStr 28:      ....total: 1
  * swap two nodes in pair 24:    ....total: 1
  * search insert position 35: 278, 34    ....total: 3
@@ -31,7 +31,7 @@ import com.sun.istack.internal.NotNull;
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
- * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107   total:  10
+ * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543  total:  11
  * convert sorted array to BST 108: 109   total: 2
  * binary tree path sum 112:257, 113, 129    total: 4
  * pascal triangle 118:119, 120    total: 3
@@ -54,7 +54,7 @@ import com.sun.istack.internal.NotNull;
  * count and say 38:271    total: 2
  * combination sum 39: 40, (17, 22), 216, 254, 77 total: 5
  * rotate image 48:     total: 1
- * valid anagram 49: 272    total: 2
+ * valid anagram 49: 272, 249    total: 3
  * jump game 55: 45    total: 2
  * spiral matrix 54: 59   total: 2
  * rotate linkedlist by k nodes 61: 189    total:2
@@ -97,7 +97,7 @@ import com.sun.istack.internal.NotNull;
  * account merge 721: 734    total: 2
  * Facebook high frequency alone: 636, 670        total: 2
  * random pick index 398:  328, (528)      total: 2
- *********************Similar problem catalogs: total:  235
+ *********************Similar problem catalogs: total:  239
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
