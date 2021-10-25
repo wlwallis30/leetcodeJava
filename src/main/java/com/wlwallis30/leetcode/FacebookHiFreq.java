@@ -64,4 +64,33 @@ public class FacebookHiFreq {
     //System.out.println(back);
     return Integer.parseInt(String.valueOf(res));
   }
+
+  public String customSortString791(String order, String T) {
+    // This is offset so that count[0] = occurrences of 'a', etc.
+    int[] count = new int[26];
+    for (char c: T.toCharArray()) count[c - 'a']++;
+    StringBuilder ans = new StringBuilder();
+
+    // Write all characters that occur in order, in the order of order.
+    for (char c: order.toCharArray()) {
+      for (int i = 0; i < count[c - 'a']; ++i) ans.append(c);
+      // Setting count[char] to zero to denote, no need to write 'char' into our answer anymore.
+      count[c - 'a'] = 0;
+    }
+
+    // Write all remaining characters that don't occur in order.
+    // That information is specified by 'count'.
+    for (char c = 'a'; c <= 'z'; ++c)
+      for (int i = 0; i < count[c - 'a']; ++i) ans.append(c);
+
+    return ans.toString();
+  }
+
+  public boolean isToeplitzMatrix766(int[][] matrix) {
+    for (int r = 0; r < matrix.length; ++r)
+      for (int c = 0; c < matrix[0].length; ++c)
+        if (r > 0 && c > 0 && matrix[r-1][c-1] != matrix[r][c])
+          return false;
+    return true;
+  }
 }

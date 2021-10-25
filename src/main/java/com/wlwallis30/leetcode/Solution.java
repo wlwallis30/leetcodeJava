@@ -46,7 +46,7 @@ import com.sun.istack.internal.NotNull;
  * majority element 169:    total: 1
  * excel column sheet 168: 171    total: 2
  * factorial trailing zeros 172:      total:1
- * meeting room 252: 56, 57     total: 3
+ * meeting room 252: 56, 57, 253, 616     total: 5
  * closest int in BST 270:426, 938  total: 3
  * nim game 292:     total: 1
  * search in rotated sorted array 33: 81, 153, 162     total: 4
@@ -95,10 +95,10 @@ import com.sun.istack.internal.NotNull;
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
- * Facebook high frequency alone: 636, 670        total: 2
+ * Facebook high frequency alone: 636, 670, 791, 766   total: 4
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
- *********************Similar problem catalogs: total:  242
+ *********************Similar problem catalogs: total:  246
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
