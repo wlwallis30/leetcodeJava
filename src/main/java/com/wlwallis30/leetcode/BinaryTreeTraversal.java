@@ -159,6 +159,30 @@ public class BinaryTreeTraversal {
     // return the longest one between left_path and right_path;
     return Math.max(leftPath, rightPath) + 1;
   }
+
+  // it is nice to judge if bst is balanced or not first, but you can just build
+  public TreeNode balanceBST(TreeNode root) {
+    List<TreeNode> list=new ArrayList<>();
+    inorder(root,list);
+    return buildTree(list,0,list.size()-1);
+  }
+
+  public TreeNode buildTree(List<TreeNode> list,int start,int end){
+    if(start>end){ return null; }
+    int mid=start+(end-start)/2;
+    TreeNode root=list.get(mid);
+    root.left=buildTree(list,start,mid-1);
+    root.right=buildTree(list,mid+1,end);
+
+    return root;
+  }
+
+  public void inorder(TreeNode root,List<TreeNode> list){
+    if(root==null){ return; }
+    inorder(root.left,list);
+    list.add(root);
+    inorder(root.right,list);
+  }
 //////////////////////////////////////////////// iterations///////////////////////////////////////////////////////////////////////////////////
   public List < Integer > inorderTraversal94_stack(TreeNode root) {
     List < Integer > res = new ArrayList < > ();

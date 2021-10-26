@@ -16,6 +16,7 @@
   - [interleaving string match](#interleaving-string-match)
   - [string to int, int to string, char to int, int to char, char array to String](#string-to-int-int-to-string-char-to-int-int-to-char-char-array-to-string)
   - [int[] to List.. check stackoverflow](#int-to-list-check-stackoverflow)
+  - [how to choose the boundary of binary search](#how-to-choose-the-boundary-of-binary-search)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -166,4 +167,22 @@ List<Integer> list = Arrays.asList(int[])
 //you should use
 List<Integer> intList = Arrays.stream(weights).boxed().collect(Collectors.toList());
 ```
-
+## how to choose the boundary of binary search
+> How to assign values to l and r. It depends on the context!
+https://medium.com/swlh/binary-search-find-upper-and-lower-bound-3f07867d81fb
+```java
+//either, most of the cases, searching for lower bound
+//when even numbers, pick the former one of two numbers, also we want to make sure to avoid left = mid since it might have infinite loop, e.g. [0,1]
+int mid = (left+right)/2; 
+if(invalidCase)left = mid+1;  // coz we searching the lower bound
+else right = mid;
+//or, searching for the upper bound
+//when even numbers, pick the latter one, also we want to make sure to avoid right = mid since it might have infinite loop, e.g. [0,1] 
+int mid = (left+right+1)/2; 
+if(invalidCase) right = mid-1; // coz we are searching the upper bound
+else left = mid; 
+```
+* when  asks for the lower bound
+  * if mid not work, l should be mid+1 because we are sure the mid is not the answer and everything falls one mid‘s left won’t work either
+  * if mid works, then r should be mid not mid-1 because mid might be the answer!
+* vice versa

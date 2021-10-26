@@ -164,4 +164,36 @@ public class FacebookHiFreq {
     }
     return left;
   }
+
+  //cutting ribbon: k ribbons of all the same positive integer length.
+  // very important https://medium.com/swlh/binary-search-find-upper-and-lower-bound-3f07867d81fb
+  public int maxLength1891(int[] ribbons, int k) {
+    int low = 0;
+    int high = Integer.MIN_VALUE;
+    for(int r : ribbons){ high = Math.max(high, r); }
+
+    while(low < high){
+      int mid = low + (high-low+1)/2;;
+      int wantedPieces = 0;
+      for(int len : ribbons){ wantedPieces += (len/mid); }
+
+      //searching for the higher bound, it is invalid now, safe to make hight = mid-1
+      // mid is too big, we get fewer pieces, so try smaller piece
+      if(wantedPieces < k){ high = mid-1; }
+      else{ low = mid; }
+    }
+
+    return low;
+  }
+
+  public double angleClock1344(int hour, int minutes) {
+    int oneMinAngle = 6;
+    int oneHourAngle = 30;
+
+    double minutesAngle = oneMinAngle * minutes;
+    double hourAngle = (hour % 12 + minutes / 60.0) * oneHourAngle;
+
+    double diff = Math.abs(hourAngle - minutesAngle);
+    return Math.min(diff, 360 - diff);
+  }
 }
