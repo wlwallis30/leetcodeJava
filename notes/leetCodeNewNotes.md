@@ -15,6 +15,7 @@
   - [java collection cheat sheet:](#java-collection-cheat-sheet)
   - [interleaving string match](#interleaving-string-match)
   - [string to int, int to string, char to int, int to char, char array to String](#string-to-int-int-to-string-char-to-int-int-to-char-char-array-to-string)
+  - [int[] to List.. check stackoverflow](#int-to-list-check-stackoverflow)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -157,3 +158,12 @@ Integer.parseInt(String.valueOf(aChar))
 int REDIX=10;//redix 10 is for decimal number, for hexa use redix 16  
 char c=Character.forDigit(num,REDIX)
 ```
+## int[] to List.. check [stackoverflow](https://stackoverflow.com/questions/1073919/how-to-convert-int-into-listinteger-in-java)
+> You can not use:
+```java
+List<Integer> list = Arrays.asList(int[]) 
+//since int is not Integer type, fuxxk java 
+//you should use
+List<Integer> intList = Arrays.stream(weights).boxed().collect(Collectors.toList());
+```
+

@@ -1,6 +1,7 @@
 package com.wlwallis30.leetcode;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FacebookHiFreq {
   public int[] exclusiveTime636(int n, List<String> logs) {
@@ -131,5 +132,36 @@ public class FacebookHiFreq {
     }
 
     return result;
+  }
+
+  //所以最小的船载重量至少应该是最重的那个包裹，不然上不了船了，而最大的载重量就是包裹的总重量，一条船就能拉走了
+  public int shipWithinDays1011(int[] weights, int days) {
+    // very slow to use the following built in func
+    // List<Integer> intList = Arrays.stream(weights).boxed().collect(Collectors.toList());
+    // int left = Collections.max(intList);
+    // int right  = intList.stream().reduce(0, (a, b) -> a + b);
+
+    int left = 0; // max weight
+    int right = 0; // sum
+    for (int weight : weights) {
+      left = Math.max(left, weight);
+      right += weight;
+    }
+
+    // left, right is the boundary of capacity, mid the trial capacity
+    while (left < right) {
+      int mid = left + (right - left) / 2, dayCnt = 1, wSum = 0;
+      for (int weight : weights) {
+        wSum += weight;
+        if (wSum > mid) {
+          //another day, reset wSum to current weight, days++
+          wSum = weight;
+          ++dayCnt;
+        }
+      }
+      if (dayCnt > days) left = mid + 1;
+      else right = mid;
+    }
+    return left;
   }
 }

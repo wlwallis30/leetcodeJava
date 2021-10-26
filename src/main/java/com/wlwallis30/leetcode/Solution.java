@@ -95,10 +95,11 @@ import com.sun.istack.internal.NotNull;
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
- * Facebook high frequency alone: 636, 670, 791, 766, 498   total: 5
+ * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011   total: 6
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
- *********************Similar problem catalogs: total:  249
+ * nested integer list sum 339   total: 1
+ *********************Similar problem catalogs: total:  251
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
