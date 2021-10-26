@@ -1,6 +1,7 @@
 package com.wlwallis30.leetcode;
 
 import java.util.*;
+import javafx.util.Pair;
 
 public class BinaryTreePathSum {
   public boolean hasPathSum_112Recur(TreeNode root, int sum) {
@@ -88,5 +89,29 @@ public class BinaryTreePathSum {
       }
     }
     return false;
+  }
+
+  TreeNode str2tree536(String s) {
+    if (s.isEmpty()) return null;
+    Stack<TreeNode> stack = new Stack<>();
+    for (int i = 0; i < s.length(); ++i) {
+      int start = i;
+      if (s.charAt(i) == ')') stack.pop();
+      else if (Character.isDigit(s.charAt(i)) || s.charAt(i) == '-') {
+        while (i + 1 < s.length() && Character.isDigit(s.charAt(i+1))) ++i;
+        int num = Integer.parseInt(s.substring(start, i+1));
+        TreeNode cur = new TreeNode(num);
+
+        if (!stack.empty()) {
+          TreeNode node = stack.peek();
+          // 4(2(3)(1))(6(5)), when hitting 2, 4 does not have the left child yet. hitting 6, 4 already has 2 as left child
+          if (node.left == null) node.left = cur;
+          else node.right = cur;
+        }
+        stack.push(cur);
+      }
+      //hitting (, just skip, ) is enough to handle
+    }
+    return stack.peek();
   }
 }

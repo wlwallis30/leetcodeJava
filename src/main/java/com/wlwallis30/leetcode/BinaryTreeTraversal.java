@@ -366,4 +366,50 @@ public class BinaryTreeTraversal {
     Collections.reverse(levels);
     return levels;
   }
+
+  Map<TreeNode, TreeNode> parentMap;
+  // observe the pattern from a tree, problem is similar to level order traversal when you think target is the root, the tree is a graph
+  public List<Integer> distanceK863(TreeNode root, TreeNode target, int K) {
+    parentMap = new HashMap();
+    dfs(root, null);
+
+    Queue<TreeNode> queue = new LinkedList();
+    Set<TreeNode> visited = new HashSet();
+    queue.add(target);
+    visited.add(target);
+
+    int dist = 0;
+    while (!queue.isEmpty()) {
+      if(dist == K) {
+        List<Integer> ans = new ArrayList();
+        for (TreeNode n: queue)
+          ans.add(n.val);
+        return ans;
+      }
+      // make sure do this, queue size is changing!!!!
+      int curSize = queue.size();
+      for(int i=0; i<curSize; ++i) {
+        TreeNode node = queue.poll();
+        // make sure not adding null!!!!
+        if (!visited.contains(node.left) && node.left != null) {
+          visited.add(node.left); queue.offer(node.left); }
+        if (!visited.contains(node.right)&& node.right != null) {
+          visited.add(node.right); queue.offer(node.right); }
+        TreeNode parent = parentMap.get(node);
+        if (!visited.contains(parent) && parent!=null) {
+          visited.add(parent); queue.offer(parent); }
+      }
+      dist++;
+    }
+
+    return new ArrayList<Integer>();
+  }
+
+  public void dfs(TreeNode node, TreeNode parent) {
+    if (node != null) {
+      parentMap.put(node, parent);
+      dfs(node.left, node);
+      dfs(node.right, node);
+    }
+  }
 }

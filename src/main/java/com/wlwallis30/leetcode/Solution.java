@@ -31,9 +31,9 @@ import com.sun.istack.internal.NotNull;
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
- * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543  total:  11
+ * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863  total:  12
  * convert sorted array to BST 108: 109   total: 2
- * binary tree path sum 112:257, 113, 129    total: 4
+ * binary tree path sum 112:257, 113, 129, 536    total: 5
  * pascal triangle 118:119, 120    total: 3
  * single num 136: 137, 268, 260, 89, 201     total: 6
  * linked list cycle 141: 142, 202  total: 3
@@ -95,10 +95,10 @@ import com.sun.istack.internal.NotNull;
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
- * Facebook high frequency alone: 636, 670, 791, 766   total: 4
+ * Facebook high frequency alone: 636, 670, 791, 766, 498   total: 5
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
- *********************Similar problem catalogs: total:  246
+ *********************Similar problem catalogs: total:  249
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
