@@ -11,7 +11,7 @@ import com.sun.istack.internal.NotNull;
 /*
  * Two sum 1: 15, 16, 18, 167, 170, 259, 560, 523, 528.......total: 10
  * Add two numbers 2: 67, 43, 66, 369, 371, 415.... total: 7
- * Length of longest sub string 3: 159, 239, 340, 128, 298, 485, 487, 1004.....total: 9
+ * Length of longest sub string 3: 159, 239, 340, 128, 298, 485, 487, 1004, 424.....total: 10
  * Find median for two sorted arrays 4........total: 1
  * Longest palindrome substring 5: 266, 267, 9, 125, 131, 234, 680......total: 8
  * Reverse integer 7: 8  .....total: 2
@@ -22,7 +22,7 @@ import com.sun.istack.internal.NotNull;
  * valid parenthesis 20: 22, 17, 1249, 921   .....total: 5
  * remove nth node from end 19: 1721    ....total: 2
  * merge two sorted linklist 21: 88, 148, 143, 147, 708   ....total: 6
- * remove dup from sorted array in place 26: 27, 203, 283, 80, 1047, 1209    ....total: 7
+ * remove dup from sorted array in place 26: 27, 203, 283, 80, 1047, 1209, 977    ....total: 8
  * substring pattern strStr 28:      ....total: 1
  * swap two nodes in pair 24:    ....total: 1
  * search insert position 35: 278, 34    ....total: 3
@@ -46,7 +46,7 @@ import com.sun.istack.internal.NotNull;
  * majority element 169:    total: 1
  * excel column sheet 168: 171    total: 2
  * factorial trailing zeros 172:      total:1
- * meeting room 252: 56, 57, 253, 616     total: 5
+ * meeting room 252: 56, 57, 253, 616, 986     total: 6
  * closest int in BST 270:426, 938  total: 3
  * nim game 292:     total: 1
  * search in rotated sorted array 33: 81, 153, 162     total: 4
@@ -95,11 +95,11 @@ import com.sun.istack.internal.NotNull;
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
- * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344   total: 8
+ * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605   total: 9
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
  * nested integer list sum 339   total: 1
- *********************Similar problem catalogs: total:  258
+ *********************Similar problem catalogs: total:  262
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

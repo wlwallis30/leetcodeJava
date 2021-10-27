@@ -196,4 +196,17 @@ public class FacebookHiFreq {
     double diff = Math.abs(hourAngle - minutesAngle);
     return Math.min(diff, 360 - diff);
   }
+
+  public boolean canPlaceFlowers605(int[] flowerbed, int n) {
+    int i = 0, count = 0;
+    while (i < flowerbed.length) {
+      // when i-1, i, i+1 are 0, then we can plant. also consider the corner case of i=0 and i=length-1
+      if (flowerbed[i] == 0 && (i == 0 || flowerbed[i - 1] == 0) && (i == flowerbed.length - 1 || flowerbed[i + 1] == 0)) {
+        flowerbed[i] = 1;
+        count++;
+      }
+      i++;
+    }
+    return count >= n;
+  }
 }

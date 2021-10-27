@@ -142,4 +142,28 @@ public class LongSubStrNoRepeatChar {
 		}
 		return right - left;
 	}
+
+	public int characterReplacement424(String s, int k) {
+		Map<Character, Integer> map = new HashMap<>();
+		int left = 0, maxRepeat = 0, maxWindow = 0;
+
+		for(int right = 0; right < s.length(); right++) {
+			char ch = s.charAt(right);
+			map.putIfAbsent(ch,0);
+			map.put(ch, map.get(ch) + 1);
+
+			// IMPORTANT: maxRepeat is not the accurate number of dominant character which might change, It is the historical maximum count
+			maxRepeat = Math.max(maxRepeat, map.get(ch));
+
+			if(right - left + 1 - maxRepeat > k) {
+				char remove = s.charAt(left);
+				map.put(remove, map.get(remove) - 1);
+				left++;
+			}
+
+			maxWindow = Math.max(maxWindow, right - left + 1);
+		}
+
+		return maxWindow;
+	}
 }
