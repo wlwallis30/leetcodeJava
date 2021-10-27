@@ -105,4 +105,41 @@ public class LongSubStrNoRepeatChar {
         }
     }
 	 */
+
+	public int findMaxConsecutiveOnes485(int[] nums) {
+		int count = 0;
+		int maxCount = 0;
+		for(int i = 0; i < nums.length; i++) {
+			if(nums[i] == 1) {
+				// Increment the count of 1's by one.
+				count += 1;
+			} else {
+				// Find the maximum till now.
+				maxCount = Math.max(maxCount, count);
+				// Reset count of 1.
+				count = 0;
+			}
+		}
+		return Math.max(maxCount, count);
+	}
+
+	// k=1 for problem 487
+	public int longestOnes1004And487(int[] nums, int k) {
+		int left = 0, right;
+		for (right = 0; right < nums.length; right++) {
+			// If we included a zero in the window we reduce the value of k.
+			// Since k is the maximum zeros allowed in a window.
+			if (nums[right] == 0) {
+				k--;
+			}
+			// A negative k denotes we have consumed all allowed flips and window has
+			// more than allowed zeros, thus increment left pointer by 1 to keep the window size same.
+			if (k < 0) {
+				// If the left element to be thrown out is zero we increase k.
+				k += 1 - nums[left];
+				left++;
+			}
+		}
+		return right - left;
+	}
 }

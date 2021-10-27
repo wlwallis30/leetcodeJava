@@ -161,7 +161,7 @@ public class BinaryTreeTraversal {
   }
 
   // it is nice to judge if bst is balanced or not first, but you can just build
-  public TreeNode balanceBST(TreeNode root) {
+  public TreeNode balanceBST1382(TreeNode root) {
     List<TreeNode> list=new ArrayList<>();
     inorder(root,list);
     return buildTree(list,0,list.size()-1);

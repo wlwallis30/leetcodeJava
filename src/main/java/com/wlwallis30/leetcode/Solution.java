@@ -11,7 +11,7 @@ import com.sun.istack.internal.NotNull;
 /*
  * Two sum 1: 15, 16, 18, 167, 170, 259, 560, 523, 528.......total: 10
  * Add two numbers 2: 67, 43, 66, 369, 371, 415.... total: 7
- * Length of longest sub string 3: 159, 239, 340, 128, 298.....total: 6
+ * Length of longest sub string 3: 159, 239, 340, 128, 298, 485, 487, 1004.....total: 9
  * Find median for two sorted arrays 4........total: 1
  * Longest palindrome substring 5: 266, 267, 9, 125, 131, 234, 680......total: 8
  * Reverse integer 7: 8  .....total: 2
@@ -21,7 +21,7 @@ import com.sun.istack.internal.NotNull;
  * common longest prefix substring 14:  ...total: 1
  * valid parenthesis 20: 22, 17, 1249, 921   .....total: 5
  * remove nth node from end 19: 1721    ....total: 2
- * merge two sorted linklist 21: 88, 148, 143, 147   ....total: 5
+ * merge two sorted linklist 21: 88, 148, 143, 147, 708   ....total: 6
  * remove dup from sorted array in place 26: 27, 203, 283, 80, 1047, 1209    ....total: 7
  * substring pattern strStr 28:      ....total: 1
  * swap two nodes in pair 24:    ....total: 1
@@ -99,7 +99,7 @@ import com.sun.istack.internal.NotNull;
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
  * nested integer list sum 339   total: 1
- *********************Similar problem catalogs: total:  254
+ *********************Similar problem catalogs: total:  258
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
@@ -156,6 +156,10 @@ class ListNode {
  int val;
  ListNode next;
  ListNode(int x) { val = x; }
+  public ListNode(int _val, ListNode _next) {
+    val = _val;
+    next = _next;
+  }
  }
 
 class TreeNode {

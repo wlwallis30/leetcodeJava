@@ -91,4 +91,42 @@ public class Merge2SortedList {
       head = tmp1;
     }
   }
+
+  // insert into circular sorted list
+  public ListNode insert708(ListNode head, int insertVal) {
+    if (head == null) {
+      ListNode newNode = new ListNode(insertVal, null);
+      newNode.next = newNode;
+      return newNode;
+    }
+
+    ListNode prev = head;
+    ListNode curr = head.next;
+    boolean toInsert = false;
+
+    // in the case of whole list value is 3 and insertVal is 10, it will hit first if and invalid and keep moving
+    do {
+      if (prev.val <= insertVal && insertVal <= curr.val) {
+        // Case 1).
+        toInsert = true;
+      } else if (prev.val > curr.val) {
+        // Case 2). either bigger than the tail, or smaller than the head
+        if (insertVal >= prev.val || insertVal <= curr.val)
+          toInsert = true;
+      }
+
+      //valid even when whole list is 3 and insert val is also 3, coz we return here.
+      if (toInsert) {
+        prev.next = new ListNode(insertVal, curr);
+        return head;
+      }
+
+      prev = curr;
+      curr = curr.next;
+    } while (prev != head);
+
+    // Case 3). case of whole list value is 3 and insertVal is 10 or 1
+    prev.next = new ListNode(insertVal, curr);
+    return head;
+  }
 }
