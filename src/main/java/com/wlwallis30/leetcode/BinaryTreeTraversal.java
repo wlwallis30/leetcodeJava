@@ -436,4 +436,27 @@ public class BinaryTreeTraversal {
       dfs(node.right, node);
     }
   }
+
+  public List<Integer> largestValuesEachRow515(TreeNode root) {
+    List<Integer> res = new ArrayList<>() ;
+    if(root==null)return res ;
+    Queue<TreeNode> q = new LinkedList<>() ;
+    res.add(root.val) ;
+
+    while(!q.isEmpty()){
+      int size = q.size() ;
+      int max = Integer.MIN_VALUE;
+      for(int i=0 ; i<size ;i++){
+        //remove will throw exception while poll will return null
+        TreeNode curr = q.remove() ;
+        if(curr.val>=max){ max = curr.val;}
+
+        if(curr.left!=null){ q.add(curr.left) ; }
+        if(curr.right!=null){ q.add(curr.right) ; }
+      }
+        res.add(max) ;
+    }
+
+    return res ;
+  }
 }
