@@ -166,4 +166,89 @@ public class LongSubStrNoRepeatChar {
 
 		return maxWindow;
 	}
+
+	public List<Integer> findClosestElements658Comparator(int[] arr, int k, int x) {
+		List<Integer> sortedArr = new ArrayList<Integer>();
+		for (int num: arr) { sortedArr.add(num); }
+		// or List<Integer> intList = Arrays.stream(weights).boxed().collect(Collectors.toList())
+
+		Collections.sort(sortedArr, (num1, num2) -> Math.abs(num1 - x) - Math.abs(num2 - x));
+
+		// Only take k elements
+		sortedArr = sortedArr.subList(0, k);
+
+		// the order is based on the abs(num-x), not the num, Sort again to have output in ascending order.
+		Collections.sort(sortedArr);
+		return sortedArr;
+	}
+
+	// this is easy to think of it and not hard to figure out conditions
+	public List<Integer> findClosestElements658Slide(int[] arr, int k, int x) {
+		List<Integer> result = new ArrayList<Integer>();
+
+		// Binary search to find the closest element
+		int left = 0;
+		int right = arr.length;
+		int mid = 0;
+		while (left < right) {
+			mid = (left + right) / 2;
+			if (arr[mid] < x) { left = mid + 1; }
+			else { right = mid; }
+		}
+
+		// Initialize our sliding window's bounds, we are targeting [left+1, right-1] as the first idx when we expend the window
+		left -= 1;
+		right = left + 1; // right point to the original left, not the above
+
+		// While the window size is less than k
+		while (right - (left+1) < k) {
+			// Be careful to not go out of bounds
+			if (left == -1) { right++; continue; }
+			if(right == arr.length) { left--; continue;}
+
+			// Expand the window towards the side with the closer number
+			if (Math.abs(arr[left] - x) <= Math.abs(arr[right] - x)) {
+				left--;
+			} else {
+				right++;
+			}
+		}
+
+		// Build and return the window
+		for (int i = left + 1; i < right; i++) { result.add(arr[i]);}
+		return result;
+	}
+
+	// I do NOT recommend this algo, hard to think of it and hard to come out with the right condition for moving boundary
+	//what is the biggest index the left bound could be? If there needs to be k elements, then the left bound's upper limit is arr.length - k
+	// finding the left bound for binary search.
+	public List<Integer> findClosestElements658BinarySearch(int[] arr, int k, int x) {
+		// Initialize binary search bounds
+		int left = 0;
+		int right = arr.length - k;
+
+		// Binary search against the criteria described
+		while (left < right) {
+			int mid = (left + right) / 2;
+			// mid, and some index mid + k. The relationship between these indices is significant because only one of them could possibly be in a final answer.
+			//Math.abs(x - arr[mid]) > Math.abs(arr[mid + k] - x) will fail [1,1,2,2,2,2,2,3,3] k=3 x=3, even after 65/66 test cases passed.
+			//consider we look for left bound and arr is ascending order with special case of above, with abs is more accurate.
+			// you can play with x with: x is smaller then arr[mid], bigger than arr[mid+k] and in between,
+			// first case, but should  move further left (right=mid), 2nd case we should move further right, 3rd case, without using abs, we can judge by numX-numY itself
+			// you can use above raw condition to form the logic, but after merging them you have the following.
+			if (x - arr[mid] > arr[mid + k] - x) {
+				left = mid + 1;
+			} else {// arr[mid + k] -  arr[mid] >= 2x, range is too big, we should move further left to find a better left
+				right = mid;
+			}
+		}
+
+		// Create output in correct format
+		List<Integer> result = new ArrayList<Integer>();
+		for (int i = left; i < left + k; i++) {
+			result.add(arr[i]);
+		}
+
+		return result;
+	}
 }
