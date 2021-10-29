@@ -31,7 +31,7 @@ import com.sun.istack.internal.NotNull;
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
- * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515  total:  14
+ * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522  total:  15
  * convert sorted array to BST 108: 109   total: 2
  * binary tree path sum 112:257, 113, 129, 536    total: 5
  * pascal triangle 118:119, 120    total: 3
@@ -73,7 +73,7 @@ import com.sun.istack.internal.NotNull;
  * build BT from inorder and preorder 105: 106   total: 2
  * flatten BT to linkedlist 114:    total:1
  * connect next pointers for perfect BT 116: 117, 199, 314    total: 4
- * surrounded region 130: 200, 286, 323, 261   total:5
+ * surrounded region 130: 200, 286, 323, 261, 463, 695  total:7
  * clone graph 133:  (323), (261), 138    total: 2
  * gas station 134:     total:1
  * word break 139:    total: 1
@@ -99,7 +99,7 @@ import com.sun.istack.internal.NotNull;
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
  * nested integer list sum 339   total: 1
- *********************Similar problem catalogs: total:  273
+ *********************Similar problem catalogs: total:  276
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

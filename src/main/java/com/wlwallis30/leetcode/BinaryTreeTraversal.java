@@ -183,6 +183,46 @@ public class BinaryTreeTraversal {
     list.add(root);
     inorder(root.right,list);
   }
+
+
+  //1522
+  class NchildNode {
+    public int val;
+    public List<NchildNode> children;
+
+    public NchildNode() { children = new ArrayList<NchildNode>(); }
+    public NchildNode(int _val) { val = _val; children = new ArrayList<NchildNode>(); }
+    public NchildNode(int _val, ArrayList<NchildNode> _children) { val = _val; children = _children; }
+  }
+  protected int diameter1 = 0;
+
+  protected int height(NchildNode node) {
+    if (node.children.size() == 0)
+      return 0;
+
+    // select the top two largest heights
+    int maxHeight1 = 0, maxHeight2 = 0;
+    for (NchildNode child : node.children) {
+      int parentHeight = height(child) + 1;
+      if (parentHeight > maxHeight1) {
+        maxHeight2 = maxHeight1;
+        maxHeight1 = parentHeight;
+      } else if (parentHeight > maxHeight2) {
+        maxHeight2 = parentHeight;
+      }
+      // calculate the distance between the two farthest leaves nodes.
+      int distance = maxHeight1 + maxHeight2;
+      this.diameter1 = Math.max(this.diameter1, distance);
+    }
+
+    return maxHeight1;
+  }
+
+  public int diameter(NchildNode root) {
+    this.diameter1 = 0;
+    height(root);
+    return diameter1;
+  }
 //////////////////////////////////////////////// iterations///////////////////////////////////////////////////////////////////////////////////
   public List < Integer > inorderTraversal94_stack(TreeNode root) {
     List < Integer > res = new ArrayList < > ();

@@ -50,17 +50,19 @@ public class InsertPosition {
 
     while(left<right)
     {
-      mid=(left+right)/2;
+      mid=(left+right+1)/2;
       //不断搜索 找到右 界 注意只有>
-      if(nums[mid]>target) right=mid;
-      else left=mid+1;
+      if(nums[mid]>target) right=mid-1;
+      else left=mid;
     }
 
+    res[1]=left; //after changing right =mid-1, this is enough.
+
     //now left == right, System.out.println("left:" + left + "   right:" + right);
-    if(nums[left] == target)res[1]=left;
+    //if(nums[left] == target)res[1]=left;
       //[5,7,7,8,8,10], 8, if just using left, will give [3,5] as result, wrong!
       // reason: since (nums[mid]>target) right=mid, then mid num might be larger than target then jump out while loop
-    else res[1]=left - 1;
+    //else res[1]=left - 1;
     return res;
   }
 }
