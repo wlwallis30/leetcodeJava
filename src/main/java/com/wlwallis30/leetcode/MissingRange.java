@@ -43,4 +43,49 @@ public class MissingRange {
     }
     return summary;
   }
+
+  // missing kth positive number
+  public int findKthPositive1539(int[] arr, int k) {
+    // if the kth missing is less than arr[0],  [3, 4, 6, 7...] k=2
+    if (k <= arr[0] - 1) {
+      return k;
+    }
+    k = k- (arr[0] - 1);
+
+    int n = arr.length;
+    for (int i = 0; i < n - 1; ++i) {
+      // missing between arr[i] and arr[i + 1], [...3, 6, ....]
+      int curMissCnt = arr[i + 1] - arr[i] - 1;
+      // if the kth missing is between arr[i] and arr[i + 1]
+      if (k <= curMissCnt) {
+        return arr[i] + k;
+      }
+      // otherwise, proceed further
+      k -= curMissCnt;
+    }
+
+    // if the missing number if greater than arr[n - 1]
+    return arr[n - 1] + k;
+  }
+
+  //[1, 2, 3, 4, 5], no missing integer. k=5
+  //[2, 3, 4, 7, 11], so total missing counts: arr[idx] - (idx+1). select pivot index in the middle of the array
+  public int findKthPositive1539BinarySearch(int[] arr, int k) {
+    int left = 0, right = arr.length - 1;
+    //[1,2,3,4] k=2 you wanna move left further beyond the num 4 when done, which is num 5 with idx of 4, so 6=4+2, so <= and right=pivot-1
+    while (left <= right) {
+      int pivot = left + (right - left) / 2;
+      if (arr[pivot] - (pivot+1) < k) {
+        left = pivot + 1;
+      } else {
+        right = pivot-1;
+      }
+    }
+
+    // At the end of the loop, left = right + 1,
+    // and the kth missing is in-between arr[right] and arr[left], should return right+1+k
+    // e.g. [2,3,4,7,11] k=5, left=4, right=3, return  3+1+5
+    return right+1+k;
+  }
+
 }

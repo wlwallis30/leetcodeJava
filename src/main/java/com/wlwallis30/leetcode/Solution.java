@@ -42,7 +42,7 @@ import com.sun.istack.internal.NotNull;
  * reverse linkedlist 206:(234Iterative), 92,160, 156     total: 4
  * min stack 155: 716    total: 2
  * read n chars via read4 157:    total: 1
- * missing range 163: 228   total: 2
+ * missing range 163: 228, 1539   total: 3
  * majority element 169:    total: 1
  * excel column sheet 168: 171    total: 2
  * factorial trailing zeros 172:      total:1
@@ -59,7 +59,7 @@ import com.sun.istack.internal.NotNull;
  * spiral matrix 54: 59   total: 2
  * rotate linkedlist by k nodes 61: 189    total:2
  * unique path 62: 63, 64     total: 3
- * search in 2D matrix 74: 240, 1428    total: 3
+ * search in 2D matrix 74: 240, 1428, 1091    total: 4
  * set matrix to zero 73: 289    total: 2
  * sort colors 75: (148)    total: 1
  * simplify dir path 71:    total: 1
@@ -95,11 +95,11 @@ import com.sun.istack.internal.NotNull;
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
- * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767   total: 12
+ * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346   total: 14
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
  * nested integer list sum 339   total: 1
- *********************Similar problem catalogs: total:  269
+ *********************Similar problem catalogs: total:  273
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
