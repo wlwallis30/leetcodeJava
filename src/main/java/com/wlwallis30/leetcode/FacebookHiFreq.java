@@ -231,4 +231,60 @@ public class FacebookHiFreq {
     }
     return res;
   }
+
+  //greedy and hashtable
+  // ["A", "A", "A", "A", "A", "B", "B", "B", "B", "B", "C", "C", "C", "C", "C", "D", "D", "D"], n = 1
+  // n is the LEAST number of spaces we need. when n = 1, we can actually place b, c, c.. items in between 'A's (the most frequent task).
+  // So as long as the idles between the most frequent tasks are filled, it's guaranteed that the rest of tasks will not incur new idle time (bcs we can just insert them in between 'A's)
+  public int leastInterval621(char[] tasks, int n) {
+    // frequencies of the tasks
+    int[] frequencies = new int[26];
+    for (int t : tasks) {
+      frequencies[t - 'A']++;
+    }
+    Arrays.sort(frequencies);
+    // max frequency
+    int f_max = frequencies[25];
+    int idle_time = (f_max - 1) * n;
+
+    for (int i = frequencies.length - 2; i >= 0 && idle_time > 0; --i) {
+      idle_time -= Math.min(f_max - 1, frequencies[i]);
+    }
+    idle_time = Math.max(0, idle_time);
+
+    return idle_time + tasks.length;
+  }
+
+  // this is O(NlogN), but from 621, you can iteratively build string via frequencies[], just need to need to write more careful code. then O(N)
+  // refer to https://leetcode.com/problems/reorganize-string/discuss/1324757/Java-2-Different-Solutions, 2nd solution
+  public String reorganizeString767(String S) {
+    Map<Character, Integer> freq_map = new HashMap<>();
+    for (char c: S.toCharArray()) {
+      freq_map.put(c, freq_map.getOrDefault(c, 0) + 1);
+    }
+    PriorityQueue<Character> maxheap = new PriorityQueue<>( (a, b) -> freq_map.get(b) - freq_map.get(a) );
+    // addAll() is adding more then one element to heap
+    maxheap.addAll(freq_map.keySet());
+
+    StringBuilder sb = new StringBuilder();
+    while (maxheap.size() > 1) {
+      char first = maxheap.poll();
+      char second = maxheap.poll();
+      sb.append(first);
+      sb.append(second);
+      freq_map.put(first, freq_map.get(first) - 1);
+      freq_map.put(second, freq_map.get(second) - 1);
+      // add() comes from Collection. returns true and throws an exception if it can't add the element,
+      // offer() comes from Queue.  offer() is allowed to return false if it can't add the element.
+      if (freq_map.get(first) > 0) { maxheap.offer(first); }
+      if (freq_map.get(second) > 0) { maxheap.offer(second); }
+    }
+
+    if (!maxheap.isEmpty()) {
+      // when there is only 1 element left in the maxheap
+      if (freq_map.get(maxheap.peek()) > 1) { return ""; }
+      else { sb.append(maxheap.poll()); }
+    }
+    return sb.toString();
+  }
 }
