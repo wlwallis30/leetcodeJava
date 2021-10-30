@@ -152,4 +152,97 @@ public class SearchIn2DMatrix {
     }
     return neighbours;
   }
+
+  public boolean containsCycle1559(char[][] grid) {
+    boolean visited[][] = new boolean[grid.length][grid[0].length];
+    for(int i = 0; i < grid.length; i++){
+      for(int j = 0; j < grid[0].length; j++){
+        // when first time is not visited and dfs explore will visit again, then it is a loop
+        if(!visited[i][j] && isMoveBack(grid,i,j,visited,-1,-1)) return true;
+      }
+    }
+    return false;
+  }
+  static int moves[][] = {{1,0},{0,1},{-1,0},{0,-1}};
+  public boolean isMoveBack(char grid[][], int x, int y, boolean[][] visited, int prevX, int prevY){
+    //转了一圈又回来了，return true
+    if(visited[x][y]) return true;
+    visited[x][y] = true;
+    for(int i = 0; i < moves.length; i++){
+      int nextX = x+moves[i][0];
+      int nextY = y+moves[i][1];
+      if(nextX >= 0 && nextX < grid.length &&
+          nextY >= 0 && nextY < grid[0].length &&
+          (prevX != nextX  || prevY != nextY) && //this condition checks, next block to move on matrix is not previous block.
+          grid[nextX][nextY] == grid[x][y] &&
+          isMoveBack(grid,nextX,nextY,visited,x,y)) return true;
+    }
+    return false;
+  }
+  //1559, using step counts, but hard to write it correctly in interview
+  /*
+  int count = 0;
+    public boolean dfs(char[][] grid, int i,int j,int[][] visited, int previ,int prevj, char c){
+
+        if(i<0 || j<0 || i>=grid.length || j>=grid[0].length || grid[i][j]!=c)
+            return false;
+
+        if(visited[i][j]-visited[previ][prevj]>=3)
+            return true;
+
+        if(visited[i][j]!=0)
+            return false;
+
+        // first time visited[i][j] is still the count, then count++, that num will be put for next visiting cell
+        // in the first example,visited[0][0] at first is 0, after cycle it is 12, 12-1 = 11>3.
+        visited[i][j]=count++;
+
+        return dfs(grid,i+1,j,visited,i,j,c) || dfs(grid,i-1,j,visited,i,j,c) || dfs(grid,i,j+1,visited,i,j,c) || dfs(grid,i,j-1,visited,i,j,c);
+    }
+    public boolean containsCycle(char[][] grid) {
+
+        int n = grid.length, m = grid[0].length;
+        int[][]visited = new int[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(visited[i][j]==0 && dfs(grid,i,j,visited,i,j,grid[i][j]))
+                    return true;
+            }
+        }
+        return false;
+    }
+   */
+
+
+  //dp[i][j] represents：when there are 'i' hops left and the current number is 'j', how many combination we have
+  //current number is 0 and have 2 hops left, it would be dp[2][0],then our dp array will try to get the value stored in dp[1][4] and dp[1][6]
+  //our dp[2][0] will be store the value 2, which is equavalent to try out the number combination "04" and "06"
+  //反过来想，可以去的位置，就表示也可能从该位置回来，所以根据当前的位置j，就可以在数组中找到上一次骑士所在的位置
+  public int knightDialer935(int N) {
+    Integer[][] graph = new Integer[][]{{4, 6}, {6, 8}, {7, 9}, {4, 8}, {3, 9, 0},
+        {},{1, 7, 0}, {2, 6}, {1, 3}, {2, 4}};
+
+    int MOD = (int)1e9 + 7;
+    //dp[i][j] stores：when there are 'i' hops left and the current number is 'j', how many combination we have
+    int[][] dp = new int[N + 1][10];
+    //when it has 1 hop left on the current number, it should just return 1 (dp[0][j] IS NOT CORRECT)
+    for(int j = 0; j < 10; j++) dp[1][j] = 1;
+    //be careful. i start on 2 because 2 ~ N is N - 1, and i - 1 could get our basecase
+    for(int i = 2; i <= N; i++){
+      for(int j = 0; j < 10; j++){
+        for(int neighbor : graph[j]){//current number's neighbor
+          dp[i][j] += dp[i - 1][neighbor];
+          //MOD should be seperated because it may alter our state transfer when number gets big
+          dp[i][j] %= MOD;
+        }
+
+      }
+    }
+    int cnt = 0;
+    for(int j = 0; j < 10;j++){
+      cnt += dp[N][j];
+      cnt %= MOD; //MOD should be seperated
+    }
+    return cnt;
+  }
 }

@@ -59,7 +59,7 @@ import com.sun.istack.internal.NotNull;
  * spiral matrix 54: 59   total: 2
  * rotate linkedlist by k nodes 61: 189    total:2
  * unique path 62: 63, 64     total: 3
- * search in 2D matrix 74: 240, 1428, 1091    total: 4
+ * search in 2D matrix 74: 240, 1428, 1091, 1559, 935    total: 6
  * set matrix to zero 73: 289    total: 2
  * sort colors 75: (148)    total: 1
  * simplify dir path 71:    total: 1
@@ -99,7 +99,7 @@ import com.sun.istack.internal.NotNull;
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
  * nested integer list sum 339   total: 1
- *********************Similar problem catalogs: total:  276
+ *********************Similar problem catalogs: total:  278
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
