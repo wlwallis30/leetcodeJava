@@ -547,4 +547,24 @@ public class BinaryTreeTraversal {
 
     return res;
   }
+
+  public boolean isCompleteTree958(TreeNode root) {
+    if(root==null) return true;
+
+    boolean lastLevel=false;
+    Queue<TreeNode> q=new LinkedList<>();
+    q.add(root);
+
+    while(q.size()>0){
+      TreeNode temp=q.poll();
+
+      if(temp==null) lastLevel=true;//state transitted
+      else{
+        if(lastLevel) return false;
+        q.add(temp.left);
+        q.add(temp.right);
+      }
+    }
+    return true;
+  }
 }

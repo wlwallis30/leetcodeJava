@@ -31,7 +31,7 @@ import com.sun.istack.internal.NotNull;
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
- * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522, 1161, 637  total:  17
+ * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522, 1161, 637, 958  total:  18
  * convert sorted array to BST 108: 109   total: 2
  * binary tree path sum 112:257, 113, 129, 536    total: 5
  * pascal triangle 118:119, 120    total: 3
@@ -100,7 +100,8 @@ import com.sun.istack.internal.NotNull;
  * WordAbbreviation 408:      total: 1
  * nested integer list sum: 339   total: 1
  * tic tac toe 348: 794   total: 2
- *********************Similar problem catalogs: total:  285
+ * bulb switcher 319:    total: 1
+ *********************Similar problem catalogs: total:  287
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
