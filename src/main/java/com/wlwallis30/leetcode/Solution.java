@@ -98,8 +98,9 @@ import com.sun.istack.internal.NotNull;
  * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346   total: 14
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
- * nested integer list sum 339   total: 1
- *********************Similar problem catalogs: total:  278
+ * nested integer list sum: 339   total: 1
+ * tic tac toe 348: 794   total: 2
+ *********************Similar problem catalogs: total:  280
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
