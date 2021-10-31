@@ -499,4 +499,52 @@ public class BinaryTreeTraversal {
 
     return res ;
   }
+
+  public int maxLevelSum1161LevelOrder(TreeNode root) {
+    int currLevel = 1, maxLevel = 1;
+    int maxSum = root.val, currSum = 0;
+    LinkedList<TreeNode> queue = new LinkedList();
+    TreeNode x;
+    queue.addLast(root);
+
+    while (!queue.isEmpty()) {
+      int curSize = queue.size();
+      for(int i=0; i<curSize; ++i) {
+        x = queue.removeFirst();
+        currSum += x.val;
+        if (x.left != null) queue.addLast(x.left);
+        if (x.right != null) queue.addLast(x.right);
+      }
+      if (currSum > maxSum) {
+        maxSum = currSum;
+        maxLevel = currLevel;
+      }
+        currSum = 0;
+        currLevel++;
+    }
+
+    return maxLevel;
+  }
+
+  public List <Double> averageOfLevels637(TreeNode root) {
+    List <Double> res = new ArrayList<>();
+    Queue <TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+    while (!queue.isEmpty()) {
+      long sum = 0, count = 0;
+      int size = queue.size();
+      for (int i = 0; i < size; ++i) {
+        TreeNode node = queue.remove();
+        sum += node.val;
+        count++;
+        if (node.left != null)
+          queue.add(node.left);
+        if (node.right != null)
+          queue.add(node.right);
+      }
+      res.add(sum * 1.0 / count);
+    }
+
+    return res;
+  }
 }

@@ -255,6 +255,16 @@ class NumArray {
   public int sumRange(int i, int j) {
     return sum[j + 1] - sum[i];
   }
+
+  public int pivotIndex724(int[] nums) {
+    int sum = 0, leftsum = 0;
+    for (int x: nums) sum += x;
+    for (int i = 0; i < nums.length; ++i) {
+      leftsum += nums[i];
+      if (leftsum - nums[i] == sum - leftsum) return i;
+    }
+    return -1;
+  }
 }
 
 //304

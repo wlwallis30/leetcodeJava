@@ -9,7 +9,7 @@ package com.wlwallis30.leetcode;
 import com.sun.istack.internal.NotNull;
 
 /*
- * Two sum 1: 15, 16, 18, 167, 170, 259, 560, 523, 528, 303, 304.......total: 12
+ * Two sum 1: 15, 16, 18, 167, 170, 259, 560, 523, 528, 303, 304, 724.......total: 13
  * Add two numbers 2: 67, 43, 66, 369, 371, 415.... total: 7
  * Length of longest sub string 3: 159, 239, 340, 128, 298, 485, 487, 1004, 424, 658.....total: 11
  * Find median for two sorted arrays 4........total: 1
@@ -31,7 +31,7 @@ import com.sun.istack.internal.NotNull;
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
- * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522  total:  15
+ * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522, 1161, 637  total:  17
  * convert sorted array to BST 108: 109   total: 2
  * binary tree path sum 112:257, 113, 129, 536    total: 5
  * pascal triangle 118:119, 120    total: 3
@@ -95,12 +95,12 @@ import com.sun.istack.internal.NotNull;
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
- * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346   total: 14
+ * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346,1424, 896   total: 16
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
  * nested integer list sum: 339   total: 1
  * tic tac toe 348: 794   total: 2
- *********************Similar problem catalogs: total:  280
+ *********************Similar problem catalogs: total:  285
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

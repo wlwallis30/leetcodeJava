@@ -313,6 +313,46 @@ public class FacebookHiFreq {
     int finalDay = days[days.length-1];
     return dp[finalDay];
   }
+
+  public int[] findDiagonalOrder1424(List<List<Integer>> nums) {
+    int count = 0;
+    List<Stack<Integer>> listOfStack = new ArrayList();
+    for (int i = 0; i < nums.size(); i++) {
+      List<Integer> oneList = nums.get(i);
+      for (int j = 0; j < oneList.size(); j++) {
+        //this is id of same diagonal num stack
+        int idx = i + j;
+        //created before?
+        if (listOfStack.size() < idx + 1) {
+          listOfStack.add(new Stack());
+        }
+        listOfStack.get(idx).push(oneList.get(j));
+        ++count;
+      }
+    }
+    //now traverse the listOfStack of stacks to form the final array
+    int[] res = new int[count];
+    int p = 0;
+    for (Stack<Integer> stack : listOfStack) {
+      while(!stack.isEmpty()) {
+        res[p++] = stack.pop();
+      }
+    }
+    return res;
+  }
+
+  public boolean isMonotonic896(int[] A) {
+    boolean increasing = true;
+    boolean decreasing = true;
+    for (int i = 0; i < A.length - 1; ++i) {
+      if (A[i] > A[i+1])
+        increasing = false;
+      if (A[i] < A[i+1])
+        decreasing = false;
+    }
+
+    return increasing || decreasing;
+  }
 }
 //346 O(1), space O(N)
 class MovingAverage {
