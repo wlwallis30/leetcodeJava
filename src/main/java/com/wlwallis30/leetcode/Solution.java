@@ -13,7 +13,7 @@ import com.sun.istack.internal.NotNull;
  * Add two numbers 2: 67, 43, 66, 369, 371, 415.... total: 7
  * Length of longest sub string 3: 159, 239, 340, 128, 298, 485, 487, 1004, 424, 658.....total: 11
  * Find median for two sorted arrays 4........total: 1
- * Longest palindrome substring 5: 266, 267, 9, 125, 131, 234, 680......total: 8
+ * Longest palindrome substring 5: 266, 267, 9, 125, 131, 234, 680, 647......total: 9
  * Reverse integer 7: 8  .....total: 2
  * reverse bits 190: 191, 231, 338....total: 4
  * most water area 11    ....total: 1
@@ -31,7 +31,7 @@ import com.sun.istack.internal.NotNull;
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
- * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522, 1161, 637, 958  total:  18
+ * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522, 1161, 637, 958, 865(1123)  total:  20
  * convert sorted array to BST 108: 109   total: 2
  * binary tree path sum 112:257, 113, 129, 536    total: 5
  * pascal triangle 118:119, 120    total: 3
@@ -73,7 +73,7 @@ import com.sun.istack.internal.NotNull;
  * build BT from inorder and preorder 105: 106   total: 2
  * flatten BT to linkedlist 114:    total:1
  * connect next pointers for perfect BT 116: 117, 199, 314    total: 4
- * surrounded region 130: 200, 286, 323, 261, 463, 695  total:7
+ * surrounded region 130: 200, 286, 323, 261, 463, 695, 934  total:8
  * clone graph 133:  (323), (261), 138    total: 2
  * gas station 134:     total:1
  * word break 139:    total: 1
@@ -101,7 +101,7 @@ import com.sun.istack.internal.NotNull;
  * nested integer list sum: 339   total: 1
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
- *********************Similar problem catalogs: total:  287
+ *********************Similar problem catalogs: total:  291
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

@@ -223,6 +223,50 @@ public class BinaryTreeTraversal {
     height(root);
     return diameter1;
   }
+
+  // exactly same with 1123, prefer that solution
+  public TreeNode subtreeWithAllDeepest865(TreeNode root) {
+    return dfs(root).node;
+  }
+
+  // depth is calculated from the bottom, and returned to parent level by level
+  public Result dfs(TreeNode node) {
+    if (node == null) return new Result(null, 0);
+    Result L = dfs(node.left), R = dfs(node.right);
+    if (L.dist > R.dist) return new Result(L.node, L.dist + 1);
+    if (L.dist < R.dist) return new Result(R.node, R.dist + 1);
+    return new Result(node, L.dist + 1);
+  }
+
+  // compose a mapping relation via class, similar to Hashmap or Pair approach
+  class Result {
+    TreeNode node;
+    int dist;
+    Result(TreeNode n, int d) {
+      node = n;
+      dist = d;
+    }
+
+    int deepest = 0;
+    TreeNode res = new TreeNode();
+    // plz also check 865. This problem is exactly same as 865. but prefer this solution
+    TreeNode lcaDeepestLeaves1123(TreeNode root) {
+      helper(root, 0);
+      return res;
+    }
+
+    // root will have depth 1, helper is returning the max depth b/ left and right subtree
+    int helper(TreeNode node, int curDepth) {
+      deepest = Math.max(deepest, curDepth);
+      if (node==null) return curDepth;
+      int left = helper(node.left, curDepth+1);
+      int right = helper(node.right, curDepth+1);
+      // LCA now
+      if (left == deepest && right == deepest) { res = node; }
+      return Math.max(left, right);
+    }
+  }
+
 //////////////////////////////////////////////// iterations///////////////////////////////////////////////////////////////////////////////////
   public List < Integer > inorderTraversal94_stack(TreeNode root) {
     List < Integer > res = new ArrayList < > ();

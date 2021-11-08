@@ -241,4 +241,27 @@ public class Palindrom {
 
     return true ;
   }
+
+  //dp
+  public int countSubstrings647(String s) {
+    int n = s.length(), ans = 0;
+    if (n <= 0) return 0;
+    boolean[][] dp = new boolean[n][n];
+    // Base case: single letter substrings
+    for (int i = 0; i < n; ++i) { dp[i][i] = true; ++ans; }
+    // Base case: double letter substrings
+    for (int i = 0; i < n - 1; ++i) {
+      dp[i][i + 1] = (s.charAt(i) == s.charAt(i + 1));
+      ans += (dp[i][i + 1] ? 1 : 0);
+    }
+
+    // All other cases: substrings of length 3 to n
+    for (int len = 3; len <= n; ++len)
+      for (int start = 0, end = start + len - 1; end < n; ++start, ++end) {
+        dp[start][end] = dp[start + 1][end - 1] && (s.charAt(start) == s.charAt(end));
+        ans += (dp[start][end] ? 1 : 0);
+      }
+
+    return ans;
+  }
 }
