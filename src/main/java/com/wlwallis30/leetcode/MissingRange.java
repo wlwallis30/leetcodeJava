@@ -87,5 +87,41 @@ public class MissingRange {
     // e.g. [2,3,4,7,11] k=5, left=4, right=3, return  3+1+5
     return right+1+k;
   }
+  // 1060, Return how many numbers are missing until nums[idx]
+  int missing(int idx, int[] nums) {
+    return nums[idx] - nums[0] - idx;
+  }
 
+  // O(N), one pass
+  public int missingElement1060(int[] nums, int k) {
+    int n = nums.length;
+    // If kth missing number is larger than the last element of the array
+    if (k > missing(n - 1, nums))
+      return nums[n - 1] + k - missing(n - 1, nums);
+
+    int idx = 1;
+    // find idx such that missing(idx - 1) < k <= missing(idx)
+    while (missing(idx, nums) < k) idx++;
+
+    // kth missing number is greater than nums[idx - 1] and less than nums[idx]
+    return nums[idx - 1] + k - missing(idx - 1, nums);
+  }
+
+  public int missingElement1060BinarySearch(int[] nums, int k) {
+    int n = nums.length;
+    if (k > missing(n - 1, nums))
+      return nums[n - 1] + k - missing(n - 1, nums);
+
+    int left = 0, right = n - 1, pivot;
+    // find left = right index such that missing(left - 1) < k <= missing(left)
+    while (left<right) {
+      pivot = left + (right - left) / 2;
+      if (missing(pivot, nums) < k) left = pivot + 1;
+      else right = pivot;
+    }
+
+    // kth missing number is greater than nums[idx - 1]
+    // and less than nums[idx]
+    return nums[left - 1] + k - missing(left - 1, nums);
+  }
 }

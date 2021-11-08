@@ -42,7 +42,7 @@ import com.sun.istack.internal.NotNull;
  * reverse linkedlist 206:(234Iterative), 92,160, 156     total: 4
  * min stack 155: 716    total: 2
  * read n chars via read4 157:    total: 1
- * missing range 163: 228, 1539   total: 3
+ * missing range 163: 228, 1539, 1060   total: 4
  * majority element 169:    total: 1
  * excel column sheet 168: 171    total: 2
  * factorial trailing zeros 172:      total:1
@@ -95,13 +95,13 @@ import com.sun.istack.internal.NotNull;
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
- * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346,1424, 896   total: 16
+ * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346,1424, 896,932   total: 17
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
  * nested integer list sum: 339   total: 1
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
- *********************Similar problem catalogs: total:  291
+ *********************Similar problem catalogs: total:  293
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

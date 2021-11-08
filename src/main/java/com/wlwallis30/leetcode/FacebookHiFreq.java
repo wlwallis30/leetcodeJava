@@ -353,6 +353,30 @@ public class FacebookHiFreq {
 
     return increasing || decreasing;
   }
+
+  //932, 2*A[k] = A[i] + A[j] (i < k < j), i from left, j from right
+  //we can guess that because the left hand side 2*A[k] is even, we can choose left to have all odd elements, and right to have all even elements.
+  // 奇数加偶数等于奇数，就不会是任何一个数字的2倍了.
+  // question:奇数堆会不会有三个奇数打破这个规则呢？只要这个奇数堆是从一个漂亮数组按固定的规则变化而来的，就能保证一定也是漂亮数组, e.g.  [1,5,3,2,4] where [1 5 3] came from [1 3 2], [2 4 ] from [1 2]
+  // 因为对于任意一个漂亮数组，若对每个数字都加上一个相同的数字，或者都乘上一个相同的数字，则一定还是漂亮数组
+  public int[] beautifulArray(int n) {
+    int[] res = new int[n];     //odd,even
+    if(n == 1) {
+      res[0] = 1;
+      return res;
+    }
+    int[] right =beautifulArray(n/2);
+    int[] left = beautifulArray((n+1)/2);
+    //Adding The Even nos.
+    for(int i=left.length; i<n; i++) {
+      res[i] = right[i-left.length] * 2;
+    }
+    // Adding the  odd nos.
+    for(int i=0; i<left.length; i++) {
+      res[i] = left[i] * 2 - 1;
+    }
+    return res;
+  }
 }
 //346 O(1), space O(N)
 class MovingAverage {
