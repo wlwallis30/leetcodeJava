@@ -35,7 +35,7 @@ import com.sun.istack.internal.NotNull;
  * convert sorted array to BST 108: 109   total: 2
  * binary tree path sum 112:257, 113, 129, 536    total: 5
  * pascal triangle 118:119, 120    total: 3
- * single num 136: 137, 268, 260, 89, 201     total: 6
+ * single num 136: 137, 268, 260, 89, 201, 477     total: 7
  * linked list cycle 141: 142, 202  total: 3
  * add digits 258: (202) 263, 204, 29   total: 4
  * word pattern 205: 290   total: 2
@@ -73,7 +73,7 @@ import com.sun.istack.internal.NotNull;
  * build BT from inorder and preorder 105: 106   total: 2
  * flatten BT to linkedlist 114:    total:1
  * connect next pointers for perfect BT 116: 117, 199, 314    total: 4
- * surrounded region 130: 200, 286, 323, 261, 463, 695, 934  total:8
+ * surrounded region 130: 200, 286, 323, 261, 463, 695, 934, 694  total:9
  * clone graph 133:  (323), (261), 138    total: 2
  * gas station 134:     total:1
  * word break 139:    total: 1
@@ -101,7 +101,7 @@ import com.sun.istack.internal.NotNull;
  * nested integer list sum: 339   total: 1
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
- *********************Similar problem catalogs: total:  293
+ *********************Similar problem catalogs: total:  296
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

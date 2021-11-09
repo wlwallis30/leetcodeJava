@@ -108,4 +108,24 @@ public class SingleNum {
     }
     return m & d;
   }
+
+  // Hamming distance,
+  /*
+  4:  0 1 0 0
+ 14:  1 1 1 0
+  2:  0 0 1 0
+  1:  0 0 0 1
+  可以发现其实就是0的个数乘以1的个数
+   */
+  int totalHammingDistance477(int[] nums) {
+    int res = 0, n = nums.length;
+    for (int i = 0; i < 32; ++i) {
+      int cnt = 0;
+      for (int num : nums) {
+        if ((num & 1<<i) != 0) ++cnt;
+      }
+      res += cnt * (n - cnt);
+    }
+    return res;
+  }
 }

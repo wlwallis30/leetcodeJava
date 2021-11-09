@@ -17,6 +17,7 @@
   - [string to int, int to string, char to int, int to char, char array to String](#string-to-int-int-to-string-char-to-int-int-to-char-char-array-to-string)
   - [int[] to List.. check stackoverflow](#int-to-list-check-stackoverflow)
   - [how to choose the boundary of binary search](#how-to-choose-the-boundary-of-binary-search)
+  - [@694 number of distinct islands](#694-number-of-distinct-islands)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -186,3 +187,7 @@ else left = mid;
   * if mid not work, l should be mid+1 because we are sure the mid is not the answer and everything falls one mid‘s left won’t work either
   * if mid works, then r should be mid not mid-1 because mid might be the answer!
 * vice versa
+
+## @694 number of distinct islands
+>> pay attention to the '0'
+<img src="pics/694NumOfDistinctIslands.jpg" width="800" title="BrutalForce Big O">
