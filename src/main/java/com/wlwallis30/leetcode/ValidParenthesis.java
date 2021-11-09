@@ -165,4 +165,31 @@ public class ValidParenthesis {
     }
     return closeCount + openCount;
   }
+
+  public int minInsertions1541(String s) {
+    int leftOpen=0;
+    int ans=0;
+
+    for(int i=0;i<s.length();i++){
+      if(s.charAt(i)=='('){ leftOpen++; }
+      // hitting ) @ idx of i
+      else{
+        if(i+1<s.length() && s.charAt(i+1)==')'){
+          i++; // hitting another ) @i+1, so we need to advance i
+          if(leftOpen>0){ leftOpen--; }
+          else{ ans++; } //you need to add ( since no more leftOpen
+        }
+        else{ // @i+1, another ( appear(will be addressed in next iteration)
+              // OR i reached the end ==> we only take care of this
+          if(leftOpen>0){
+            leftOpen--;
+            ans++; // need to add ) here to match and decrease leftOpen
+          }
+          else{ ans+=2; } // leftOpen==0, we need to add two )
+        }
+      }
+    }
+    ans+=2*leftOpen;
+    return ans;
+  }
 }

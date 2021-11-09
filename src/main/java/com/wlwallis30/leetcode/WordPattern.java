@@ -73,4 +73,20 @@ public class WordPattern {
 
     return true;
   }
+
+  public boolean differByOne1554(String[] dict) {
+    if(dict.length==0) return false;
+    Set<String> set = new HashSet<>();
+    for(String d: dict){
+      for(int i=0; i<d.length(); i++){
+        // skipping the current char, make it to *,
+        String newStr = d.substring(0,i)+"*"+d.substring(i+1);
+        if(set.contains(newStr))
+          return true;
+        set.add(newStr);
+      }
+    }
+
+    return false;
+  }
 }

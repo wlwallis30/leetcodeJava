@@ -19,7 +19,7 @@ import com.sun.istack.internal.NotNull;
  * most water area 11    ....total: 1
  * roman to int 13:    ........total: 1
  * common longest prefix substring 14:  ...total: 1
- * valid parenthesis 20: 22, 17, 1249, 921   .....total: 5
+ * valid parenthesis 20: 22, 17, 1249, 921, 1541   .....total: 6
  * remove nth node from end 19: 1721    ....total: 2
  * merge two sorted linklist 21: 88, 148, 143, 147, 708   ....total: 6
  * remove dup from sorted array in place 26: 27, 203, 283, 80, 1047, 1209, 977    ....total: 8
@@ -38,7 +38,7 @@ import com.sun.istack.internal.NotNull;
  * single num 136: 137, 268, 260, 89, 201, 477     total: 7
  * linked list cycle 141: 142, 202  total: 3
  * add digits 258: (202) 263, 204, 29   total: 4
- * word pattern 205: 290   total: 2
+ * word pattern 205: 290, 1554  total: 3
  * reverse linkedlist 206:(234Iterative), 92,160, 156     total: 4
  * min stack 155: 716    total: 2
  * read n chars via read4 157:    total: 1
@@ -88,20 +88,20 @@ import com.sun.istack.internal.NotNull;
  * repeated DNA 187:    total: 1
  * fraction to decimal string 166:    total: 1
  * interleaving strings 97:   total: 1
- * course schedule 207: 210, 269, 953    total: 4
+ * course schedule 207: 210, 269, 953, 785    total: 5
  * building with ocean view 1762:    total: 1
  * dot product of sparse vectors 1570:     total:1
  * k th largest element in array 215: 347,  692, 1779, 973    total: 5
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
- * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346,1424, 896,932   total: 17
+ * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346,1424, 896,932, 681   total: 18
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
  * nested integer list sum: 339   total: 1
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
- *********************Similar problem catalogs: total:  295
+ *********************Similar problem catalogs: total:  299
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

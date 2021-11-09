@@ -395,4 +395,33 @@ class MovingAverage {
 
     return windowSum * 1.0 / Math.min(size, count);
   }
+
+  public String nextClosestTime681(String time) {
+    Set<Character> initial = getAllChars(time);
+    int hh = Integer.parseInt(time.substring(0, 2)), mm = Integer.parseInt(time.substring(3));
+    String result = "";
+    while (true) {
+      mm += 1;
+      if (mm == 60) {
+        mm = 0;
+        hh++;
+      }
+      if (hh == 24) {
+        hh = 0;
+        mm = 0;
+      }
+      String tmp = (hh < 10 ? "0" : "") + hh + ":" + (mm < 10 ? "0" : "") + mm;
+      if (initial.containsAll(getAllChars(tmp))) {
+        result = tmp;
+        break;
+      }
+    }
+    return result.isEmpty() ? time : result;
+  }
+
+  private Set<Character> getAllChars(String time) {
+    Set<Character> set = new HashSet<>();
+    for (char c : time.toCharArray()) set.add(c);
+    return set;
+  }
 }
