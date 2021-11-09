@@ -101,7 +101,7 @@ import com.sun.istack.internal.NotNull;
  * nested integer list sum: 339   total: 1
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
- *********************Similar problem catalogs: total:  296
+ *********************Similar problem catalogs: total:  295
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
