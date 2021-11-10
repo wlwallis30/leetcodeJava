@@ -245,4 +245,37 @@ public class SearchIn2DMatrix {
     }
     return cnt;
   }
+
+  // this is not the dijkastra algorithm, but visited matrix give the similar concept. Dijkstra: https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
+  int maximumMinimumPath1102(int[][] A) {
+    int rows = A.length;
+    int cols = A[0].length;
+    int[][] dirs = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    boolean[][] visited = new boolean[rows][cols];
+    PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> b[2] - a[2]);   // max heap: int[2] stores the min path value encountered till now
+    queue.offer(new int[]{0, 0, A[0][0]});
+
+    while (!queue.isEmpty()) {
+      int[] cell = queue.poll();
+      int preMinInPath = cell[2];
+      if (cell[0] == rows - 1 && cell[1] == cols - 1) {     // reached the end: return the min value
+        return preMinInPath;
+      }
+      visited[cell[0]][cell[1]] = true;
+
+      for (int[] dir : dirs) {   // explore all the 4 neighbors
+        int neighborRow = dir[0] + cell[0];
+        int neighborCol = dir[1] + cell[1];
+
+        if (neighborRow < 0 || neighborCol < 0 || neighborRow >= rows
+            || neighborCol >= cols || visited[neighborRow][neighborCol]) {
+          continue;
+        }
+        // maxheap store the min along the path, but since it is max heap, the top one will guarantee it will generate the max path
+        int minTillNow = Math.min(A[neighborRow][neighborCol], preMinInPath);
+        queue.offer(new int[]{neighborRow, neighborCol, minTillNow});
+      }
+    }
+    return -1;
+  }
 }

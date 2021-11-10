@@ -51,7 +51,7 @@ import com.sun.istack.internal.NotNull;
  * nim game 292:     total: 1
  * search in rotated sorted array 33: 81, 153, 162     total: 4
  * valid sudoku 36:    total: 1
- * count and say 38:271    total: 2
+ * count and say 38:271, 443    total: 3
  * combination sum 39: 40, (17, 22), 216, 254, 77 total: 5
  * rotate image 48:     total: 1
  * valid anagram 49: 272, 249    total: 3
@@ -59,7 +59,7 @@ import com.sun.istack.internal.NotNull;
  * spiral matrix 54: 59   total: 2
  * rotate linkedlist by k nodes 61: 189    total:2
  * unique path 62: 63, 64     total: 3
- * search in 2D matrix 74: 240, 1428, 1091, 1559, 935    total: 6
+ * search in 2D matrix 74: 240, 1428, 1091, 1559, 935, 1102    total: 7
  * set matrix to zero 73: 289    total: 2
  * sort colors 75: (148)    total: 1
  * simplify dir path 71:    total: 1
@@ -95,13 +95,14 @@ import com.sun.istack.internal.NotNull;
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
  * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
- * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346,1424, 896,932, 681   total: 18
+ * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346,1424, 896,932, 681,939   total: 19
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
  * nested integer list sum: 339   total: 1
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
- *********************Similar problem catalogs: total:  299
+ * insert delete random 380:  total: 1
+ *********************Similar problem catalogs: total: 303
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

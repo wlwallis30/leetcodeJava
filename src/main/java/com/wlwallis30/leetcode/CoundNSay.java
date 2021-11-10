@@ -48,4 +48,30 @@ public class CoundNSay {
     // limit = negative number, pattern will be applied as many as possible
     return Arrays.asList(str.split(delimiter, -1));
   }
+
+  // O(N), inplace, O(1)
+  public int compress443(char[] chars) {
+    int slow = 0, count = 0;
+    // We traverse the entire array with this iteration.
+    for (int fast = 0; fast < chars.length; fast++) {
+      count++; // We keep note of number of characters in sequence.
+      /* When the next character is not as same as the previous one,
+       * we modify the array from the beginning with the current character.
+       * Note that the array will only become shorter as we keep updating the data.
+       * So there is no need to create another array.
+       */
+      if (fast+1 == chars.length || chars[fast] != chars[fast+1]) {
+        chars[slow++] = chars[fast];
+        // If there are multiple characters, we add the number to the array.
+        if (count != 1) {
+          for (char c : String.valueOf(count).toCharArray()) { //Integer.toString(count).toCharArray()
+            chars[slow++] = c;
+          }
+        }
+        // We initialize count to zero for the next character check.
+        count = 0;
+      }
+    }
+    return slow;
+  }
 }

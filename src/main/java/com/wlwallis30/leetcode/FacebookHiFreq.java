@@ -424,4 +424,27 @@ class MovingAverage {
     for (char c : time.toCharArray()) set.add(c);
     return set;
   }
+
+  // O(N^2), space O(N), if brute force for point A, B, and search for diagonal C, D, it will be N^4
+  public int minAreaRect939(int[][] points) {
+    HashMap<Integer, Set<Integer>> hashmap = new HashMap<>();
+
+    for(int single_point[] : points) {
+      hashmap.putIfAbsent(single_point[0], new HashSet<>());
+      hashmap.get(single_point[0]).add(single_point[1]); // Insert y coordinate into Value (HashSet) for x Key
+    }
+    int minimum_area = Integer.MAX_VALUE;
+
+    for(int i=0; i<points.length; i++){
+      for(int j=0; j<points.length; j++){
+        int x1 = points[i][0], y1 = points[i][1]; // Coordinates of Point A
+        int x2 = points[j][0], y2 = points[j][1]; // Coordinates of Point B
+
+        if(x1 != x2 && y1 != y2) // Point A & B must form a diagonal of the rectangle.
+          if( hashmap.get(x1).contains(y2) && hashmap.get(x2).contains(y1) )
+            minimum_area = Math.min(minimum_area, Math.abs(x1-x2) * Math.abs(y1-y2)); // Store the minimum area possible
+      }
+    }
+    return minimum_area != Integer.MAX_VALUE ? minimum_area : 0; // Return 0 if no rectangle exists
+  }
 }
