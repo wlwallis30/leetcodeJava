@@ -63,4 +63,54 @@ public class WordBreak {
     }
     return dp[s.length()];
   }
+
+  protected Set<String> wordSet;
+  protected HashMap<String, List<List<String>>> memo;
+  public List<String> wordBreak140(String s, List<String> wordDict) {
+    wordSet = new HashSet<>();
+    for (String word : wordDict) { wordSet.add(word); }
+    memo = new HashMap<>();
+    _wordBreak_topdown(s);
+
+    // chain up words together
+    List<String> ret = new ArrayList<>();
+    for (List<String> words : memo.get(s)) {
+      StringBuilder sentence = new StringBuilder();
+      for (String word : words) {
+        sentence.insert(0, word);
+        sentence.insert(0, " ");
+      }
+      ret.add(sentence.toString().trim());
+    }
+
+    return ret;
+  }
+
+  protected List<List<String>> _wordBreak_topdown(String s) {
+    if (s.equals("")) {
+      List<List<String>> solutions = new ArrayList<>();
+      solutions.add(new ArrayList<>());
+      return solutions;
+    }
+
+    if (memo.containsKey(s)) {
+      return memo.get(s);
+    } else {
+      List<List<String>> solutions = new ArrayList<>();
+      memo.put(s, solutions);
+    }
+
+    for (int endIndex = 1; endIndex <= s.length(); ++endIndex) {
+      String word = s.substring(0, endIndex);
+      if (wordSet.contains(word)) {
+        List<List<String>> subsentences = _wordBreak_topdown(s.substring(endIndex));
+        for (List<String> subsentence : subsentences) {
+          List<String> newSentence = new ArrayList<>(subsentence);
+          newSentence.add(word);
+          memo.get(s).add(newSentence);
+        }
+      }
+    }
+    return memo.get(s);
+  }
 }

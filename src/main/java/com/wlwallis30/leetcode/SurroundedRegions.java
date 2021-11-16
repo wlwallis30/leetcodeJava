@@ -413,4 +413,193 @@ public class SurroundedRegions {
     dfs(row, col - 1, 'L');
     currentIsland.append('0');
   }
+
+  //hard
+  int[][] DIRECTIONS = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+  private int rows;
+  private int cols;
+
+  public int largestIsland827(int[][] grid) {
+    rows = grid.length;
+    cols = grid[0].length;
+
+    int[] areas = new int[rows * cols + 2];
+    int areaIndex = 2;
+
+    for(int r = 0; r < rows; r++){
+      for(int c = 0; c < cols; c++){
+        if(grid[r][c] != 1) continue;
+        //save the area of this ones island in unique index
+        // getArea: mark each island in grid[][] with index started with 2, and when dfs also count the area and store it in area[]
+        areas[areaIndex] = getArea(grid, r, c, areaIndex);
+        areaIndex++;
+      }
+    }
+
+    int maxArea = 0;
+    //max area without toggling zero
+    for(int area : areas) maxArea = Math.max(area, maxArea);
+
+    //max area after toggling zero to one
+    for(int r = 0; r < rows; r++){
+      for(int c = 0; c < cols; c++){
+        if(grid[r][c] != 0) continue;
+
+        Set<Integer> seenIsland = new HashSet();
+        int area = 1;
+        for(int[] dir : DIRECTIONS){
+          int x = r + dir[0];
+          int y = c + dir[1];
+          if(isOutsideGrid(x, y)) continue;
+          if(seenIsland.contains(grid[x][y])) continue;//same island
+          //mark as seen this island
+          seenIsland.add(grid[x][y]);
+          //add the island area of current direction
+          area += areas[grid[x][y]];
+        }
+
+        maxArea = Math.max(area, maxArea);
+      }
+    }
+
+    return maxArea;
+  }
+
+  // getArea: mark each island in grid[][] with index started with 2, and when dfs also count the area and store it in area[]
+  private int getArea(int[][] grid, int r, int c, int areaIndex){
+    if(isOutsideGrid(r, c)) return 0;
+    if(grid[r][c] != 1) return 0;
+    //marked Visited and assign a unique index,
+    grid[r][c] = areaIndex;
+    int area = 1; //start counting the area
+    for(int[] dir : DIRECTIONS){
+      int x = r + dir[0];
+      int y = c + dir[1];
+      area += getArea(grid, x, y, areaIndex);
+    }
+
+    return area;
+  }
+
+  private boolean isOutsideGrid(int r, int c){ return r < 0 || r >= rows || c < 0 || c >= cols; }
+
+  private int bfs(int[][] grid, int row, int col, int totalHouses) {
+    // Next four directions.
+    int dirs[][] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+    int rows = grid.length;
+    int cols = grid[0].length;
+    int distanceSum = 0;
+    int housesReached = 0;
+
+    // Queue to do a bfs, starting from (row, col) cell.
+    Queue<int[]> q = new LinkedList<>();
+    q.offer(new int[]{ row, col });
+
+    // Keep track of visited cells.
+    boolean[][] vis = new boolean[rows][cols];
+    vis[row][col] = true;
+
+    int steps = 0;
+    while (!q.isEmpty() && housesReached != totalHouses) {
+      for (int i = q.size(); i > 0; --i) {
+        int[] curr = q.poll();
+        row = curr[0];
+        col = curr[1];
+
+        // If this cell is a house, then add the distance from source to this cell
+        // and we go past from this cell.
+        if (grid[row][col] == 1) {
+          distanceSum += steps;
+          housesReached++;
+          continue;
+        }
+
+        // This cell was empty cell, hence traverse the next cells which is not a blockage.
+        for (int[] dir : dirs) {
+          int nextRow = row + dir[0];
+          int nextCol = col + dir[1];
+          if (nextRow >= 0 && nextCol >= 0 && nextRow < rows && nextCol < cols) {
+            if (!vis[nextRow][nextCol] && grid[nextRow][nextCol] != 2) {
+              vis[nextRow][nextCol] = true;
+              q.offer(new int[]{ nextRow, nextCol });
+            }
+          }
+        }
+      }
+
+      // After traversing one level of cells, increment the steps by 1 to reach to next level.
+      steps++;
+    }
+
+    // If we did not reach all houses, then any cell visited also cannot reach all houses.
+    // Set all cells visted to 2 so we do NOT check them again and return MAX_VALUE.
+    if (housesReached != totalHouses) {
+      for (row = 0; row < rows; row++) {
+        for (col = 0; col < cols; col++) {
+          if (grid[row][col] == 0 && vis[row][col]) { grid[row][col] = 2; }
+        }
+      }
+      return Integer.MAX_VALUE;
+    }
+
+    return distanceSum;
+  }
+
+  public int shortestDistance317(int[][] grid) {
+    int minDistance = Integer.MAX_VALUE;
+    int rows = grid.length;
+    int cols = grid[0].length;
+    int totalHouses = 0;
+
+    // count the total houses
+    for (int row = 0; row < rows; ++row) {
+      for (int col = 0; col < cols; ++col) {
+        if (grid[row][col] == 1) { totalHouses++; }
+      }
+    }
+
+    // Find the min distance sum for each empty cell.
+    for (int row = 0; row < rows; ++row) {
+      for (int col = 0; col < cols; ++col) {
+        if (grid[row][col] == 0) { minDistance = Math.min(minDistance, bfs(grid, row, col, totalHouses)); }
+      }
+    }
+
+    return minDistance == Integer.MAX_VALUE? -1 : minDistance;
+  }
+
+  /*
+  Case #1: 1-0-0-0-1  Case #2: 0-1-0-1-0:  between the left-most and right-most point
+  Case #3: 1-0-0-0-0-0-0-1-1. check the distribution of 1
+  But the best meeting point should be at x=7 and the total distance is 8.
+  In fact, the median must be the optimal meeting point
+  Case #4: 1-1-0-0-1, the median is x=1, the best meeting point, if x=2, not best
+  Case #5: 1-1-0-0-1-1.  any of x=1 to x=4 points and the total distance is minimized
+   */
+  public int minTotalDistance296(int[][] grid) {
+    List<Integer> rows = new ArrayList<>();
+    List<Integer> cols = new ArrayList<>();
+    for (int row = 0; row < grid.length; row++) {
+      for (int col = 0; col < grid[0].length; col++) {
+        if (grid[row][col] == 1) {
+          rows.add(row);
+          cols.add(col);
+        }
+      }
+    }
+    // we adding row in a sorted order, but col are not, col are cyclic, so need to sort it
+    int row = rows.get(rows.size() / 2);
+    Collections.sort(cols);
+    int col = cols.get(cols.size() / 2);
+    return minDistance1D(rows, row) + minDistance1D(cols, col);
+  }
+
+  private int minDistance1D(List<Integer> points, int origin) {
+    int distance = 0;
+    for (int point : points) {
+      distance += Math.abs(point - origin);
+    }
+    return distance;
+  }
 }

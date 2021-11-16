@@ -19,7 +19,7 @@ import com.sun.istack.internal.NotNull;
  * most water area 11    ....total: 1
  * roman to int 13:    ........total: 1
  * common longest prefix substring 14:  ...total: 1
- * valid parenthesis 20: 22, 17, 1249, 921, 1541   .....total: 6
+ * valid parenthesis 20: 22, 17, 1249, 921, 1541,301   .....total: 7
  * remove nth node from end 19: 1721    ....total: 2
  * merge two sorted linklist 21: 88, 148, 143, 147, 708   ....total: 6
  * remove dup from sorted array in place 26: 27, 203, 283, 80, 1047, 1209, 977    ....total: 8
@@ -73,10 +73,10 @@ import com.sun.istack.internal.NotNull;
  * build BT from inorder and preorder 105: 106   total: 2
  * flatten BT to linkedlist 114:    total:1
  * connect next pointers for perfect BT 116: 117, 199, 314    total: 4
- * surrounded region 130: 200, 286, 323, 261, 463, 695, 934, 694  total:9
+ * surrounded region 130: 200, 286, 323, 261, 463, 695, 934, 694, 827, 317, 296  total: 12
  * clone graph 133:  (323), (261), 138    total: 2
  * gas station 134:     total:1
- * word break 139:    total: 1
+ * word break 139: 140    total: 2
  * LRU cache 146: 460, 588   total: 3
  * reverse words 151: 186    total: 2
  * evaluate reversed poland notation 150:    total: 1
@@ -102,7 +102,7 @@ import com.sun.istack.internal.NotNull;
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
  * insert delete random 380:  total: 1
- *********************Similar problem catalogs: total: 303
+ *********************Similar problem catalogs: total: 308
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
