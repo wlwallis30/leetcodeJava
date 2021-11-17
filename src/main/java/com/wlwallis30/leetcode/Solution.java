@@ -154,26 +154,3 @@ public class Solution {
     }
   }
 }
-
-class ListNode {
- int val;
- ListNode next;
- ListNode(int x) { val = x; }
-  public ListNode(int _val, ListNode _next) {
-    val = _val;
-    next = _next;
-  }
- }
-
-class TreeNode {
-  int val;
-  TreeNode left;
-  TreeNode right;
-  TreeNode() {}
-  TreeNode(int val) { this.val = val; }
-  TreeNode(int val, TreeNode left, TreeNode right) {
-  this.val = val;
-  this.left = left;
-  this.right = right;
-  }
-}

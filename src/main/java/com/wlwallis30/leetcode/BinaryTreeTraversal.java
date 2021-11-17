@@ -391,7 +391,7 @@ public class BinaryTreeTraversal {
   public int maxDepth_104stack(TreeNode root) {
     LinkedList<Pair<TreeNode, Integer>> stack = new LinkedList<>();
     if (root == null) return 0;
-    stack.add(new Pair(root, 1));
+    stack.add(new Pair<>(root, 1));
 
     int depth = 0, current_depth = 0;
     while(!stack.isEmpty()) {
@@ -400,8 +400,8 @@ public class BinaryTreeTraversal {
       current_depth = cur.getValue();
       if (root != null) {
         depth = Math.max(depth, current_depth);
-        if(root.left != null) stack.add(new Pair(root.left, current_depth + 1));
-        if(root.right != null) stack.add(new Pair(root.right, current_depth + 1));
+        if(root.left != null) stack.add(new Pair<>(root.left, current_depth + 1));
+        if(root.right != null) stack.add(new Pair<>(root.right, current_depth + 1));
       }
     }
     return depth;
@@ -413,7 +413,7 @@ public class BinaryTreeTraversal {
       return 0;
     }
     else {
-      queue.add(new Pair(root, 1));
+      queue.add(new Pair<>(root, 1));
     }
 
     int current_depth = 0;
@@ -426,10 +426,10 @@ public class BinaryTreeTraversal {
         break;
       }
       if (root.left != null) {
-        queue.add(new Pair(root.left, current_depth + 1));
+        queue.add(new Pair<>(root.left, current_depth + 1));
       }
       if (root.right != null) {
-        queue.add(new Pair(root.right, current_depth + 1));
+        queue.add(new Pair<>(root.right, current_depth + 1));
       }
     }
     return current_depth;
@@ -478,18 +478,18 @@ public class BinaryTreeTraversal {
   Map<TreeNode, TreeNode> parentMap;
   // observe the pattern from a tree, problem is similar to level order traversal when you think target is the root, the tree is a graph
   public List<Integer> distanceK863(TreeNode root, TreeNode target, int K) {
-    parentMap = new HashMap();
+    parentMap = new HashMap<>();
     dfs(root, null);
 
-    Queue<TreeNode> queue = new LinkedList();
-    Set<TreeNode> visited = new HashSet();
+    Queue<TreeNode> queue = new LinkedList<>();
+    Set<TreeNode> visited = new HashSet<>();
     queue.add(target);
     visited.add(target);
 
     int dist = 0;
     while (!queue.isEmpty()) {
       if(dist == K) {
-        List<Integer> ans = new ArrayList();
+        List<Integer> ans = new ArrayList<>();
         for (TreeNode n: queue)
           ans.add(n.val);
         return ans;
@@ -547,7 +547,7 @@ public class BinaryTreeTraversal {
   public int maxLevelSum1161LevelOrder(TreeNode root) {
     int currLevel = 1, maxLevel = 1;
     int maxSum = root.val, currSum = 0;
-    LinkedList<TreeNode> queue = new LinkedList();
+    LinkedList<TreeNode> queue = new LinkedList<>();
     TreeNode x;
     queue.addLast(root);
 
@@ -610,5 +610,60 @@ public class BinaryTreeTraversal {
       }
     }
     return true;
+  }
+
+  public List<List<Integer>> verticalTraversal987(TreeNode root) {
+    List<List<Integer>> output = new ArrayList<>();
+    if (root == null) { return output; }
+
+    // step 1). BFS traversal
+    Map<Integer, ArrayList<Pair<Integer, Integer>>> columnTable = new HashMap<>();
+    int minColumn = 0, maxColumn = 0;
+    // tuples of <column, <row, value>>
+    Queue<Pair<TreeNode, Pair<Integer, Integer>>> queue = new ArrayDeque<>();
+    int row = 0, column = 0;
+    queue.offer(new Pair<>(root, new Pair<>(row, column)));
+
+    while (!queue.isEmpty()) {
+      Pair<TreeNode, Pair<Integer, Integer>> p = queue.poll();
+      root = p.getKey();
+      row = p.getValue().getKey();
+      column = p.getValue().getValue();
+
+      if (root != null) {
+        columnTable.putIfAbsent(column, new ArrayList<>());
+        columnTable.get(column).add(new Pair<>(row, root.val));
+        minColumn = Math.min(minColumn, column);
+        maxColumn = Math.max(maxColumn, column);
+
+        queue.offer(new Pair<>(root.left, new Pair<>(row + 1, column - 1)));
+        queue.offer(new Pair<>(root.right, new Pair<>(row + 1, column + 1)));
+      }
+    }
+
+//    Comparator<Pair<Integer, Integer>> myCompare = new Comparator<>() {
+//      @Override
+//      public int compare(Pair<Integer, Integer> p1, Pair<Integer, Integer> p2) {
+//        if (p1.getKey().equals(p2.getKey()))
+//          return p1.getValue() - p2.getValue();
+//        else
+//          return p1.getKey() - p2.getKey();
+//      }
+//    };
+    // step 2). retrieve the value from the columnTable, from minClo to maxCol, so it is sorted
+    for (int i = minColumn; i <= maxColumn; ++i) {
+      // order by both "row" and "value", node 5 and 6 are at the same position (2, 0), so we order them by their value, 5 before 6.
+      Collections.sort(columnTable.get(i),
+          (p1, p2) -> (p1.getKey().equals(p2.getKey()) ? p1.getValue()- p2.getValue(): p1.getKey() - p2.getKey())
+      );
+
+      List<Integer> sortedColumn = new ArrayList<>();
+      for (Pair<Integer, Integer> p : columnTable.get(i)) {
+        sortedColumn.add(p.getValue());
+      }
+      output.add(sortedColumn);
+    }
+
+    return output;
   }
 }
