@@ -14,7 +14,7 @@ package com.wlwallis30.leetcode;
  * Length of longest sub string 3: 159, 239, 340, 128, 298, 485, 487, 1004, 424, 658.....total: 11
  * Find median for two sorted arrays 4........total: 1
  * Longest palindrome substring 5: 266, 267, 9, 125, 131, 234, 680, 647......total: 9
- * Reverse integer 7: 8  .....total: 2
+ * Reverse integer 7: 8, 65  .....total: 3
  * reverse bits 190: 191, 231, 338....total: 4
  * most water area 11    ....total: 1
  * roman to int 13:    ........total: 1
@@ -31,7 +31,7 @@ package com.wlwallis30.leetcode;
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
- * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522, 1161, 637, 958, 865(1123)  total:  20
+ * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522, 1161, 637, 958, 865(1123), 987  total:  21
  * convert sorted array to BST 108: 109   total: 2
  * binary tree path sum 112:257, 113, 129, 536    total: 5
  * pascal triangle 118:119, 120    total: 3
@@ -79,7 +79,7 @@ package com.wlwallis30.leetcode;
  * word break 139: 140    total: 2
  * LRU cache 146: 460, 588   total: 3
  * reverse words 151: 186    total: 2
- * evaluate reversed poland notation 150:    total: 1
+ * evaluate reversed poland notation 150: 227, 282    total: 3
  * one edit distance 161:   total: 1
  * compare two versions 165:    total: 1
  * BST iterator 173: 251, 281, 284, 341    total: 5
@@ -93,7 +93,6 @@ package com.wlwallis30.leetcode;
  * dot product of sparse vectors 1570:     total:1
  * k th largest element in array 215: 347,  692, 1779, 973    total: 5
  * lowest common ancestor 235: 236, 1644, 1650        total: 4
- * basic calculator 227:     total: 1
  * account merge 721: 734    total: 2
  * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346,1424, 896,932, 681,939   total: 19
  * random pick index 398:  328, (528)      total: 2
@@ -102,7 +101,7 @@ package com.wlwallis30.leetcode;
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
  * insert delete random 380:  total: 1
- *********************Similar problem catalogs: total: 308
+ *********************Similar problem catalogs: total: 311
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

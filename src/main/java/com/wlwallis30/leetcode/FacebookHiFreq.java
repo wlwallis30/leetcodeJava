@@ -316,7 +316,7 @@ public class FacebookHiFreq {
 
   public int[] findDiagonalOrder1424(List<List<Integer>> nums) {
     int count = 0;
-    List<Stack<Integer>> listOfStack = new ArrayList();
+    List<Stack<Integer>> listOfStack = new ArrayList<>();
     for (int i = 0; i < nums.size(); i++) {
       List<Integer> oneList = nums.get(i);
       for (int j = 0; j < oneList.size(); j++) {
@@ -324,7 +324,7 @@ public class FacebookHiFreq {
         int idx = i + j;
         //created before?
         if (listOfStack.size() < idx + 1) {
-          listOfStack.add(new Stack());
+          listOfStack.add(new Stack<>());
         }
         listOfStack.get(idx).push(oneList.get(j));
         ++count;
@@ -381,7 +381,7 @@ public class FacebookHiFreq {
 //346 O(1), space O(N)
 class MovingAverage {
   int size, windowSum = 0, count = 0;
-  Deque queue = new ArrayDeque<Integer>();
+  Deque<Integer> queue = new ArrayDeque<>();
 
   public MovingAverage(int size) { this.size = size; }
 

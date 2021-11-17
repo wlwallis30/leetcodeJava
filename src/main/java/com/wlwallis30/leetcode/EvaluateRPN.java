@@ -77,4 +77,79 @@ public class EvaluateRPN {
 
     return stack.pop();
   }
+
+  public int calculate227(String s) {
+    if (s == null || s.isEmpty()) return 0;
+    int len = s.length();
+    Stack<Integer> stack = new Stack<>();
+    int currentNumber = 0;
+    char operation = '+';
+    for (int i = 0; i < len; i++) {
+      char currentChar = s.charAt(i);
+      if (Character.isDigit(currentChar)) { currentNumber = (currentNumber * 10) + (currentChar - '0'); }
+
+      // hitting operators or hitting the end of string, we should calc or push num for calc
+      if (!Character.isDigit(currentChar) && !Character.isWhitespace(currentChar) || i == len - 1) {
+        if (operation == '-') { stack.push(-currentNumber); }
+        else if (operation == '+') { stack.push(currentNumber); }
+        else if (operation == '*') { stack.push(stack.pop() * currentNumber); }
+        else if (operation == '/') { stack.push(stack.pop() / currentNumber); }
+        operation = currentChar;
+        currentNumber = 0;
+      }
+    }
+    int result = 0;
+    while (!stack.isEmpty()) {
+      result += stack.pop();
+    }
+    return result;
+  }
+
+  // you will get a TLE i.e. time limit exceeded error if we dont track the value and just do evaluation everytime with a expression.
+  //exactly 4 different recursive paths. The base case is when the value of index reaches N i.e. the length of the nums array. Hence, our complexity would be O(4^N)
+  //In the worst case, we can have O(4^N) valid expressions, the base case will have O(N) for string ops, so O(N * 4^N)
+  List<String> result = new ArrayList<>();
+  public List<String> addOperators282(String num, int target) {
+    if (num == null || num.isEmpty()) return result;
+    addOperatorsRecur(num, target, 0, 0, 0, "");
+    return result;
+  }
+
+  private void addOperatorsRecur(String num, int target, int index, long preValue, long preNum, String expression) {
+    if (index == num.length()) {
+      if (preValue == target) { result.add(expression); }
+      return; //2. if not, we discard
+    }
+
+    // 1. We can choose a single digits as operands Or multi digits as operand (  1 + 2 or 12 + 34 )
+    for (int i = index; i < num.length(); i++) {
+      //  We don't consider a operand which is 0 as single digit operand, as operand like 0 or 01 , 023... does not make sense
+      //  To avoid cases where we have 1 + 05 or 1 * 05 since 05 won't be a
+      if (i != index && num.charAt(index) == '0') break;
+
+      long currentDigitsValue = Long.parseLong(num.substring(index, i + 1)); // very important approach
+
+       // We need two operands for a operator and operator can't be apply on single operand
+      if (index == 0) {
+        // as this is the first num/digit only, then don't apply any operator
+        addOperatorsRecur(num, target, i + 1, currentDigitsValue,
+            currentDigitsValue, expression + currentDigitsValue);
+      } else { //We have two operands
+         // '+': preValue = 12, preNum = 2 ( say we did like 10 + 2 ), currentDigitvalue = 51 then expression is 10 + 2 + 51 = 63
+        addOperatorsRecur(num, target, i + 1, preValue + currentDigitsValue,
+            currentDigitsValue, expression + "+" + currentDigitsValue);
+
+         // "-":  preValue = 12 preValue = 2 ( say we did like 10 + 2 ) currentDigitvalue = 5 then expression is 10 + 2 - 5 = 7
+        // So preNum would be -5
+        addOperatorsRecur(num, target, i + 1, preValue - currentDigitsValue,
+            -currentDigitsValue, expression + "-" + currentDigitsValue);
+
+         // '*'; higher than + and -. So current value become = preValue - preNum + last*currentDigitvalue;
+        // preValue = 12 , preNum = 2 ( let say we applied + as 10 + 2 ), currendDigitValue = 4
+        // so expression become : 10 + 2 * 4,  wrong if 12 * 4 = 24. New value = 10 + 2 * 4 = 18, preNum become 2*4 = 8
+        addOperatorsRecur(num, target, i + 1, preValue - preNum + preNum * currentDigitsValue,
+            preNum * currentDigitsValue, expression + "*" + currentDigitsValue);
+      }
+    }
+  }
 }

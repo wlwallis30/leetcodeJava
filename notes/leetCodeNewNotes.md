@@ -19,6 +19,7 @@
   - [how to choose the boundary of binary search](#how-to-choose-the-boundary-of-binary-search)
   - [@694 number of distinct islands](#694-number-of-distinct-islands)
   - [@65 valid number](#65-valid-number)
+  - [@282  Add expressions](#282--add-expressions)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -196,3 +197,8 @@ else left = mid;
 ## @65 valid number
 >> s consists of only English letters (both uppercase and lowercase), digits (0-9), plus '+', minus '-', or dot '.', no space need to be considered(if need, just use str.trim())
 <img src="pics/65ValidNum.jpg" width="800" title="BrutalForce Big O">
+
+
+## @282  Add expressions
+>> to handle the *
+<img src="pics/282AddExpressions.jpg" width="800" title="BrutalForce Big O">
