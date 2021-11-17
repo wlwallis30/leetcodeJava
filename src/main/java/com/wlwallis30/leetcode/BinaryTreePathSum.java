@@ -1,7 +1,6 @@
 package com.wlwallis30.leetcode;
 
 import java.util.*;
-import javafx.util.Pair;
 
 public class BinaryTreePathSum {
   public boolean hasPathSum_112Recur(TreeNode root, int sum) {

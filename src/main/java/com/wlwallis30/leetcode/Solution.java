@@ -6,7 +6,7 @@
 
 package com.wlwallis30.leetcode;
 
-import com.sun.istack.internal.NotNull;
+//import com.sun.istack.internal.NotNull;
 
 /*
  * Two sum 1: 15, 16, 18, 167, 170, 259, 560, 523, 528, 303, 304, 724.......total: 13
@@ -107,19 +107,19 @@ import com.sun.istack.internal.NotNull;
 // single-linked list where java LinkedList is a double linked list via Deque
 
 public class Solution {
-  static void swap(@NotNull char[] str, int i, int j) {
+  static void swap(char[] str, int i, int j) {
     char temp = str[i];
     str[i] = str[j];
     str[j] = temp;
   }
 
-  static void swap(@NotNull int[] nums, int i, int j) {
+  static void swap(int[] nums, int i, int j) {
     int temp = nums[i];
     nums[i] = nums[j];
     nums[j] = temp;
   }
 
-  static String swapStr(@NotNull char[] str, int i, int j) {
+  static String swapStr(char[] str, int i, int j) {
     char temp = str[i];
     str[i] = str[j];
     str[j] = temp;
@@ -136,7 +136,7 @@ public class Solution {
   // name="SE" by doing this, you are changing the value of name variable, not the String object SO itself. String are immutable in the sense, String object SO can't be modified
   //https://stackoverflow.com/questions/20396767/string-confusion-in-java
 
-  static void reverse(@NotNull int[] nums, int start) {
+  static void reverse(int[] nums, int start) {
     int i = start, j = nums.length - 1;
     while (i < j) {
       swap(nums, i, j);

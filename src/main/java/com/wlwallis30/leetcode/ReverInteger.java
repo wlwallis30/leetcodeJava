@@ -1,5 +1,7 @@
 package com.wlwallis30.leetcode;
 
+import java.util.*;
+
 public class ReverInteger {
   int reverse_7(int x) {
     int res=0;
@@ -46,5 +48,54 @@ public class ReverInteger {
     }
 
     return isPositive? res:-res;
+  }
+
+  public boolean isNumber65(String s) {
+    if(s.trim().isEmpty()) return false;
+    // \d* is for \\d+\\.?([eE]) to avoid wrong result for 0.8, 0345.6, 0.183(these are valid num).
+    // 0. 1. is valid, but 1.e 1e is not valid
+    String regex = "[-+]?(\\d+\\.?|\\.\\d+)\\d*([eE][+-]?\\d+)?";
+    return s.trim().matches(regex);
+  }
+
+  //http://n00tc0d3r.blogspot.com/2013/06/valid-number.html Deterministic Finite state machine
+  private static final List<Map<String, Integer>> dfa = List.of(
+      Map.of("digit", 1, "sign", 2, "dot", 3),
+      Map.of("digit", 1, "dot", 4, "exponent", 5),
+      Map.of("digit", 1, "dot", 3),
+      Map.of("digit", 4),
+      Map.of("digit", 4, "exponent", 5),
+      Map.of("sign", 6, "digit", 7),
+      Map.of("digit", 7),
+      Map.of("digit", 7)
+  );
+
+  // These are all of the valid finishing states for our DFA.
+  private static final Set<Integer> validFinalStates = Set.of(1, 4, 7);
+  //s consists of only English letters (both uppercase and lowercase), digits (0-9), plus '+', minus '-', or dot '.', no space need to be considered(if need, just use str.trim())
+  public boolean isNumber65FiniteState(String s) {
+    int currentState = 0;
+    String action = "";
+
+    for (int i = 0; i < s.length(); i++) {
+      char curr = s.charAt(i);
+      if (Character.isDigit(curr)) {
+        action = "digit";
+      } else if (curr == '+' || curr == '-') {
+        action = "sign";
+      } else if (curr == 'e' || curr == 'E') {
+        action = "exponent";
+      } else if (curr == '.') {
+        action = "dot";
+      } else {
+        return false;
+      }
+
+      if (!dfa.get(currentState).containsKey(action)) { return false; }
+
+      currentState = dfa.get(currentState).get(action);
+    }
+
+    return validFinalStates.contains(currentState);
   }
 }
