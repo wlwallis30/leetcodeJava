@@ -101,7 +101,8 @@ package com.wlwallis30.leetcode;
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
  * insert delete random 380:  total: 1
- *********************Similar problem catalogs: total: 313
+ * word ladder 126: 127     total: 2
+ *********************Similar problem catalogs: total: 315
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
