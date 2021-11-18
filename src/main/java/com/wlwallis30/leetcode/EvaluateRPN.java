@@ -152,4 +152,43 @@ public class EvaluateRPN {
       }
     }
   }
+
+  // basic calculator II
+  public int calculate224(String s) {
+    Stack<Integer> stack = new Stack<>();
+    int operand = 0;
+    int result = 0; // For the on-going result
+    int sign = 1;  // 1 means positive, -1 means negative
+
+    // when hitting + - ) we need to calculate and reset operand = 0, when hitting (, we need to push result and sign and reset them
+    for (int i = 0; i < s.length(); i++) {
+      char ch = s.charAt(i);
+      if (Character.isDigit(ch)) { operand = 10 * operand + (ch - '0');
+      } else if (ch == '+') {
+        result += sign * operand;
+        sign = 1;
+        // Reset operand
+        operand = 0;
+      } else if (ch == '-') {
+        result += sign * operand;
+        sign = -1;
+        operand = 0;
+      } else if (ch == '(') {
+        // Push the result and sign on to the stack, for later
+        stack.push(result);
+        stack.push(sign);
+        sign = 1;
+        result = 0;
+      } else if (ch == ')') {
+        result += sign * operand;
+        // ')' marks end of expression within a set of parenthesis as stack.pop() is the sign before the parenthesis
+        result *= stack.pop();
+        // (operand on stack) + (sign on stack * (result from parenthesis))
+        result += stack.pop();
+        operand = 0;
+      }
+    }
+    //dont forget we still have the last operand and sigh to add to result
+    return result + (sign * operand);
+  }
 }

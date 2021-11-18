@@ -16,7 +16,7 @@ package com.wlwallis30.leetcode;
  * Longest palindrome substring 5: 266, 267, 9, 125, 131, 234, 680, 647......total: 9
  * Reverse integer 7: 8, 65  .....total: 3
  * reverse bits 190: 191, 231, 338....total: 4
- * most water area 11    ....total: 1
+ * most water area 11: 42    ....total: 2
  * roman to int 13:    ........total: 1
  * common longest prefix substring 14:  ...total: 1
  * valid parenthesis 20: 22, 17, 1249, 921, 1541,301   .....total: 7
@@ -79,7 +79,7 @@ package com.wlwallis30.leetcode;
  * word break 139: 140    total: 2
  * LRU cache 146: 460, 588   total: 3
  * reverse words 151: 186    total: 2
- * evaluate reversed poland notation 150: 227, 282    total: 3
+ * evaluate reversed poland notation 150: 227, 282, 224    total: 4
  * one edit distance 161:   total: 1
  * compare two versions 165:    total: 1
  * BST iterator 173: 251, 281, 284, 341    total: 5
@@ -101,7 +101,7 @@ package com.wlwallis30.leetcode;
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
  * insert delete random 380:  total: 1
- *********************Similar problem catalogs: total: 311
+ *********************Similar problem catalogs: total: 313
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
