@@ -59,14 +59,39 @@ public class BinaryTreePathSum {
     if (root.left == null && root.right == null) return sum;
     return sumNumbersDFS(root.left, sum*10) + sumNumbersDFS(root.right, sum*10);
   }
+
+  int max_sum = Integer.MIN_VALUE;
+  public int max_gain(TreeNode node) {
+    if (node == null) return 0;
+
+    // max sum on the left and right sub-trees of node
+    int leftMax = max_gain(node.left);
+    int rightMax = max_gain(node.right);
+    // leftMax, rightMax might be negative!
+    int singleSideMax = Math.max(node.val, Math.max(leftMax + node.val, rightMax + node.val));
+
+    int maxWithNode = Math.max(node.val + leftMax + rightMax, singleSideMax);
+
+    // update max_sum with this node in the path
+    max_sum = Math.max(max_sum, maxWithNode);
+
+    // return the max gain to its parent
+    return  singleSideMax;
+  }
+
+  public int maxPathSum124(TreeNode root) {
+    max_gain(root);
+    return max_sum;
+  }
+
   //////////////////////////////////////////////iterative//////////////////////////////////////////////////
   public boolean hasPathSum_112Stack(TreeNode root, int sum) {
     if (root == null)
       return false;
 
     // you can also user Pair<Treenode, Integer> as shown in BinaryTreeTraversal
-    LinkedList<TreeNode> node_stack = new LinkedList();
-    LinkedList<Integer> sum_stack = new LinkedList();
+    LinkedList<TreeNode> node_stack = new LinkedList<>();
+    LinkedList<Integer> sum_stack = new LinkedList<>();
     node_stack.add(root);
     sum_stack.add(sum - root.val);
 

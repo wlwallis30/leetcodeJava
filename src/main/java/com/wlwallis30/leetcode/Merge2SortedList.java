@@ -24,6 +24,21 @@ public class Merge2SortedList {
     return dummny.next;
   }
 
+  public ListNode mergeKLists23(ListNode[] lists) {
+    if(lists == null || lists.length == 0) return null;
+    int size=lists.length;
+    while(size>1) {
+      int halfSize=(size+1)/2;
+      for(int i=0;i<size/2;++i) {
+        lists[i]= mergeTwoLists_21(lists[i], lists[i+halfSize]);
+      }
+
+      size=halfSize;
+    }
+
+    return lists[0];
+  }
+
   public void merge2SortedArray_88(int[] nums1, int m, int[] nums2, int n) {
     int count = m + n - 1;
     --m; --n;
