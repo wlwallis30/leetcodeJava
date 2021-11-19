@@ -264,4 +264,21 @@ public class Palindrom {
 
     return ans;
   }
+
+  public boolean isValidPalindrome1216(String s, int k) {
+    int memo[][] = new int[s.length()][s.length()];
+    // Generate all combinations of `start` and `end` in the correct order.
+    for (int start = s.length() - 2; start >= 0; start--)
+      for (int end = start + 1; end < s.length(); end++) {
+        if (s.charAt(start) == s.charAt(end)) memo[start][end] = memo[start + 1][end - 1];
+
+          // Case 2: Character at `start` does not equal character at `end`.
+          // Either delete character at `start` or delete character at `end`
+        else
+          memo[start][end] = 1 + Math.min(memo[start + 1][end], memo[start][end - 1]);
+      }
+
+    // Return true if the minimum cost to create a palindrome by only deleting <= `k`.
+    return memo[0][s.length() - 1] <= k;
+  }
 }

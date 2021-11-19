@@ -11,9 +11,9 @@ package com.wlwallis30.leetcode;
 /*
  * Two sum 1: 15, 16, 18, 167, 170, 259, 560, 523, 528, 303, 304, 724.......total: 13
  * Add two numbers 2: 67, 43, 66, 369, 371, 415.... total: 7
- * Length of longest sub string 3: 159, 239, 340, 128, 298, 485, 487, 1004, 424, 658.....total: 11
+ * Length of longest sub string 3: 159, 239, 340, 128, 298, 485, 487, 1004, 424, 658, 76.....total: 12
  * Find median for two sorted arrays 4........total: 1
- * Longest palindrome substring 5: 266, 267, 9, 125, 131, 234, 680, 647......total: 9
+ * Longest palindrome substring 5: 266, 267, 9, 125, 131, 234, 680, 647, 1216......total: 10
  * Reverse integer 7: 8, 65  .....total: 3
  * reverse bits 190: 191, 231, 338....total: 4
  * most water area 11: 42    ....total: 2
@@ -102,7 +102,7 @@ package com.wlwallis30.leetcode;
  * bulb switcher 319:    total: 1
  * insert delete random 380:  total: 1
  * word ladder 126: 127     total: 2
- *********************Similar problem catalogs: total: 318
+ *********************Similar problem catalogs: total: 320
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 

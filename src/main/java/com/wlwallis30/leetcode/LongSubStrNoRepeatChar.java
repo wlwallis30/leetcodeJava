@@ -1,5 +1,6 @@
 package com.wlwallis30.leetcode;
 
+import com.sun.javafx.image.IntPixelGetter;
 import java.util.*;
 
 public class LongSubStrNoRepeatChar {
@@ -250,5 +251,52 @@ public class LongSubStrNoRepeatChar {
 		}
 
 		return result;
+	}
+
+	//hard, also using sliding window, min window of substring for target string
+	public String minWindow76(String s, String t) {
+		String res = "";
+		if (s.length() == 0 || t.length() == 0) { return res;}
+
+		Map<Character, Integer> targetCharCnt = new HashMap<>();
+		for (int i = 0; i < t.length(); i++) {
+			char curChar = t.charAt(i);
+			int count = targetCharCnt.getOrDefault(curChar, 0);
+			targetCharCnt.put(curChar, count + 1);
+		} // after this targetCharCnt will never change
+
+		int required = targetCharCnt.size(); // size is the map's size, e.g. a:2, b:1, the size is 2
+		int goalCnt = 0;
+		int minLen = s.length()+1;
+
+		Map<Character, Integer> windowCharCnt = new HashMap<>();
+		int left = 0;
+		for(int right=0; right<s.length(); ++right) {
+			char curChar = s.charAt(right);
+			int count = windowCharCnt.getOrDefault(curChar, 0);
+			windowCharCnt.put(curChar, count + 1);
+
+			// found a desired char and this char's count matches the target char's count
+			if (targetCharCnt.containsKey(curChar)
+					&& windowCharCnt.get(curChar).intValue() == targetCharCnt.get(curChar).intValue()) { goalCnt++; }
+
+			// Try shrinking window till the point where it ceases to be 'desirable'.
+			while (left <= right && goalCnt == required) {
+				curChar = s.charAt(left);
+				if(right-left+1<minLen) {
+					minLen = right-left+1;
+					res = s.substring(left, right+1);
+				}
+				// removing this char @left
+				windowCharCnt.put(curChar, windowCharCnt.get(curChar) - 1);
+				if (targetCharCnt.containsKey(curChar)
+						&& windowCharCnt.get(curChar).intValue() < targetCharCnt.get(curChar).intValue()) { goalCnt--; }
+
+				// shrinking window
+				left++;
+			}
+		}
+
+		return res;
 	}
 }
