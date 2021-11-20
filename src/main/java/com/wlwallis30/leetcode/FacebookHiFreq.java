@@ -447,4 +447,57 @@ class MovingAverage {
     }
     return minimum_area != Integer.MAX_VALUE ? minimum_area : 0; // Return 0 if no rectangle exists
   }
+
+  //hard
+  //https://grandyang.com/leetcode/691/
+  public int minStickers691(String[] stickers, String target) {
+    if(target == null || stickers == null){ return 0; }
+
+    int m = stickers.length;
+    int [][] charFreq = new int[m][26];
+    for(int i = 0; i<m; i++){
+      for(char c : stickers[i].toCharArray()){ charFreq[i][c - 'a']++; }
+    }
+
+    HashMap<String, Integer> strResDP = new HashMap<>();
+    strResDP.put("", 0); //base case
+
+    return dfs(charFreq, target, strResDP);
+  }
+
+  private int dfs(int [][] charFreq, String curTarget, Map<String, Integer> strResDP){
+    if(strResDP.containsKey(curTarget)){
+      return strResDP.get(curTarget);
+    }
+
+    int [] charCnt = new int[26];
+    for(char c : curTarget.toCharArray()){
+      charCnt[c - 'a']++;
+    }
+
+    int res = Integer.MAX_VALUE;
+    for(int i = 0; i<charFreq.length; i++){
+      //我们遍历统计所有sticker中各个字母出现次数的数组freq，如果target字符串的第一个字母不在当前sticker中，我们直接跳过，
+      // 注意递归函数中的target字符串不是原始的字符串，我们心间一个临时字符串t，然后我们遍历target字符串中存在的字符，
+      // 如果target中的某字符存在的个数多于sticker中对应的字符，那么将多余的部分存在字符串t中，表示当前sticker无法拼出的字符，交给下一个递归函数来处理
+      if(charFreq[i][curTarget.charAt(0) - 'a'] == 0){
+        continue;
+      }
+
+      StringBuilder sb = new StringBuilder();
+      for(int j = 0; j<26; j++){
+        int leftCnt = charCnt[j] - charFreq[i][j];
+        if(leftCnt> 0){
+          for(int k = 0; k<leftCnt; k++){ sb.append((char)('a' + j)); }
+        }
+      }
+
+      int base = dfs(charFreq, sb.toString(), strResDP);
+      if(base != -1){ res = Math.min(res, base + 1); }
+    }
+
+    res = res ==Integer.MAX_VALUE ? -1 : res;
+    strResDP.put(curTarget, res);
+    return res;
+  }
 }
