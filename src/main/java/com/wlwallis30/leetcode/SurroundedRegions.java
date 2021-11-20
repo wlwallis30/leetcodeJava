@@ -1,6 +1,7 @@
 package com.wlwallis30.leetcode;
 
 import java.util.*;
+import javafx.util.*;
 
 public class SurroundedRegions {
   //start from the boundary 0, go deeper with connected 0, mark all of them to $, other 0 in the middle will die
@@ -700,4 +701,51 @@ public class SurroundedRegions {
   }
 
   private int dist(int x, int y, int tx, int ty){ return Math.abs(x-tx)+Math.abs(y-ty); }
+
+  //hard,
+  interface Robot {
+    public boolean move();
+    public void turnLeft();
+    public void turnRight();
+    public void clean();
+  }
+
+  // going clockwise : 0: 'up', 1: 'right', 2: 'down', 3: 'left'
+  int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+  Set<Pair<Integer, Integer>> visited2 = new HashSet();
+  Robot robot;
+
+  public void goBack() {
+    //turn 180 degree
+    robot.turnRight();
+    robot.turnRight();
+    robot.move();
+    // turn 180 degree, facing the same direction
+    robot.turnLeft();// turnRight also fine
+    robot.turnLeft(); // turnRight also fine
+  }
+
+  public void backtrack(int row, int col, int d) {
+    visited2.add(new Pair(row, col));
+    robot.clean();
+    // going clockwise : 0: 'up', 1: 'right', 2: 'down', 3: 'left'
+    for (int i = 0; i < 4; ++i) {
+      int newD = (d + i) % 4;
+      int newRow = row + directions[newD][0];
+      int newCol = col + directions[newD][1];
+
+      if (!visited2.contains(new Pair(newRow, newCol)) && robot.move()) {
+        backtrack(newRow, newCol, newD);
+        goBack();
+      }
+      // if newRow,newCol is a wall, you dont move, turn right, if you moved, since you just goBack and facing the same direction, still turn right to make clockwise
+      // turn the robot following chosen direction : clockwise
+      robot.turnRight();
+    }
+  }
+
+  public void cleanRoom489(Robot robot) {
+    this.robot = robot;
+    backtrack(0, 0, 0);
+  }
 }

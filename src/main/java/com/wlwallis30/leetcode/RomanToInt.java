@@ -29,4 +29,42 @@ public class RomanToInt {
 
     return res;
   }
+
+  private static final int[] values = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+  private static final String[] symbols = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+  public String intToRoman12(int num) {
+    StringBuilder sb = new StringBuilder();
+    // Loop through each symbol, stopping if num becomes 0.
+    for (int i = 0; i < values.length && num > 0; i++) {
+      // Repeat while the current symbol still fits into num.
+      while (values[i] <= num) {
+        num -= values[i];
+        sb.append(symbols[i]);
+      }
+    }
+    return sb.toString();
+  }
+
+  // 1, 111, 111, 111
+  // B   M    K   hundred
+  String numberToWords273(int num) {
+    String res = convertHundred(num % 1000); // do hundred first, then we iterate for K, M and B range
+    String [] v = {"Thousand", "Million", "Billion"};
+    for (int i = 0; i < 3; ++i) {
+      num /= 1000;
+      res = (num % 1000) != 0 ? convertHundred(num % 1000) + " " + v[i] + " " + res : res;
+    }
+    res = res.trim();
+    return res.isEmpty() ? "Zero" : res;
+  }
+  String convertHundred(int num) {
+    String [] below20 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+        "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    String [] above20 = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+    String res;
+    int hundred = num / 100, tensOrSingles = num % 100, single = num % 10;
+    res = tensOrSingles < 20 ? below20[tensOrSingles] : above20[tensOrSingles / 10] + (single!=0 ? " " + below20[single] : "");
+    if (hundred > 0) res = below20[hundred] + " Hundred" + (tensOrSingles!=0 ? " " + res : "");
+    return res;
+  }
 }
