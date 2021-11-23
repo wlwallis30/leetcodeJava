@@ -13,7 +13,7 @@ public class SortColors {
   }
 
   void sortColors75Onepass(int[] nums) {
-    int red = 0, blue = (int)nums.length - 1, cur = 0;
+    int red = 0, blue = nums.length - 1, cur = 0;
     // need to be cur <= blue, think about [1 1 1 1 0 2 2] case, red is very low idx, so you need compare cur and blue to end while loop
     // < not enough, also need =, to garuantee cur and blue both point to a 0, e.g. [1 2 0] -> [1 0 2]
     while (cur <= blue) {
