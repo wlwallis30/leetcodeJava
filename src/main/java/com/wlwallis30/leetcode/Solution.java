@@ -102,8 +102,8 @@ package com.wlwallis30.leetcode;
  * bulb switcher 319:    total: 1
  * insert delete random 380:  total: 1
  * word ladder 126: 127     total: 2
- * trie 208: 211     total: 2
- *********************Similar problem catalogs: total: 326
+ * trie 208: 211, 642     total: 3
+ *********************Similar problem catalogs: total: 327
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 
