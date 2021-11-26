@@ -98,9 +98,9 @@ public class TwoSum {
     Arrays.sort(nums);
     for (int i = 0; i < nums.length - 3; i++) {
       // this would prevent using res.stream().distinct()....
-      if (i > 0 && nums[i] == nums[i-1]) { continue; }
+      if (i > 0 && nums[i] == nums[i-1]) { continue; } // skip same a
       for (int j = i + 1; j < nums.length - 2; j++) {
-        if (j > i + 1 && nums[j] == nums[j - 1]) {
+        if (j > i + 1 && nums[j] == nums[j - 1]) {  // skip same b
           continue;
         }
         int left = j + 1, right = nums.length - 1;
@@ -109,10 +109,10 @@ public class TwoSum {
           if (sum == target) {
             res.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
             ++left;
-            while (nums[left] == nums[left - 1] && left < right)
+            while (nums[left] == nums[left - 1] && left < right) // skip same c
               ++left;
             --right;
-            while (nums[right] == nums[right + 1] && left < right)
+            while (nums[right] == nums[right + 1] && left < right) // skip same d
               --right;
           } else if (sum > target) {
             --right;
@@ -185,8 +185,8 @@ public class TwoSum {
     sumOccurMap.put(0, 1);
     for (int i = 0; i < nums.length; i++) {
       sum += nums[i];
-      // 3 4 7 2 -3 1 7, target = 7
-      //(0,1) (3, 1) (7, 1) (14,1 later will become 2), (16,1), (13, 1), (14, 1->2), (14, 2->3)
+      // 3 4 7 2 -3 1 4 2, target = 7
+      //(0,1) (3, 1) (7, 1) (14,1 later will become 2), (16,1), (13, 1), (14, 1->2), (14, 2->3), (18, 1), (20, 1)
       if (sumOccurMap.containsKey(sum - target)) count += sumOccurMap.get(sum - target);
       sumOccurMap.put(sum, sumOccurMap.getOrDefault(sum, 0) + 1);
     }
@@ -211,7 +211,7 @@ public class TwoSum {
   }
 }
 
-//528
+//528, prefix sum, linear search. diff from reservoir, refer to 398
 class RandomPickWeight {
   private int[] prefixSums;
   private int totalSum;

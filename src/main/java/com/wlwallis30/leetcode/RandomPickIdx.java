@@ -28,12 +28,12 @@ public class RandomPickIdx {
   /*
   1/i * i/(i+1) * (i+1)/(i+2) ....* (n-2)/(n-1) * (n-1)/n = 1/n
   This can be interpreted as
-  Picking the ith number from the list of ii numbers
+  Picking the ith number from the list of i numbers
   Not picking the (i+1)th number from the list of (i+1) numbers. Hence picking any of the remaining i numbers.
   And so on ...
   Not picking the nth number from the list of (n) numbers. Hence picking any of the remaining (n−1) numbers.
    */
-  public int pick_reservior(int target) {
+  public int pick_reservoir(int target) {
     int n = this.nums.length;
     int count = 0;
     int idx = 0;
@@ -43,7 +43,7 @@ public class RandomPickIdx {
         // increment the count of total candidates
         count++;
         // we pick the current number with probability 1 / count (reservoir sampling)
-        // from any point when  nextInt(count) ==0, we pick i, so that is 1/curCount possibility.
+        // from any point when  nextInt(count) ==0, we pick the new i(like swapping in reservoir sampling), so that is 1/curCount possibility.
         // if the following rounds, nextInt(count) != 0, then not picking the next "i"s, then it form 1/i * i/(i+1) * (i+1)/(i+2) ....* (n-2)/(n-1) * (n-1)/n = 1/n
         if (rand.nextInt(count) == 0) { idx = i; }
       }
