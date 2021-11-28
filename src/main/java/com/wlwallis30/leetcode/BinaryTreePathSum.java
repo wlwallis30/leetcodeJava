@@ -90,6 +90,8 @@ public class BinaryTreePathSum {
       return false;
 
     // you can also user Pair<Treenode, Integer> as shown in BinaryTreeTraversal
+    // Linklist.add/addlast will add to the last, poll will get first to behave Queue, polllast will get last to be Stack
+    // ArrayDequeue can be used for both Stack and Queue, and it might be faster than Stack and LinkedList
     LinkedList<TreeNode> node_stack = new LinkedList<>();
     LinkedList<Integer> sum_stack = new LinkedList<>();
     node_stack.add(root);

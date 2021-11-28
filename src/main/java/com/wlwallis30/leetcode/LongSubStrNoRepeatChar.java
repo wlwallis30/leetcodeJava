@@ -4,55 +4,76 @@ import com.sun.javafx.image.IntPixelGetter;
 import java.util.*;
 
 public class LongSubStrNoRepeatChar {
+	// sliding window + hashmap, looking for no repeated substring
 	public int lengthOfLongestSubStr_3(String inputStr) {
 		int[] charPosMap = new int[256];
-		Arrays.fill(charPosMap, -1);
-		int res = 0, left = -1;
-		for(int i = 0; i < inputStr.length(); i++) {
-			left = Math.max(left, charPosMap[inputStr.charAt(i)]);
-			charPosMap[inputStr.charAt(i)] = i;
-			res = Math.max(res, i - left);
+		Arrays.fill(charPosMap, 0);
+		int res = 0, left = 0;
+		// left: the new story begin where left, charPosMap record the previous char's position + 1( plus 1 means, the position if you meet the repeated char)
+		// so everytime, need to find the max of left and current char's prev position+1 as the starting point to calculate length
+		for(int right = 0; right < inputStr.length(); right++) {
+			left = Math.max(left, charPosMap[inputStr.charAt(right)]);
+			charPosMap[inputStr.charAt(right)] = right+1;
+			res = Math.max(res, right-left+1);
 		}
 		
 		return res;
 	}
-	
+
+	// sliding window + hashmap, looking for substring with possible repeated letters
 	public int longestSubstrWithAtMost2DistinctChar_159(String str) {
 		int res = 0, left = 0;
-		Map<Character, Integer> charPosMap = new HashMap<Character, Integer>();
-		for(int i = 0; i < str.length(); i++) {
-			charPosMap.put(str.charAt(i), i);
+		Map<Character, Integer> charPosMap = new HashMap<>();
+		for(int right = 0; right < str.length(); right++) {
+			charPosMap.put(str.charAt(right), right);
 			while(charPosMap.size() > 2) {
 				if(charPosMap.get(str.charAt(left)) == left) charPosMap.remove(str.charAt(left));
 				++left;
 			}
-			res = Math.max(res, i-left+1);
+			res = Math.max(res, right-left+1);
 		}
 		
 		return res;
 	}
-	
+
+	// sliding window + hashmap, looking for substring with possible repeated letters
 	public int longestSubstrWithAtMostKDistinctChar_340(String str, int K) {
 		int res = 0, left = 0;
-		Map<Character, Integer> charPosMap = new HashMap<Character, Integer>();
-		for(int i = 0; i < str.length(); i++) {
-			charPosMap.put(str.charAt(i), i);
+		Map<Character, Integer> charPosMap = new HashMap<>();
+		for(int right = 0; right < str.length(); right++) {
+			//record current char's position
+			charPosMap.put(str.charAt(right), right);
 			while(charPosMap.size() > K) {
+				// eceba: when left=0,right=3, letter e'c stored idx is 2, not 0.
+				// when left=1, letter c's stored idx is same with left, need to remove to meet K.
 				if(charPosMap.get(str.charAt(left)) == left) charPosMap.remove(str.charAt(left));
 				++left;
 			}
-			res = Math.max(res, i-left+1);
+			res = Math.max(res, right-left+1);
 		}
 		
 		return res;
 	}
 	
-	// hard
+	// hard, sliding window + dequeue
+	/*
+	Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
+	Output: [3,3,5,5,6,7]
+	Window position                Max
+	---------------               -----
+	 0   1   2   3  4  5  6  7 idx
+	[1  3  -1] -3  5  3  6  7       3
+	 1 [3  -1  -3] 5  3  6  7       3
+	 1  3 [-1  -3  5] 3  6  7       5
+	 1  3  -1 [-3  5  3] 6  7       5
+	 1  3  -1  -3 [5  3  6] 7       6
+	 1  3  -1  -3  5 [3  6  7]      7
+	 */
 	public int[] slidingWindowMax_239(int[] nums, int k) {
 		int size = nums.length;
         if(size * k == 0) return new int[0];
 		int[] res = new int[size-k+1];
-		ArrayDeque<Integer> idxDeQ = new ArrayDeque<Integer>();
+		ArrayDeque<Integer> idxDeQ = new ArrayDeque<>();
 		
 		for(int i = 0; i < size; i++) {
 			if(!idxDeQ.isEmpty() && idxDeQ.getFirst() == i-k) idxDeQ.removeFirst();
@@ -64,6 +85,7 @@ public class LongSubStrNoRepeatChar {
 		return res;
 	}
 
+	//hashset
 	public int longestConsecutive128(int[] nums) {
 		Set<Integer> num_set = new HashSet<>();
 		for (int num : nums) { num_set.add(num); }
@@ -82,6 +104,7 @@ public class LongSubStrNoRepeatChar {
 		return globalMaxCnt;
 	}
 
+	// dfs
 	int longestConsecutive298(TreeNode root) {
 		if(root == null) return 0;
 		return helper(root, null, 1);
@@ -89,7 +112,7 @@ public class LongSubStrNoRepeatChar {
 	int helper(TreeNode cur, TreeNode curParent, int maxLen)
 	{
 		if(cur == null) return maxLen;
-		// curParent != null, just for the root node since you pass a null!
+		// curParent != null, just for the root node since you pass a null! if not consecutive from curParent to cur, recount from maxlen=1;
 		maxLen = (curParent != null && cur.val == curParent.val+1) ? maxLen+1:1;
 		return Math.max(maxLen, Math.max(helper(cur.left,cur, maxLen),helper(cur.right,cur, maxLen)));
 	}
@@ -107,6 +130,7 @@ public class LongSubStrNoRepeatChar {
     }
 	 */
 
+	// mini dp/greedy: keep updating the count
 	public int findMaxConsecutiveOnes485(int[] nums) {
 		int count = 0;
 		int maxCount = 0;
@@ -124,7 +148,7 @@ public class LongSubStrNoRepeatChar {
 		return Math.max(maxCount, count);
 	}
 
-	// k=1 for problem 487
+	// k=1 for problem 487, sliding window, this method is not straightforward and intuitive!
 	public int longestOnes1004And487(int[] nums, int k) {
 		int left = 0, right;
 		for (right = 0; right < nums.length; right++) {
@@ -144,6 +168,29 @@ public class LongSubStrNoRepeatChar {
 		return right - left;
 	}
 
+	// more intuitive, sliding window
+	public int longestOnes1004And487Better(int[] nums, int K) {
+		int left = 0, max = 0, zeros = 0;
+		if(nums == null || nums.length == 0){ return 0; }
+
+		for(int right = 0 ; right < nums.length ; right++){
+			// Increase count of zero whenever you see one
+			if(nums[right]==0){ zeros++; }
+
+			// Shrink the window until zeros are equal less than required k
+			while(left <= right && zeros > K){
+				if(nums[left] == 0){ zeros--; }
+				left++;
+			}
+
+			// At every step record the length of the window
+			max = Math.max(max, right - left +1);
+		}
+
+		return max;
+	}
+
+	//sliding window + hashmap
 	public int characterReplacement424(String s, int k) {
 		Map<Character, Integer> map = new HashMap<>();
 		int left = 0, maxRepeat = 0, maxWindow = 0;
@@ -154,8 +201,10 @@ public class LongSubStrNoRepeatChar {
 			map.put(ch, map.get(ch) + 1);
 
 			// IMPORTANT: maxRepeat is not the accurate number of dominant character which might change, It is the historical maximum count
+			//maxCnt 相当于卡了一个窗口大小，我们并不希望窗口变小，虽然窗口在滑动，但是之前是出现过跟窗口大小相同的符合题意的子串，缩小窗口没有意义，并不会使结果 res 变大，所以我们才不更新 maxCnt
 			maxRepeat = Math.max(maxRepeat, map.get(ch));
 
+			//不更新 maxCnt
 			if(right - left + 1 - maxRepeat > k) {
 				char remove = s.charAt(left);
 				map.put(remove, map.get(remove) - 1);
@@ -184,12 +233,14 @@ public class LongSubStrNoRepeatChar {
 	}
 
 	// this is easy to think of it and not hard to figure out conditions
+	// sliding window + binary search
 	public List<Integer> findClosestElements658Slide(int[] arr, int k, int x) {
 		List<Integer> result = new ArrayList<Integer>();
 
 		// Binary search to find the closest element
 		int left = 0;
-		int right = arr.length;
+		int right = arr.length-1;
+		//int right = arr.length; also works
 		int mid = 0;
 		while (left < right) {
 			mid = (left + right) / 2;
@@ -198,10 +249,12 @@ public class LongSubStrNoRepeatChar {
 		}
 
 		// Initialize our sliding window's bounds, we are targeting [left+1, right-1] as the first idx when we expend the window
+		// reason of using left+1, right-1, because closest one might already has idx 0 or length-1
+		//[1,2,3,4,5] k=4 x=-1, then left=0, when you expand a bit by left = left-1, left then < 0, bad. so we target [left+1, right-1]
 		left -= 1;
 		right = left + 1; // right point to the original left, not the above
 
-		// While the window size is less than k
+		// While the window size is less than k, right-1 -(left+1) +1 < k
 		while (right - (left+1) < k) {
 			// Be careful to not go out of bounds
 			if (left == -1) { right++; continue; }
@@ -253,7 +306,7 @@ public class LongSubStrNoRepeatChar {
 		return result;
 	}
 
-	//hard, also using sliding window, min window of substring for target string
+	//hard, also using sliding window + hashmap, min window of substring for target string
 	public String minWindow76(String s, String t) {
 		String res = "";
 		if (s.length() == 0 || t.length() == 0) { return res;}
@@ -278,7 +331,7 @@ public class LongSubStrNoRepeatChar {
 
 			// found a desired char and this char's count matches the target char's count
 			if (targetCharCnt.containsKey(curChar)
-					&& windowCharCnt.get(curChar).intValue() == targetCharCnt.get(curChar).intValue()) { goalCnt++; }
+					&& windowCharCnt.get(curChar).equals(targetCharCnt.get(curChar))) { goalCnt++; }
 
 			// Try shrinking window till the point where it ceases to be 'desirable'.
 			while (left <= right && goalCnt == required) {
@@ -287,10 +340,10 @@ public class LongSubStrNoRepeatChar {
 					minLen = right-left+1;
 					res = s.substring(left, right+1);
 				}
-				// removing this char @left
+				// removing this char @left if it is in the targetChar map
 				windowCharCnt.put(curChar, windowCharCnt.get(curChar) - 1);
 				if (targetCharCnt.containsKey(curChar)
-						&& windowCharCnt.get(curChar).intValue() < targetCharCnt.get(curChar).intValue()) { goalCnt--; }
+						&& windowCharCnt.get(curChar) < targetCharCnt.get(curChar)) { goalCnt--; }
 
 				// shrinking window
 				left++;
