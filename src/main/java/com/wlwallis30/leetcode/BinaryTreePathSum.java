@@ -46,6 +46,7 @@ public class BinaryTreePathSum {
     if(root == null) return;
     out += root.val;
     if (root.left == null && root.right == null) res.add(out);
+    // if(root.left != null) can be removed, since this DFS has base case of root==null return
     if(root.left != null)binaryTreePathsDFS(root.left, out+"->", res);
     if(root.right != null)binaryTreePathsDFS(root.right, out+"->", res);
   }
@@ -117,6 +118,7 @@ public class BinaryTreePathSum {
     return false;
   }
 
+  // stack
   TreeNode str2tree536(String s) {
     if (s.isEmpty()) return null;
     Stack<TreeNode> stack = new Stack<>();

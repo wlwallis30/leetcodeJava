@@ -102,13 +102,17 @@ public class BinaryTreeTraversal {
       return 1;
     }
 
-    int min_depth = Integer.MAX_VALUE;
+    int left=Integer.MAX_VALUE, right=Integer.MAX_VALUE;
+    //int min_depth = Integer.MAX_VALUE;
+    // this condition should not be removed, [2,null,3,null,4,null,5,null,6], after removing, left will be 0, you should not move down since it is not path to leaf
     if (root.left != null) {
-      min_depth = Math.min(minDepth_111Recur(root.left), min_depth);
+      left = minDepth_111Recur(root.left);
     }
     if (root.right != null) {
-      min_depth = Math.min(minDepth_111Recur(root.right), min_depth);
+      right = minDepth_111Recur(root.right);
     }
+
+    int min_depth = Math.min(left, right);
 
     return min_depth + 1;
   }
@@ -612,6 +616,7 @@ public class BinaryTreeTraversal {
     return true;
   }
 
+  //level order + hashtable
   public List<List<Integer>> verticalTraversal987(TreeNode root) {
     List<List<Integer>> output = new ArrayList<>();
     if (root == null) { return output; }
