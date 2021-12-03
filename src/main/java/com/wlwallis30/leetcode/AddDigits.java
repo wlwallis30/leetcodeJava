@@ -73,9 +73,9 @@ public class AddDigits {
     return res;
   }
 
-  // int range is: -2147483648 ~ 2147483647
+  // int range is: -2,147,483,648 ~ 2,147,483,647
   public int divide29Substraction(int dividend, int divisor) {
-    if (dividend == -Integer.MIN_VALUE && divisor == -1) return Integer.MAX_VALUE;
+    if (dividend == Integer.MIN_VALUE && divisor == -1) return Integer.MAX_VALUE;
     // Count the number of negatives + convert parameters to positives.
     //If dividend = -2147483648, then converting it to a positive number will behave differently depending on the language/compiler/interpreter you're using.
     // This is because the positive form (2147483648) is outside of the 32-bit signed integer range
@@ -111,7 +111,8 @@ public class AddDigits {
     if (n == 1) return sign == 1 ? (int)m : -(int)m;
     while (m >= n) {
       long t = n, cnt = 1;
-      //如下循环，t扩大一倍，p扩大一倍
+      //如下循环，t扩大一倍, cnt扩大一倍
+      // e.g. 28/3.  t: 3->6->12->24, cnt of t: 1->2->4->8;
       while (m >= (t << 1)) {
         t <<= 1;
         cnt <<= 1;

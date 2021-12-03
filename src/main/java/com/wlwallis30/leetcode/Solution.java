@@ -31,7 +31,7 @@ package com.wlwallis30.leetcode;
  * length of last word 58:      total: 1
  * sqrt of x 69: 367, 50,372     total: 4
  * climb chairs 70:     total: 1
- * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522, 1161, 637, 958, 865(1123), 987  total:  21
+ * binary tree inorder traversal 94: 144, 145,100,101, 104,110,111,102, 107, 543, 863, 1382, 515, 1522, 1161, 637, 958, 865(1123), 987, 314  total:  22
  * convert sorted array to BST 108: 109   total: 2
  * binary tree path sum 112:257, 113, 129, 536, 124    total: 6
  * pascal triangle 118:119, 120    total: 3
@@ -72,7 +72,7 @@ package com.wlwallis30.leetcode;
  * retore IP address 93:    total: 1
  * build BT from inorder and preorder 105: 106   total: 2
  * flatten BT to linkedlist 114:    total:1
- * connect next pointers for perfect BT 116: 117, 199, 314    total: 4
+ * connect next pointers for perfect BT 116: 117, 199    total: 3
  * surrounded region 130: 200, 286, 323, 261, 463, 695, 934, 694, 827, 317, 296, 1263, 489  total: 14
  * clone graph 133:  (323), (261), 138    total: 2
  * gas station 134:     total:1

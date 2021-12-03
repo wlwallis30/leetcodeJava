@@ -26,13 +26,14 @@ public class BSTRelated {
   Node pre = null;
   public Node treeToDoublyList426(Node root) {
     if (root == null) return null;
-    helper(root);
+    helper1(root);
     // close DLL
     pre.right = head;
     head.left = pre;
     return head;
   }
 
+  //essentially it is in order traversal with adding some additional processing for pre not null and null
   public void helper(Node node) {
     if (node != null) {
       helper(node.left);
@@ -53,6 +54,7 @@ public class BSTRelated {
     }
   }
 
+  // this is a better straight solution
   public void helper1(Node node) {
     if (node != null) {
       helper1(node.left);

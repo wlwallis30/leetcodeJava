@@ -58,6 +58,7 @@ public class AccountMerge {
     }
     return ans;
   }
+  //also refer to 323
   public List<List<String>> accountsMerge721_unionFind(List<List<String>> accounts) {
     Map<String, String> owners = new HashMap<>(); //email: name
     Map<String, String> parents = new HashMap<>(); // email node: parent email node
@@ -75,6 +76,8 @@ public class AccountMerge {
     }
 
     //union each account's parent to be the first one in the list
+    // consider, [name1, a, b], [name1, c, d], [name1, a, c] or [name1, a, b], [name1, d, c], [name1, a, c]
+    // the union step here and the following step of combining TOGETHER will finally union same account into one root
     for (List<String> account: accounts) {
       String p1 = find(parents, account.get(1));
       for (int i = 2; i<account.size(); i++) {
@@ -97,9 +100,9 @@ public class AccountMerge {
     }
 
     List<List<String>> res = new ArrayList<>();
-    for (String p : unions.keySet()) {
-      List<String> emails = new ArrayList(unions.get(p));
-      emails.add(0, owners.get(p));
+    for (String rootEmail : unions.keySet()) {
+      List<String> emails = new ArrayList(unions.get(rootEmail));
+      emails.add(0, owners.get(rootEmail));
       res.add(emails);
     }
     return res;
@@ -124,12 +127,13 @@ public class AccountMerge {
     for (int i = 0; i < words1.length; i++) {
       String word1 = words1[i];
       String word2 = words2[i];
-      if (word1.equals(word2)) return true;
+      if (word1.equals(word2)) res = true;
       for (int j = 0; j < pairs.size(); j++) {
         if (pairs.get(j).contains(word1) && pairs.get(j).contains(word2)) {
           res = true;
         }
       }
+      if(!res) return false;
     }
 
     return res;

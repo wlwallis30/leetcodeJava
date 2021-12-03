@@ -616,7 +616,7 @@ public class BinaryTreeTraversal {
     return true;
   }
 
-  //level order + hashtable
+  //level order + hashtable, refer to 314, similar
   public List<List<Integer>> verticalTraversal987(TreeNode root) {
     List<List<Integer>> output = new ArrayList<>();
     if (root == null) { return output; }
@@ -667,6 +667,43 @@ public class BinaryTreeTraversal {
         sortedColumn.add(p.getValue());
       }
       output.add(sortedColumn);
+    }
+
+    return output;
+  }
+
+  // refer to 987, vertical traversal
+  public List<List<Integer>> verticalOrder314(TreeNode root) {
+    List<List<Integer>> output = new ArrayList();
+    if (root == null) { return output; }
+
+    Map<Integer, ArrayList> columnTable = new HashMap();
+    // Pair of node and its column offset
+    Queue<Pair<TreeNode, Integer>> queue = new ArrayDeque();
+    int column = 0;
+    queue.offer(new Pair(root, column));
+
+    int minColumn = 0, maxColumn = 0;
+    TreeNode curNode;
+
+    while (!queue.isEmpty()) {
+      Pair<TreeNode, Integer> p = queue.poll();
+      curNode = p.getKey();
+      column = p.getValue();
+
+      if (!columnTable.containsKey(column)) {
+        columnTable.put(column, new ArrayList<Integer>());
+      }
+      columnTable.get(column).add(curNode.val);
+      minColumn = Math.min(minColumn, column);
+      maxColumn = Math.max(maxColumn, column);
+
+      if(curNode.left != null)queue.offer(new Pair(curNode.left, column - 1));
+      if(curNode.right != null)queue.offer(new Pair(curNode.right, column + 1));
+    }
+
+    for(int i = minColumn; i < maxColumn + 1; ++i) {
+      output.add(columnTable.get(i));
     }
 
     return output;

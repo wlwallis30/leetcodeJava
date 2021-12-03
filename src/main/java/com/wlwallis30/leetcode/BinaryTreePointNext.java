@@ -111,10 +111,17 @@ public class BinaryTreePointNext {
     }
    */
 
+
+  // level order
+  /* queue: Throws exception  OR  Returns special value
+  Insert    add(e)                offer(e)
+  Remove   remove()                poll()
+  Examine  element()               peek()
+   */
   public List<Integer> rightSideView199(TreeNode root) {
     if (root == null) return new ArrayList<Integer>();
 
-    ArrayDeque<TreeNode> queue = new ArrayDeque(){{ offer(root); }};
+    Queue<TreeNode> queue = new ArrayDeque(){{ offer(root); }};
     List<Integer> rightside = new ArrayList();
 
     while (!queue.isEmpty()) {
@@ -136,41 +143,5 @@ public class BinaryTreePointNext {
       }
     }
     return rightside;
-  }
-
-  public List<List<Integer>> verticalOrder314(TreeNode root) {
-    List<List<Integer>> output = new ArrayList();
-    if (root == null) { return output; }
-
-    Map<Integer, ArrayList> columnTable = new HashMap();
-    // Pair of node and its column offset
-    Queue<Pair<TreeNode, Integer>> queue = new ArrayDeque();
-    int column = 0;
-    queue.offer(new Pair(root, column));
-
-    int minColumn = 0, maxColumn = 0;
-    TreeNode curNode;
-
-    while (!queue.isEmpty()) {
-      Pair<TreeNode, Integer> p = queue.poll();
-      curNode = p.getKey();
-      column = p.getValue();
-
-      if (!columnTable.containsKey(column)) {
-        columnTable.put(column, new ArrayList<Integer>());
-      }
-      columnTable.get(column).add(curNode.val);
-      minColumn = Math.min(minColumn, column);
-      maxColumn = Math.max(maxColumn, column);
-
-      if(curNode.left != null)queue.offer(new Pair(curNode.left, column - 1));
-      if(curNode.right != null)queue.offer(new Pair(curNode.right, column + 1));
-    }
-
-    for(int i = minColumn; i < maxColumn + 1; ++i) {
-      output.add(columnTable.get(i));
-    }
-
-    return output;
   }
 }

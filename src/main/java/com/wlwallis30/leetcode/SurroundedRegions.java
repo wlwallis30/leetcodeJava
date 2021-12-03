@@ -115,6 +115,7 @@ public class SurroundedRegions {
     }
   }
 
+  // undirected graph, also refer 721
   public int countComponents323(int n, int[][] edges) {
     int components = 0;
     int[] visited = new int[n];
