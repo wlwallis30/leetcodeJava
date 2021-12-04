@@ -2,6 +2,7 @@ package com.wlwallis30.leetcode;
 
 import java.util.*;
 
+// both 105, 106 use inorder array+inorderIdx map to split the tree at each root's idx
 public class BuildBTViaInorderPreorder {
   int preorderIndex;
   Map<Integer, Integer> inorderIndexMap;

@@ -17,6 +17,7 @@ public class CloneGraph {
     }
   }
 
+  // since node val are diff, so we can use the following map. you can also use<node,node> map for generic case.
   private HashMap <Integer, Node> visited = new HashMap <> ();
   public Node cloneGraph133DFS(Node node) {
     if (node == null) { return node; }
@@ -30,6 +31,40 @@ public class CloneGraph {
     for (Node neighbor: node.neighbors) { cloneNode.neighbors.add(cloneGraph133DFS(neighbor)); }
 
     return cloneNode;
+  }
+
+  // BFS/queue
+  public Node cloneGraph133Queue(Node node) {
+    if (node == null) { return node; }
+    HashMap<Node, Node> visited = new HashMap();
+
+    // original node's queue to clone
+    LinkedList<Node> queue = new LinkedList<> ();
+    queue.add(node);
+    Node cloned = new Node(node.val, new ArrayList<>());
+    // Clone the node and put it in the visited dictionary.
+    visited.put(node, cloned);
+
+    // Start BFS traversal
+    while (!queue.isEmpty()) {
+      // Pop a node say "n" from the from the front of the queue.
+      Node curNode = queue.remove();
+      // Iterate through all the neighbors of the node "n"
+      for (Node neighbor: curNode.neighbors) {
+        if (!visited.containsKey(neighbor)) {
+          cloned = new Node(neighbor.val, new ArrayList<>());
+          visited.put(neighbor, cloned);
+          // Add the newly encountered node to the queue.
+          queue.add(neighbor);
+        }
+        // Add the clone of the neighbor to the neighbors of the clone node "n".
+        cloned = visited.get(curNode);
+        cloned.neighbors.add(visited.get(neighbor));
+      }
+    }
+
+    // Return the clone of the node from visited.
+    return visited.get(node);
   }
 }
 

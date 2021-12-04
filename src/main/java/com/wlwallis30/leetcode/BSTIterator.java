@@ -124,7 +124,7 @@ class PeekingIterator implements Iterator<Integer> {
 
   // Returns the next element in the iteration without advancing the iterator.
   public Integer peek() {
-    //peek not saved, now saving and only saving the peek here
+    //peek not saved, now saving and only saving the peek here, after first time peeking, the base iterator already moved to next!!
     if(this.peekVal == null){
       if(this.iter.hasNext()) {
         this.peekVal = this.iter.next(); // saving the peek, peek is the next to be returned by calling next()
@@ -149,7 +149,7 @@ class PeekingIterator implements Iterator<Integer> {
 
   @Override
   public boolean hasNext() {
-    //if already peeked, it could be no more next(hasNext is false), but need have peeked to return by next();
+    //if already peeked, it could be no more base iterator's next(hasNext is false), but need to return peeked value by next();
     return this.iter.hasNext() || peekVal != null;
   }
 }

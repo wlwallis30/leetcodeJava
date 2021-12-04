@@ -5,14 +5,14 @@ import java.util.*;
 public class CombinationSum {
   List<List<Integer>> combinationSum39(int[] candidates, int target) {
     List<List<Integer>> res = new ArrayList<>();
-    LinkedList<Integer> out = new LinkedList<>();
+    List<Integer> out = new ArrayList<>();
     int start = 0;
     CSDFS(res, start, out, candidates, target);
     return res;
   }
 
   // backtracking
-  void CSDFS(List<List<Integer>> res, Integer start, LinkedList<Integer> out, int[] candidates, int target)
+  void CSDFS(List<List<Integer>> res, Integer start, List<Integer> out, int[] candidates, int target)
   {
     if(target < 0) return;
     // you need to do this new since add will just pass-by-value the reference of out, but in the end out will bill []
@@ -26,7 +26,7 @@ public class CombinationSum {
         out.add(candidates[i]);
         //Input: candidates = [2,3,5], target = 8 Output: [[2,2,2,2],[2,3,3],[3,5], repeat allowed, so i is next
         CSDFS(res, i, out, candidates, target-candidates[i]);
-        out.removeLast();
+        out.remove(out.size()-1);
       }
     }
   }

@@ -106,6 +106,16 @@ package com.wlwallis30.leetcode;
  *********************Similar problem catalogs: total: 327
  */
 // single-linked list where java LinkedList is a double linked list via Deque
+// stack, queue, arrayDequeue
+// stack in java: Stack, queue in java: LinkedList, Linkedlist can also be used as stack
+// Linklist.add/addlast will add to the last, poll will get first to behave Queue, polllast will get last to be Stack
+// ArrayDequeue can be used for both Stack and Queue, and it might be faster than Stack and LinkedList.
+// ArrayDequeue methods: addFirst/offerFirst, addLast/offerLast, removeFirst/pollFirst, removeLast/pollLast
+ /* queue: Throws exception  OR  Returns special value.......... in summary, add & remove throws exception, offer & poll return values
+  Insert    add(e)                offer(e)
+  Remove   remove()                poll()
+  Examine  element()               peek()
+   */
 
 public class Solution {
   static void swap(char[] str, int i, int j) {

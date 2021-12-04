@@ -8,7 +8,7 @@ public class MostWaterArea {
     while(left < right) {
       minHeight = Math.min(height[left], height[right]);
       res = Math.max(res, (right - left)*minHeight);
-      if(minHeight == height[left]) --right;
+      if(minHeight == height[right]) --right; // searching for possible higher
       else ++left;
     }
     return res;
@@ -25,6 +25,7 @@ public class MostWaterArea {
               right_max=max(right_max,height[j])
           Add min(left_max,right_max)−height[i] to ans
    */
+  // O(n) space O(n)
   public int trap42dp(int[] height) {
     int res = 0, mx = 0, n = height.length;
     int[] leftOrRightMax = new int[n];

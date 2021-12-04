@@ -24,6 +24,7 @@ public class LinkedListCycle {
   //c is the distance b4 intersection, a is where slow and fast meet.
   // when slow and fast meet: 2(c+a) is twice the distance slow has gone, c+a+b+a is the distance fast goes
   // so 2(c+a) = c+a+b+a, so c+a = b+a, so c=b
+  // another solution is using hashSet to store visited node, when visit again, then you find that node.
   public ListNode hasCycle_142(ListNode head) {
     if (head == null) {
       return null;
@@ -79,9 +80,11 @@ public class LinkedListCycle {
     return n == 1;
   }
 
+  // in this problem, slow and fast point to different node. if you want to point to same node, you can use a flag in while, such as (..|| firstTimeFlag)
   public boolean isHappy_202TwoPointers(int n) {
     int slowRunner = n;
     int fastRunner = getNext(n);
+    // when fastRunner=1 or slow and fast meet, we should jump out of while loop
     while (fastRunner != 1 && slowRunner != fastRunner) {
       slowRunner = getNext(slowRunner);
       fastRunner = getNext(getNext(fastRunner));
