@@ -25,6 +25,7 @@ public class KthLargeInArray {
   }
   public int partition(int[] nums, int left, int right) {
     int pivot = nums[left], l = left + 1, r = right;
+    // e.g. [3, 1, 4, 5], left=0, l=1, r=3, so while loop should <=, not <,
     while (l <= r) {
       if (nums[l] < pivot && nums[r] > pivot) {
         Solution.swap(nums, l++, r--);
@@ -56,9 +57,9 @@ public class KthLargeInArray {
   }
   // 347 can also use the quickSelect method as above, just break instead of return, and get the first K frequenct in
 
-  // 692 using the same method, the following method failed with ["aaa","aa","a"] k =3, others are fine.
-  public List<String> topKFrequent692_failed(String[] words, int k) {
-    if(k == words.length) return Arrays.asList(words);
+  // 692 using standard heap pattern,
+  public List<String> topKFrequent692_better(String[] words, int k) {
+    // this will fail case of ["aaa","aa","a"] k =3:  if(k == words.length) return Arrays.asList(words);
 
     Map<String, Integer> count = new HashMap<>();
     for (String word: words) { count.put(word, count.getOrDefault(word, 0) + 1); }

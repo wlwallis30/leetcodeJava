@@ -193,6 +193,7 @@ public class Palindrom {
     return dfsAsStack(head);
   }
 
+  //fast and slow  pointers.
   public boolean isPalinLinedList_234_1(ListNode head) {
     if (head == null) return true;
 

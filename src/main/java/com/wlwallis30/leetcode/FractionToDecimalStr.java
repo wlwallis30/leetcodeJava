@@ -25,6 +25,7 @@ public class FractionToDecimalStr {
         fraction.append(")");
         break;
       }
+      //trick: e.g. 2/3, reminder is 2, "0.", put (2: length of 2), length of 2 will be idx to insert
       map.put(remainder, fraction.length());
       remainder *= 10;
       fraction.append(String.valueOf(remainder / divisor));
