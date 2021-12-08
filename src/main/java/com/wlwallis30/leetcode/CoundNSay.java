@@ -33,7 +33,8 @@ public class CoundNSay {
     StringBuilder strToBuild = new StringBuilder();
     for(String str: strs) {
       strToBuild.append(str);
-      strToBuild.append(delimiter);
+      strToBuild.append(delimiter); 
+      //also works strToBuild.append((char)283);
     }
     strToBuild.deleteCharAt(strToBuild.length() - 1);
     return strToBuild.toString();
@@ -49,29 +50,29 @@ public class CoundNSay {
     return Arrays.asList(str.split(delimiter, -1));
   }
 
-  // O(N), inplace, O(1)
+  // O(N), inplace, O(1), newIdx and oldIdx are in the same original array.
   public int compress443(char[] chars) {
-    int slow = 0, count = 0;
+    int newIdx = 0, count = 0;
     // We traverse the entire array with this iteration.
-    for (int fast = 0; fast < chars.length; fast++) {
+    for (int oldIdx = 0; oldIdx < chars.length; oldIdx++) {
       count++; // We keep note of number of characters in sequence.
       /* When the next character is not as same as the previous one,
        * we modify the array from the beginning with the current character.
        * Note that the array will only become shorter as we keep updating the data.
        * So there is no need to create another array.
        */
-      if (fast+1 == chars.length || chars[fast] != chars[fast+1]) {
-        chars[slow++] = chars[fast];
+      if (oldIdx+1 == chars.length || chars[oldIdx] != chars[oldIdx+1]) {
+        chars[newIdx++] = chars[oldIdx];
         // If there are multiple characters, we add the number to the array.
         if (count != 1) {
           for (char c : String.valueOf(count).toCharArray()) { //Integer.toString(count).toCharArray()
-            chars[slow++] = c;
+            chars[newIdx++] = c;
           }
         }
         // We initialize count to zero for the next character check.
         count = 0;
       }
     }
-    return slow;
+    return newIdx;
   }
 }

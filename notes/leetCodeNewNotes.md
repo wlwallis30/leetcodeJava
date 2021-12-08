@@ -14,12 +14,13 @@
   - [@138 Copy Random list:](#138-copy-random-list)
   - [java collection cheat sheet:](#java-collection-cheat-sheet)
   - [interleaving string match](#interleaving-string-match)
-  - [string to int, int to string, char to int, int to char, char array to String](#string-to-int-int-to-string-char-to-int-int-to-char-char-array-to-string)
+  - [string to int, int to string (prefer "valueOf()"), char to int, int to char(prefer + - '0'), char array to String](#string-to-int-int-to-string-prefer-valueof-char-to-int-int-to-charprefer----0-char-array-to-string)
   - [int[] to List.. check stackoverflow](#int-to-list-check-stackoverflow)
   - [how to choose the boundary of binary search](#how-to-choose-the-boundary-of-binary-search)
   - [@694 number of distinct islands](#694-number-of-distinct-islands)
   - [@65 valid number](#65-valid-number)
   - [@282  Add expressions](#282--add-expressions)
+  - [big O of operations in java](#big-o-of-operations-in-java)
 #  LeetCode solution new notes
 <!-- ![Big O](pics/118BrutalForceFormula.jpg | width=250) -->
 [//]: <another comment>
@@ -146,19 +147,22 @@ Approach A will still lead to a better solution when differences happen at 3 and
 
 <img src="pics/97InterleavingStr.jpg" width="800" title="BrutalForce Big O">
 
-## string to int, int to string, char to int, int to char, char array to String
+## string to int, int to string (prefer "valueOf()"), char to int, int to char(prefer + - '0'), char array to String
 > better use Integer or Character's built in function
 ```java
-Integer.toString(num);
+Integer.toString(num); 
+or String.valueOf(num), better
 // res is a char[]
-Integer.parseInt(String.valueOf(res));
+Integer.parseInt(String.valueOf(res)); 
+or Integer.valueOf(numStr),  better 
 
 //char to int, first might be better
 Character.getNumericValue(aChar);
+or (numChar - '0'), maybe better
 Integer.parseInt(String.valueOf(aChar))
 
 //int to char
-(char)(num + '0');
+(char)(num + '0'); maybe better
 int REDIX=10;//redix 10 is for decimal number, for hexa use redix 16  
 char c=Character.forDigit(num,REDIX)
 ```
@@ -202,3 +206,44 @@ else left = mid;
 ## @282  Add expressions
 >> to handle the *
 <img src="pics/282AddExpressions.jpg" width="800" title="BrutalForce Big O">
+
+## big O of operations in java
+[stackOverflow](https://stackoverflow.com/questions/559839/big-o-summary-for-java-collections-framework-implementations)
+```java
+List implementations:
+                      get  add  contains next remove(0) iterator.remove
+ArrayList             O(1) O(1) O(n)     O(1) O(n)      O(n)
+LinkedList            O(n) O(1) O(n)     O(1) O(1)      O(1)
+CopyOnWrite-ArrayList O(1) O(n) O(n)     O(1) O(n)      O(n)
+
+Set implementations:
+                      add      contains next     notes
+HashSet               O(1)     O(1)     O(h/n)   h is the table capacity
+LinkedHashSet         O(1)     O(1)     O(1) 
+CopyOnWriteArraySet   O(n)     O(n)     O(1) 
+EnumSet               O(1)     O(1)     O(1) 
+TreeSet               O(log n) O(log n) O(log n)
+ConcurrentSkipListSet O(log n) O(log n) O(1)
+
+Map implementations:
+                      get      containsKey next     Notes
+HashMap               O(1)     O(1)        O(h/n)   h is the table capacity
+LinkedHashMap         O(1)     O(1)        O(1) 
+IdentityHashMap       O(1)     O(1)        O(h/n)   h is the table capacity 
+EnumMap               O(1)     O(1)        O(1) 
+TreeMap               O(log n) O(log n)    O(log n) 
+ConcurrentHashMap     O(1)     O(1)        O(h/n)   h is the table capacity 
+ConcurrentSkipListMap O(log n) O(log n)    O(1)
+
+Queue implementations:
+                      offer    peek poll     size
+PriorityQueue         O(log n) O(1) O(log n) O(1)
+ConcurrentLinkedQueue O(1)     O(1) O(1)     O(n)
+ArrayBlockingQueue    O(1)     O(1) O(1)     O(1)
+LinkedBlockingQueue   O(1)     O(1) O(1)     O(1)
+PriorityBlockingQueue O(log n) O(1) O(log n) O(1)
+DelayQueue            O(log n) O(1) O(log n) O(1)
+LinkedList            O(1)     O(1) O(1)     O(1)
+ArrayDeque            O(1)     O(1) O(1)     O(1)
+LinkedBlockingDeque   O(1)     O(1) O(1)     O(1)
+```

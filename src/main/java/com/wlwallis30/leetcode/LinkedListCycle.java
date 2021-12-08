@@ -38,6 +38,7 @@ public class LinkedListCycle {
       fast = fast.next.next;
       if(slow == fast) break;
     }
+    // no intersection, return null
     if(fast == null || fast.next == null) return null;
     ListNode nodeFrom0 = head;
     ListNode intersectNode = slow;

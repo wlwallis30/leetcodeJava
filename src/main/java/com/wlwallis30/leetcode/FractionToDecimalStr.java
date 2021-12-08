@@ -3,7 +3,7 @@ package com.wlwallis30.leetcode;
 import java.util.*;
 
 public class FractionToDecimalStr {
-  public String fractionToDecimal(int numerator, int denominator) {
+  public String fractionToDecimal166(int numerator, int denominator) {
     if (numerator == 0) { return "0"; }
     StringBuilder fraction = new StringBuilder();
     // If either one is negative (not both)

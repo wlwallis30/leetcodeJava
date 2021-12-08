@@ -7,12 +7,15 @@ public class RandomPickIdx {
   private Random rand;
   private int[] nums;
 
-  // 398
+  // 398, refer to 380 which is not reservoir sampling
+  //水塘抽样的前提都是set非常大
   public RandomPickIdx (int[] nums) {
     this.rand = new Random();
+    // this is for reservoir pick: this.nums = nums;
     this.indices = new HashMap<>();
     int l = nums.length;
     for (int i = 0; i < l; ++i) {
+      //also works this.indices.putIfAbsent(nums[i], new ArrayList<>());
       if (!this.indices.containsKey(nums[i])) { this.indices.put(nums[i], new ArrayList<>()); }
       this.indices.get(nums[i]).add(i);
     }
@@ -25,7 +28,7 @@ public class RandomPickIdx {
     return randomIndex;
   }
 
-  /*
+  /* space O(1) coz you do not create any extra space, only reference the original nums
   1/i * i/(i+1) * (i+1)/(i+2) ....* (n-2)/(n-1) * (n-1)/n = 1/n
   This can be interpreted as
   Picking the ith number from the list of i numbers

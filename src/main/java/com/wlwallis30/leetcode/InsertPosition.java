@@ -5,24 +5,26 @@ import java.util.Arrays;
 
 public class InsertPosition {
   public int searchInsert_35(int[] nums, int target) {
-    int mid, left = 0, right = nums.length - 1;
-    while (left <= right) {
+    // we are searching for the lower left bound/minimum of larger value
+    // so the max index can be out of index, e.g. [1,3,5,6], target = 7, ans should be 4, so right is the length
+    int mid, left = 0, right = nums.length;
+    while (left < right) {
       // this will prevent the overflow of left + right
       mid = left + (right - left) / 2;
-      if (nums[mid] == target) return mid;
-      if (target < nums[mid]) right = mid - 1;
-      else left = mid + 1;
-      // if using left = mid, the while should use, left < right
+      if (target > nums[mid]) left = mid + 1;
+      else right = mid; // including == condition
     }
     return left;
   }
 
+  // looking for minimum of the largest value / left bound type
   int firstBadVersion_278(int n) {
     int left = 1, right = n;
-    while (left <= right) {
+    while (left < right) {
       int mid = left + (right - left) / 2;
-      if (isBadVersion(mid)) right = mid - 1;
-      else left = mid + 1;
+      //searching for bad, so invalid case condition is !isBad
+      if (!isBadVersion(mid)) left = mid + 1;
+      else right = mid;
     }
     return left;
   }

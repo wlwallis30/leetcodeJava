@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.BiFunction;
 
 public class EvaluateRPN {
-  // reverse poland notation
+  // reverse poland notation, negative num are allowed
   int evalRPN150Stack(String[] tokens) {
     if(tokens.length==1) return Integer.parseInt(tokens[0]);
     Stack<Integer> numStack = new Stack<>();
@@ -78,11 +78,13 @@ public class EvaluateRPN {
     return stack.pop();
   }
 
+  //basic calculator II, compare to 224, all cases will do a push coz in the end, we will add all num in stack
   public int calculate227(String s) {
     if (s == null || s.isEmpty()) return 0;
     int len = s.length();
     Stack<Integer> stack = new Stack<>();
     int currentNumber = 0;
+    // operator before the second operand, 2*3+1, store * to op before hitting 3, calc when hitting +, and reset op and num
     char operation = '+';
     for (int i = 0; i < len; i++) {
       char currentChar = s.charAt(i);
@@ -153,7 +155,8 @@ public class EvaluateRPN {
     }
   }
 
-  // basic calculator II
+  // basic calculator II, compare to 227, this does not have * /
+  // only push when hitting (, only pop when ). when hitting + -, just do the calculation since no */, no need to push
   public int calculate224(String s) {
     Stack<Integer> stack = new Stack<>();
     int operand = 0;
@@ -188,7 +191,7 @@ public class EvaluateRPN {
         operand = 0;
       }
     }
-    //dont forget we still have the last operand and sigh to add to result
+    //dont forget we still have the last operand and sign to add to result
     return result + (sign * operand);
   }
 }

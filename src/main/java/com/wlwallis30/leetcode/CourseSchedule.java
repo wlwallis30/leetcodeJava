@@ -5,6 +5,7 @@ import java.util.stream.*;
 
 public class CourseSchedule {
   // BFS, topology sort, queue
+  // check example of [[4, 3], [0,4], [2,0], [1,2], [0,1]], after 3, 4  out of queue, 0,1,2 node all have degree 1, then queue is empty and num!=0
   public boolean canFinish207(int numCourses, int[][] prerequisites) {
     Map<Integer, List<Integer>> graph = new HashMap<>();
     for (int i=0; i<numCourses; i++) graph.put(i, new ArrayList<>());
@@ -14,10 +15,16 @@ public class CourseSchedule {
       indegree[vertex[0]]++;
     }
     Queue<Integer> queue = new ArrayDeque<>();
-    IntStream.range(0, numCourses).filter(i -> indegree[i] == 0).forEach(queue::offer);
+    for(int vertexIdx=0; vertexIdx<indegree.length; ++vertexIdx) {
+      if(indegree[vertexIdx]==0) queue.offer(vertexIdx);
+    }
+    //also works, IntStream.range(0, numCourses).filter(i -> indegree[i] == 0).forEach(queue::offer);
     while (!queue.isEmpty()) {
-      int current = queue.poll();
-      graph.get(current).stream().filter(child -> --indegree[child] == 0).forEach(queue::offer);
+      int curCourse = queue.poll();
+      for(Integer child: graph.get(curCourse))  {
+        if(--indegree[child]==0) queue.offer(child);
+      }
+      //also works, graph.get(current).stream().filter(child -> --indegree[child] == 0).forEach(queue::offer);
       numCourses--;
     }
     return numCourses == 0;
@@ -92,6 +99,7 @@ public class CourseSchedule {
     return new int[0];
   }
 
+  //topology sort
   public String alienOrder269(String[] words) {
     // Step 0: Create data structures and find all unique letters.
     Map<Character, List<Character>> adjList = new HashMap<>();
@@ -158,6 +166,9 @@ public class CourseSchedule {
         return false;
       }
       for (int j = 0; j < Math.min(word1.length(), word2.length()); j++) {
+        //also works: if (orderMap[currentWordChar] > orderMap[nextWordChar])return false;
+        //else if (orderMap[currentWordChar] == orderMap[nextWordChar]) continue;
+        // else break;
         if (word1.charAt(j) != word2.charAt(j)) {
           int currentWordChar = word1.charAt(j) - 'a';
           int nextWordChar = word2.charAt(j) - 'a';
@@ -173,6 +184,7 @@ public class CourseSchedule {
     return true;
   }
 
+  // union find by color filling
   public boolean isBipartite785(int[][] graph) {
     int n = graph.length;
     int[] color = new int[n];

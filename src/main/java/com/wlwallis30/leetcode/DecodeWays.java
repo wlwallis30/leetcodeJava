@@ -38,6 +38,7 @@ public class DecodeWays {
     return ans;
   }
 
+  // better solution
   public int numDecodings91DP(String s) {
     // DP array to store the subproblem results
     int[] dp = new int[s.length() + 1];

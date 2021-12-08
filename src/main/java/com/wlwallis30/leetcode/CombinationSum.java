@@ -11,7 +11,7 @@ public class CombinationSum {
     return res;
   }
 
-  // backtracking
+  // backtracking, from problem: The same repeated number may be chosen from candidates unlimited number of times.
   void CSDFS(List<List<Integer>> res, Integer start, List<Integer> out, int[] candidates, int target)
   {
     if(target < 0) return;
@@ -40,7 +40,7 @@ public class CombinationSum {
     return res;
   }
 
-  // backtracking
+  // backtracking, from problem: Each number in candidates may only be used once in the combination.
   private void backtrackIdxSkip(List<List<Integer>> res, Integer start, LinkedList<Integer> out, int[] candidates, int target)
   {
     if(target < 0) return;
@@ -52,6 +52,7 @@ public class CombinationSum {
     {
       for(int i=start; i< candidates.length;++i)
       {
+        //candidates = [2,5,2,1,2], target = 5, one ans is [1,2,2], to avoid used twice for 2s, need to skip coz we will do it in dfs(res, i+1)
         if(i>start && candidates[i] == candidates[i-1]) continue;
         out.add(candidates[i]);
         backtrackIdxSkip(res, i+1, out, candidates, target-candidates[i]);
@@ -68,7 +69,7 @@ public class CombinationSum {
     return res;
   }
 
-  // backtracking
+  // backtracking, Each number is used at most once.
   void CSDFS3(List<List<Integer>> res, Integer startNum, LinkedList<Integer> out, int k, int target)
   {
     if(out.size() ==k &&  target ==0) res.add(new ArrayList<>(out));

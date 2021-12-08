@@ -4,7 +4,8 @@ import java.util.*;
 
 public class InsertDelRandom {
 }
-//380
+//380, refert to 398 which is reservoir sampling, 380 is a set, 398 can have repeated nums, need to be equal prob to sample the repeated num
+//水塘抽样的前提都是set非常大
 class RandomizedSet {
   Map<Integer, Integer> valIdxMap;
   List<Integer> list;
@@ -35,6 +36,7 @@ class RandomizedSet {
     list.set(idx, lastElement);
     valIdxMap.put(lastElement, idx);
     // delete the last element
+    //list.remove(idx) will have average of O(n), but removing the last is O(1)
     list.remove(list.size() - 1);
     valIdxMap.remove(val);
     return true;
