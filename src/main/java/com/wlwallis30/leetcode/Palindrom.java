@@ -10,6 +10,7 @@ public class Palindrom {
     int lenPalin = 0;
     int size = str.length();
     int[][] dp = new int[size][size];
+    //end is the outer loop coz we are expanding from smallest cases
     for(int end = 0; end < size; ++end) {
       dp[end][end] = 1;
       for(int start = 0; start < end; ++start) {
@@ -71,8 +72,8 @@ public class Palindrom {
     for (char tmpCha: str.toCharArray()) { ++charCnt[tmpCha]; }
 
     // a null char, you can NOT use '' as other languages can, https://stackoverflow.com/questions/18410234/how-does-one-represent-the-empty-char/18410258
-    char midChar = 0;
-    String midStr = "";
+    char midChar = '\0'; // or simply 0
+    String midStr = ""; //just to measure how many odd chars
     String halfStrBuild = "";
     int k = 0;
     for (int i = 0; i < charCnt.length; i++) {
@@ -84,7 +85,7 @@ public class Palindrom {
       char[] tmp= new char[charCnt[i]/2];
       Arrays.fill(tmp, (char)i);
       // java supper sucks,  halfStrBuild += tmp does not work at all!
-      halfStrBuild += new StringBuilder().append(tmp);
+      halfStrBuild += String.valueOf(tmp);
     }
     System.out.println(halfStrBuild);
     halfStr = halfStrBuild.toCharArray();
@@ -216,6 +217,8 @@ public class Palindrom {
     // Check whether or not there is a palindrome.
     ListNode prev1 = head;
     boolean result = true;
+    // prev2 to control the length of iteration,
+    // for odd case: 1->3->1, then 1->3, 1,   prev1=1, prev2=1, then 3 not need to be compared
     while (result && prev2 != null) {
       if (prev1.val != prev2.val) result = false;
       prev1 = prev1.next;
@@ -243,7 +246,7 @@ public class Palindrom {
     return true ;
   }
 
-  //dp
+  //dp, count palindromic substring
   public int countSubstrings647(String s) {
     int n = s.length(), ans = 0;
     if (n <= 0) return 0;
@@ -266,11 +269,14 @@ public class Palindrom {
     return ans;
   }
 
+  //bottom up DP,
   public boolean isValidPalindrome1216(String s, int k) {
     int memo[][] = new int[s.length()][s.length()];
     // Generate all combinations of `start` and `end` in the correct order.
-    for (int start = s.length() - 2; start >= 0; start--)
-      for (int end = start + 1; end < s.length(); end++) {
+    //refer to 5, outer loop is end, inner loop is start, but start begins differently
+    for(int end=1; end<s.length(); ++end)
+      for(int start=end-1; start>=0; --start) {
+        //start need to begin from close to end first, if 'start' begin from 0, it is not bottom up coz end is new and memo[start + 1][end] is not known yet
         if (s.charAt(start) == s.charAt(end)) memo[start][end] = memo[start + 1][end - 1];
 
           // Case 2: Character at `start` does not equal character at `end`.
