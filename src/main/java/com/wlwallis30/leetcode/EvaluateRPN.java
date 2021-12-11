@@ -117,22 +117,22 @@ public class EvaluateRPN {
     return result;
   }
 
-  private void addOperatorsRecur(String num, int target, int index, long preValue, long preNum, String expression) {
-    if (index == num.length()) {
+  private void addOperatorsRecur(String num, int target, int start, long preValue, long preNum, String expression) {
+    if (start == num.length()) {
       if (preValue == target) { result.add(expression); }
       return; //2. if not, we discard
     }
 
     // 1. We can choose a single digits as operands Or multi digits as operand (  1 + 2 or 12 + 34 )
-    for (int i = index; i < num.length(); i++) {
+    for (int i = start; i < num.length(); i++) {
       //  We don't consider a operand which is 0 as single digit operand, as operand like 0 or 01 , 023... does not make sense
       //  To avoid cases where we have 1 + 05 or 1 * 05 since 05 won't be a
-      if (i != index && num.charAt(index) == '0') break;
+      if (i != start && num.charAt(start) == '0') break;
 
-      long currentDigitsValue = Long.parseLong(num.substring(index, i + 1)); // very important approach
+      long currentDigitsValue = Long.parseLong(num.substring(start, i + 1)); // very important approach
 
        // We need two operands for a operator and operator can't be apply on single operand
-      if (index == 0) {
+      if (start == 0) {
         // as this is the first num/digit only, then don't apply any operator
         addOperatorsRecur(num, target, i + 1, currentDigitsValue,
             currentDigitsValue, expression + currentDigitsValue);

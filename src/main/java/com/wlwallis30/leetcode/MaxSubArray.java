@@ -1,6 +1,7 @@
 package com.wlwallis30.leetcode;
 
 public class MaxSubArray {
+  //dp
   public int maxSubArray_53(int[] nums) {
     // Initialize our variables using the first element.
     int curMax = nums[0];

@@ -17,6 +17,7 @@ public class ReverseLinkedList {
 
     return pre;
   }
+  // m<=n
   ListNode reverseBetween92(ListNode head, int m, int n) {
     ListNode dummy = new ListNode(-1);
     dummy.next = head;

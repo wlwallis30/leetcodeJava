@@ -8,7 +8,7 @@ public class LargestNum {
     public int compare(String a, String b) {
       String order1 = a + b;
       String order2 = b + a;
-      // if b+a < a+b, e.g a=9, b=3, 39<93, order2 < order1 true => a > b
+      // if b+a < a+b, e.g a=9, b=3, 39<93, order2 < order1 true => a is first in ordering, b follows a
       // for example, 1 < 3, the comparator return a negative--ascending order, but above is reversed since a(9) will be like integer 1, b(3) will be like integer 3
       return order2.compareTo(order1);
     }

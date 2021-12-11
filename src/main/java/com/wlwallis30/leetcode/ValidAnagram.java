@@ -39,6 +39,10 @@ public class ValidAnagram {
 
   //computeIfAbsent returns "the current (existing or computed) value associated with the specified key, or null if the computed value is null"
   //putIfAbsent returns "the previous value associated with the specified key, or null if there was no mapping for the key". putIfAbsent takes the value directly.
+  //if the key already exists, they return the same thing, but if the key is missing, computeIfAbsent returns the computed value, while putIfAbsent return null.
+  //map.computeIfAbsent("key", k -> new ValueClass());
+  //will only create a ValueClass instance if the "key" key is not already in the Map (or is mapped to a null value).
+  //computeIfAbsent is more efficient.
   //https://stackoverflow.com/questions/48183999/what-is-the-difference-between-putifabsent-and-computeifabsent-in-java-8-map
   //getOrDefault 的用法会更略麻烦一点，多一行 put, refer to LRUCache.java
   public List<List<String>> groupStrings249(String[] strings) {
@@ -55,6 +59,8 @@ public class ValidAnagram {
       codeStrMap.get(code.toString()).add(word);
     }
 
+    //for(List<String> strs: codeStrMap.values()) res.add(strs);
+    //also works, List<List<String>> res = new ArrayList<>(codeStrMap.values());
     for(Map.Entry <String, List<String>> entry: codeStrMap.entrySet()){ res.add(entry.getValue()); }
 
     return res;
