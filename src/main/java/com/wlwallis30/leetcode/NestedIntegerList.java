@@ -11,6 +11,7 @@ public class NestedIntegerList {
     public List<NestedInteger> getList();
   }
 
+  // also refer to 341
   public int depthSum339(List<NestedInteger> nestedList) {
     return dfsNestSum(nestedList, 1);
   }

@@ -50,7 +50,8 @@ public class NextPermutation {
       for(int i=0; i<nums.length; ++i) {
         if(visited[i] == 0) {
           visited[i] = 1;
-          curRes.add(curRes.size() + 1, nums[i]);
+          // !!!: first idx to add should be "size",
+          curRes.add(curRes.size(), nums[i]);
           //curRes.add(nums[i]);
           permuteDFS(res, curRes, visited, nums);
           curRes.remove(curRes.size()-1);
@@ -83,9 +84,10 @@ public class NextPermutation {
         if(visited[i] == 0) {
           // 这里的前一个数 visited 值为0，并不代表前一个数字没有被处理过，也可能是递归结束后恢复状态时将 visited 值重置为0了
           //https://www.cnblogs.com/grandyang/p/4359825.html
+          // we dont wanna repeat for same nums, previously : if num[i-1]==num[i], & if visit[i-1]=1, now visit[i]=0 b4 setting to 1, so [1,2,2] formed
+          // but if visit[i-1]=0, and we set visit[i]=1, we just repeat the pattern since two num are same
           if(i > 0 && nums[i] == nums[i-1] && visited[i-1] == 0) continue;
           visited[i] = 1;
-          // !!!: first idx to add should be "size",
           curRes.add(curRes.size(),nums[i]);
           permuteDupDFS(res, curRes, visited, nums);
           curRes.remove(curRes.size()-1);

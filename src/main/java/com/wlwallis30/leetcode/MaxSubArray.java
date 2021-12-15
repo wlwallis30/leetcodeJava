@@ -10,7 +10,7 @@ public class MaxSubArray {
     // Start with the 2nd element since we already used the first one.
     for (int i = 1; i < nums.length; i++) {
       int num = nums[i];
-      // If current_subarray is negative, throw it away. Otherwise, keep adding to it.
+      // If curMax is negative, throw it away. Otherwise, keep adding to it.
       curMax = Math.max(num, curMax + num);
       globalMax = Math.max(globalMax, curMax);
     }
@@ -43,6 +43,7 @@ public class MaxSubArray {
   // sold[i]=hold[i−1]+price[i]
   // held[i]=max(held[i−1],reset[i−1]−price[i])
   // reset[i]=max(reset[i−1],sold[i−1])
+  //One can consider this state as a "reset" button for the cycles of buy and sell transactions.
   public int maxProfit309(int[] prices) {
     int sold = Integer.MIN_VALUE, held = Integer.MIN_VALUE, reset = 0;
     for (int price : prices) {

@@ -75,4 +75,25 @@ public class PascalTriangle {
      */
     return bottomUpDp.get(0);
   }
+
+  //O(1)
+  public int minimumTotalTopDown(List<List<Integer>> triangle) {
+    for (int row = 1; row < triangle.size(); row++) {
+      for (int col = 0; col <= row; col++) {
+        int smallestAbove = Integer.MAX_VALUE;
+        if (col > 0) {
+          //exclude col=0, also apply for col=row, the last element
+          smallestAbove = triangle.get(row - 1).get(col - 1);
+        }
+        // it is not else if, coz we are taking two possible pathSum from above row
+        if (col < row) {
+          //exclue col=row, this also applys for when col==0,
+          smallestAbove = Math.min(smallestAbove, triangle.get(row - 1).get(col));
+        }
+        int pathSum = smallestAbove + triangle.get(row).get(col);
+        triangle.get(row).set(col, pathSum);
+      }
+    }
+    return Collections.min(triangle.get(triangle.size() - 1));
+  }
 }

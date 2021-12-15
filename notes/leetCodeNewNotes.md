@@ -121,7 +121,7 @@ Approach A will still lead to a better solution when differences happen at 3 and
 <img src="pics/106BuildBTViaInorderPostorder.jpg" width="800" title="BrutalForce Big O">
 
 ## @309 Buy and sell stock with cooldown
-> sold[i]=hold[i−1]+price[i]
+> sold[i]=held[i−1]+price[i]
 
 > held[i]=max(held[i−1],reset[i−1]−price[i])
  

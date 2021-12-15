@@ -20,7 +20,7 @@ public class MeetingRoom {
     int idx = 0, len = intervals.length;
     LinkedList<int[]> output = new LinkedList<>();
 
-    // add all intervals starting before newInterval
+    // add all intervals starting before newInterval, 先加再慢慢处理
     while (idx < len && newStart > intervals[idx][0])
       output.add(intervals[idx++]);
 
@@ -138,6 +138,8 @@ public class MeetingRoom {
 
   private int findLongestOverlapped(String s, int start, String[] dict) {
     int probe = start;
+    //注意如果两个单词有交集或者相接，就放到同一个加粗标签中, 所以是<=probe
+    //s = "aaabbcc",   dict = ["aaa","aab","bc"],    Output: "<b>aaabbc</b>c"
     for (int i = start; i <= probe; i++) {//probe will change if matched in dict
       for (String word : dict) {
         if (s.startsWith(word, i)) { probe = Math.max(probe, i + word.length()); }

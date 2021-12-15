@@ -28,6 +28,7 @@ public class Merge2SortedList {
     if(lists == null || lists.length == 0) return null;
     int size=lists.length;
     while(size>1) {
+      //if not+1, you will not miss one last merge if size is odd num
       int halfSize=(size+1)/2;
       for(int i=0;i<size/2;++i) {
         lists[i]= mergeTwoLists_21(lists[i], lists[i+halfSize]);
@@ -46,6 +47,7 @@ public class Merge2SortedList {
     while (n >= 0) nums1[count--] = nums2[n--];
   }
 
+  //insertion sort
   ListNode insertionSortList147(ListNode head) {
     ListNode res = new ListNode(-1);
     ListNode cur;// now cur.next is null to make while loop generic even for a starting dummy node.
@@ -63,6 +65,7 @@ public class Merge2SortedList {
     return res.next;
   }
 
+  //fast + slow + merger sort
   ListNode sortList148(ListNode head) {
     if (head == null || head.next == null) return head;
     ListNode fast = head, slow = head;
@@ -125,7 +128,7 @@ public class Merge2SortedList {
         // Case 1).
         toInsert = true;
       } else if (prev.val > curr.val) {
-        // Case 2). either bigger than the tail, or smaller than the head
+        // Case 2). either bigger than the tail, or smaller than the head, e.g. 9->1, inerser 10 or 0 here
         if (insertVal >= prev.val || insertVal <= curr.val)
           toInsert = true;
       }

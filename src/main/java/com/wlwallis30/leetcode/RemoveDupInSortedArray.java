@@ -3,6 +3,7 @@ package com.wlwallis30.leetcode;
 import java.util.*;
 
 public class RemoveDupInSortedArray {
+  // problem ask to return the size of new "array"
   public int removeDuplicates_26(int[] nums) {
     if (nums.length == 0) return 0;
     int keepPos = 0;
@@ -15,6 +16,7 @@ public class RemoveDupInSortedArray {
     return keepPos + 1;
   }
 
+  //要点：对于不等于val的位置，自己赋值给自己没问题。fill idx 在过程中会跑到等于val的位置，让probe指向的值赋值过来
   public int removeElement_27(int[] nums, int val) {
     int fillPos = 0;
     for (int probe = 0; probe < nums.length; probe++) {

@@ -87,7 +87,7 @@ public class MissingRange {
     // e.g. [2,3,4,7,11] k=5, left=4, right=3, return  3+1+5
     return right+1+k;
   }
-  // 1060, Return how many numbers are missing until nums[idx]
+  // 1060, Return how many numbers are missing until nums[idx], [4, 5, 8], missing = num[idx]-num[0]-(idx-0)
   int missing(int idx, int[] nums) {
     return nums[idx] - nums[0] - idx;
   }
