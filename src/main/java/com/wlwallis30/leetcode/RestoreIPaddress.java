@@ -18,12 +18,12 @@ public class RestoreIPaddress {
       // else if not empty, do nothing, coz meaningless
     }
     else {
-      for(int i=1; i<=3; ++i) {
+      for(int len=1; len<=3; ++len) {
         // substring right boundary is exclusive, so 0 ~ i-1, length is i
-        if(strLeft.length()>=i && isValidPortion(strLeft.substring(0,i))) {
+        if(strLeft.length()>=len && isValidPortion(strLeft.substring(0,len))) {
           //int nextK = k-1;
-          if(k==1) restore(res, out+strLeft.substring(0,i), strLeft.substring(i), k-1);
-          else restore(res, out+ strLeft.substring(0,i) +".", strLeft.substring(i), k-1);
+          if(k==1) restore(res, out+strLeft.substring(0,len), strLeft.substring(len), k-1);
+          else restore(res, out+ strLeft.substring(0,len) +".", strLeft.substring(len), k-1);
         }
       }
     }

@@ -102,11 +102,11 @@ public class SingleNum {
 
   // find the left most bits, that is the answer.
   public int rangeBitwiseAnd201(int m, int n) {
-    int d = Integer.MAX_VALUE;
-    while ((m & d) != (n & d)) {
-      d <<= 1;
+    int mask = Integer.MAX_VALUE;
+    while ((m & mask) != (n & mask)) {
+      mask <<= 1;
     }
-    return m & d;
+    return m & mask;//to delete high position 1s from max_value
   }
 
   // Hamming distance,
@@ -115,6 +115,8 @@ public class SingleNum {
  14:  1 1 1 0
   2:  0 0 1 0
   1:  0 0 0 1
+  有三个0和一个1，那么它们之间相互的汉明距离就是3，即1和其他三个0分别的距离累加，然后在看第三列，
+  累加汉明距离为4，因为每个1都会跟两个0产生两个汉明距离，同理第二列也是4，第一列是3
   可以发现其实就是0的个数乘以1的个数
    */
   int totalHammingDistance477(int[] nums) {

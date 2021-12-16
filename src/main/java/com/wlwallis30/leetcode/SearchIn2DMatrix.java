@@ -6,29 +6,23 @@ public class SearchIn2DMatrix {
   // O(log(m*n))
   public boolean searchMatrix74MimicArray(int[][] matrix, int target) {
     int m = matrix.length;
-    if (m == 0)
-      return false;
+    if (m == 0) return false;
     int n = matrix[0].length;
 
     // binary search
     int left = 0, right = m * n - 1;
     int pivotIdx, pivotElement;
-    while (left <= right) {
+    while (left < right) {
       pivotIdx = (left + right) / 2;
       pivotElement = matrix[pivotIdx / n][pivotIdx % n];
-      if (target == pivotElement)
-        return true;
-      else {
-        if (target < pivotElement)
-          right = pivotIdx - 1;
-        else
-          left = pivotIdx + 1;
-      }
+      if (target>pivotElement) left = pivotIdx + 1;
+      else right = pivotIdx;
     }
-    return false;
+
+    return matrix[left/n][left%n]==target;
   }
 
-  // O(log(m) + log(n))
+  // O(log(m) + log(n)), better solution
   public boolean searchMatrix74(int[][] matrix, int target) {
     if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return false;
     int m = matrix.length, n = matrix[0].length;
@@ -42,13 +36,13 @@ public class SearchIn2DMatrix {
     }
 
     if (start == m) return false;
-    if (matrix[start][n - 1] == target) return true;
+    //if (matrix[start][n - 1] == target) return true;
 
     int theRow = start;
 
     // binary search #2: looking for the target in that row
     start = 0;
-    end = n;
+    end = n-1;
     while (start < end) {
       int mid = start + (end - start) / 2;
       if (matrix[theRow][mid] < target) start = mid + 1;

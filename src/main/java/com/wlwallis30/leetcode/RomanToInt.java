@@ -30,6 +30,7 @@ public class RomanToInt {
     return res;
   }
 
+  //题目中限定了输入数字的范围 (1 - 3999)
   private static final int[] values = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
   private static final String[] symbols = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
   public String intToRoman12(int num) {

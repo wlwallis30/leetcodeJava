@@ -16,7 +16,7 @@ public class ReverseBit {
     return res;
   }
 
-  // count 1 bits
+  // count 1 bits, you need to treat n as an unsigned value in java, in java there is no unsigned int
   public int hammingWeight_191(int n) {
     int count = 0;
 
@@ -28,6 +28,7 @@ public class ReverseBit {
       count += (n&1);
       System.out.println(n);
       n=n>>1;
+      // n = n>>>1 also works since we are limiting by 32 ops
     }
     return count;
   }
@@ -74,5 +75,20 @@ public class ReverseBit {
     }
 
     return  res;
+  }
+
+  // easier to think of it, but exceed time limit
+  public int[] countBits338Straight(int n) {
+   int[] res = new int[n+1];
+   for(int i=0; i<=n;++i) {
+     int count = 0;
+     for (int j = 0; j < 32; j++) {
+       count += (n&1);
+       System.out.println(n);
+       i=i>>1;
+     }
+     res[i] = count;
+   }
+    return res;
   }
 }

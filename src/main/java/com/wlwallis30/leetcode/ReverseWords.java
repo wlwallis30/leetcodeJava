@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ReverseWords {
   public String reverseWords151ByLib(String s) {
-    // remove leading spaces
+    // remove leading and trailing spaces
     s = s.trim();
     // split by multiple spaces, first \ is escape since \s is space
     // regex in short: https://stackoverflow.com/questions/15625629/regex-expressions-in-java-s-vs-s
@@ -19,6 +19,7 @@ public class ReverseWords {
     while (left <= right && s.charAt(right) == ' ') --right;
     StringBuilder sb = new StringBuilder();
     boolean needAspace = false;
+    //trim the extra space between words
     while (left <= right) {
       while (left <= right && s.charAt(left) == ' ') { ++left; needAspace = true; }
       if(needAspace) sb.append(" ");

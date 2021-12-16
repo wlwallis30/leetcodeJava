@@ -12,7 +12,7 @@ public class RemoveNfromEnd {
     // if first already reach after the end node, then return the "second" node since n is always valid
     if(first == null) return head.next;
     // Move first to the end, maintaining the gap
-    while (first != null) {
+    while (first.next != null) {
       first = first.next;
       second = second.next;
     }

@@ -16,9 +16,11 @@ public class ReadNcharViaRead4 {
       readCharCnt = read4(buf4);
 
       for(int i=0; i<readCharCnt;++i, ++copiedCharCnt){
+        //"leetcode" n=5 case, need to return earlier
         if(copiedCharCnt == n) return copiedCharCnt;
         buf[copiedCharCnt] = buf4[i];
       }
+      // also works: if(readCharCnt < 4) break;
     }
 
     return copiedCharCnt;

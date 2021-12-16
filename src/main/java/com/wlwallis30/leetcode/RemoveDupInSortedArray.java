@@ -45,12 +45,15 @@ public class RemoveDupInSortedArray {
     return keepPos + 1;
   }
 
+  //better for understanding
   public int removeDuplicates80AnotherWay(int[] nums) {
     if (nums.length == 0) return 0;
     int keepPos = 0, cnt = 1, k = 2;
     //probe start from 1, so cnt = 1 for the first element
     for (int probe = 1; probe < nums.length; probe++) {
-      if (nums[probe] == nums[keepPos] && cnt >= k) {} // just moving probe when same numb appear more than k times.
+      // just moving probe when same numb appear more than k times,
+      if (nums[probe] == nums[keepPos] && cnt >= k) {}
+      // same num but cnt<k or until you get diff num
       else {
         if(cnt<k && nums[probe] == nums[keepPos]) cnt++;
         else cnt = 1; //probe meet a new num
@@ -75,26 +78,24 @@ public class RemoveDupInSortedArray {
   }
 
   public void moveZeroes_283(int[] nums) {
-    int left = 0, right = 0;
-    while(right < nums.length) {
-      if (nums[right] == 0) {
-        right++;
-      } else {
-        Solution.swap(nums, left, right);
-        left++;
-        right++;
+    int fillPos = 0;
+    for(int probe=0; probe<nums.length;++probe) {
+      if (nums[probe] == 0) {}
+      else {
+        Solution.swap(nums, fillPos, probe);
+        fillPos++;
       }
     }
   }
 
-  // removing the adjacent dup
+  // removing the adjacent dup, stack, using stringBuilder as stack
   public String removeDuplicates1047Stack(String S) {
     StringBuilder sb = new StringBuilder();
     int sbLength = 0;
     for(char character : S.toCharArray()) {
       if (sbLength != 0 && character == sb.charAt(sbLength - 1))
         sb.deleteCharAt(sbLength-- - 1);
-      else {
+      else {//this condition is as same as 1209's
         sb.append(character);
         sbLength++;
       }
@@ -106,9 +107,10 @@ public class RemoveDupInSortedArray {
     StringBuilder sb = new StringBuilder(s);
     Stack<Integer> counts = new Stack<>();
     for (int i = 0; i < sb.length(); ++i) {
+      //this condition is as same as 1047's
       if (i == 0 || sb.charAt(i) != sb.charAt(i - 1)) {
         counts.push(1);
-      } else {
+      } else {// i!=0 && char equals @i and i-1
         int incremented = counts.pop() + 1;
         if (incremented == k) {
           // delete(start, end),  will do for [start, end)

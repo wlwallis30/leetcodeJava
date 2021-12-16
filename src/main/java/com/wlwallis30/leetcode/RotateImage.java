@@ -7,7 +7,7 @@ public class RotateImage {
 
     for(int row=0;row<m;++row)
     {
-      //以\ 方向为对 线 交换 然后每行 倒顺序, 按对 线交换时候注意col=row+1, 不然会交换两次 又换回来
+      //以\ 方向为对角线交换, 然后每行倒顺序, 按对角线交换时候注意col=row+1开始, 不然会交换两次又换回来
       for(int col=row+1;col<n;++col)  {
         int tmp = matrix[row][col];
         matrix[row][col] =  matrix[col][row];
