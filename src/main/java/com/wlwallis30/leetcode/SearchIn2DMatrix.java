@@ -28,7 +28,7 @@ public class SearchIn2DMatrix {
     int m = matrix.length, n = matrix[0].length;
 
     // binary search #1: looking for the right row to search for the value
-    int start = 0, end = m;
+    int start = 0, end = m-1;
     while (start < end) {
       int mid = start + (end - start) / 2;
       if (matrix[mid][n - 1] < target) start = mid + 1;
@@ -101,6 +101,7 @@ public class SearchIn2DMatrix {
       new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
 
   //changing the original matrix
+  //要点：直接将grid[neighbourRow][neighbourCol]用dist赋值，可以避免visited矩阵， 2. 因为使用queue，dist小的在queue的前面，所以不用Math.min来求最小
   public int shortestPathBinaryMatrix1091(int[][] grid) {
     if (grid[0][0] != 0 || grid[grid.length - 1][grid[0].length - 1] != 0) {
       return -1;
@@ -182,6 +183,7 @@ public class SearchIn2DMatrix {
             return false;
 
         if(visited[i][j]-visited[previ][prevj]>=3)
+        // 完成cycle后， 原点count已经变>=5, 但是另外一个recursive call也会进入这个cell，这时二者差>=3
             return true;
 
         if(visited[i][j]!=0)

@@ -1,6 +1,7 @@
 package com.wlwallis30.leetcode;
 
 public class SqrtOfX {
+  //binary search, while condition <=, to search 'target' equal condition
   public int mySqrt_69(int x) {
     if (x < 2) return x;
 
@@ -26,6 +27,7 @@ public class SqrtOfX {
     return half * half / x;
   }
 
+  //again, similar binary search pattern as 69
   public boolean perfectSquare_367(int x) {
     if (x < 2) return true;
     // mid could be as large as ((2^31-1)/2)^2 = 1152921503533105200 which will cause wrap around, so in java, left and right also need to be long
@@ -50,7 +52,7 @@ public class SqrtOfX {
     int res =1;
     for(int i=0;i<b.length;++i)
     {
-      res = (mod1337Helper(res,10)*mod1337Helper(a,b[i]))%1337;
+      res = (mod1337Helper(res,10)*mod1337Helper(a,b[i])) % 1337;
     }
     return res;
   }

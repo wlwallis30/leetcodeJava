@@ -16,6 +16,7 @@ public class UniqueBST {
     dp[0] = 1; // empty tree can be also consider as one case
     dp[1] = 1;
 
+    //outer loop is for 'n' iterations
     for (int i = 2; i <= n; ++i) {
       for (int j = 1; j <= i; ++j) {
         dp[i] += dp[j - 1] * dp[i - j];
@@ -29,8 +30,8 @@ public class UniqueBST {
     return generateTreesDFS(1, n);
   }
   List<TreeNode> generateTreesDFS(int start, int end) {
-    List<TreeNode> subTree = new ArrayList<>();
-    if (start > end) {subTree.add(null); return subTree;}
+    List<TreeNode> treeList = new ArrayList<>();
+    if (start > end) {treeList.add(null); return treeList;}
     else {
       for (int i = start; i <= end; ++i) {
         List<TreeNode> leftSubTree = generateTreesDFS(start, i - 1);
@@ -42,12 +43,12 @@ public class UniqueBST {
             // coz java pass-by-value, for List<TN>, it pass the reference by value, ref is not changed during current, you need to create a new copy!!!
             curRoot.left = oneLeftNode;
             curRoot.right = oneRightNode;
-            subTree.add(curRoot);
+            treeList.add(curRoot);
           }
         }
       }
     }
-    return subTree;
+    return treeList;
   }
 
   // vist left first, then it is pure Preorder, this solution visit right first, but fine.
@@ -66,12 +67,12 @@ public class UniqueBST {
     return isBSTPreorderDFS(root, null, null);
   }
 
-  private Deque<TreeNode> stack = new LinkedList();
+  private Deque<TreeNode> queue = new LinkedList();
   private Deque<Integer> upperLimits = new LinkedList();
   private Deque<Integer> lowerLimits = new LinkedList();
 
   public void update(TreeNode root, Integer low, Integer high) {
-    stack.add(root);
+    queue.add(root);
     lowerLimits.add(low);
     upperLimits.add(high);
   }
@@ -81,8 +82,8 @@ public class UniqueBST {
     Integer low = null, high = null, val;
     update(root, low, high);
 
-    while (!stack.isEmpty()) {
-      root = stack.poll();
+    while (!queue.isEmpty()) {
+      root = queue.poll();
       low = lowerLimits.poll();
       high = upperLimits.poll();
 
@@ -163,6 +164,8 @@ public class UniqueBST {
     swap(first, second);
   }
 
+  //更常规解法：并将所有节点存到一个一维向量中，把所有节点值存到另一个一维向量中，然后对存节点值的一维向量排序，
+  // 在将排好的数组按顺序赋给节点。这种最一般的解法可针对任意个数目的节点错乱的情况
   // stack ops is very similar with BinaryTreeTraversal.inorderTraversal94_stack
   public void recoverTree99InorderStack(TreeNode root) {
     Deque<TreeNode> stack = new ArrayDeque();

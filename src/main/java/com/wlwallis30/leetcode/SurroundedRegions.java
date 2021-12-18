@@ -29,7 +29,7 @@ public class SurroundedRegions {
     }
   }
 
-  // you can use int[][] visited, but more space. just mark the vistied 1s to 0s, will be easier
+  //dfs you can use int[][] visited, but more space. just mark the vistied 1s to 0s, will be easier
   public int numIslands200(char[][] grid) {
     if (grid == null || grid.length == 0) { return 0; }
 
