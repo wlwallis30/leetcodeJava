@@ -20,6 +20,7 @@ public class SwapNodesInPair {
     return secondNode;
   }
 
+  //better for interview
   ListNode swapPairs_24(ListNode head) {
     ListNode dummy = new ListNode(-1);
     dummy.next = head;

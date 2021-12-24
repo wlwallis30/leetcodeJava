@@ -91,6 +91,7 @@ public class FacebookHiFreq {
     for (int r = 0; r < matrix.length; ++r)
       for (int c = 0; c < matrix[0].length; ++c)
         if (r > 0 && c > 0 && matrix[r-1][c-1] != matrix[r][c])
+          //if (r <matrix.length-1 && c<matrix[0].length-1 && matrix[r+1][c+1] != matrix[r][c]) also works
           return false;
     return true;
   }
@@ -248,20 +249,24 @@ public class FacebookHiFreq {
     int idle_time = (f_max - 1) * n;
 
     for (int i = frequencies.length - 2; i >= 0 && idle_time > 0; --i) {
+      //why idle>0, e.g. ["A","A","A","A","B","B","B", "C", "C","C"] n=1
+      // when done with ABABABA, still having CCC, n is the LEAST num of spaces, we still can place C after AB, so ABCABCABCA
       idle_time -= Math.min(f_max - 1, frequencies[i]);
     }
+    //must have. e.g. when ....ABB_A and you still have TT to fill in, then idle time should be 0, not -1
     idle_time = Math.max(0, idle_time);
 
     return idle_time + tasks.length;
   }
 
-  // this is O(NlogN), but from 621, you can iteratively build string via frequencies[], just need to need to write more careful code. then O(N)
+  // this is O(NlogN), but from 621, you can iteratively build string via frequencies[], just need to write more careful code. then O(N)
   // refer to https://leetcode.com/problems/reorganize-string/discuss/1324757/Java-2-Different-Solutions, 2nd solution
   public String reorganizeString767(String S) {
     Map<Character, Integer> freq_map = new HashMap<>();
     for (char c: S.toCharArray()) {
       freq_map.put(c, freq_map.getOrDefault(c, 0) + 1);
     }
+    //maxheap
     PriorityQueue<Character> maxheap = new PriorityQueue<>( (a, b) -> freq_map.get(b) - freq_map.get(a) );
     // addAll() is adding more then one element to heap
     maxheap.addAll(freq_map.keySet());
@@ -365,6 +370,7 @@ public class FacebookHiFreq {
       res[0] = 1;
       return res;
     }
+    // e.g. n=3, right take 3/2=1, left should take 2, so (3+1)/2
     int[] right =beautifulArray(n/2);
     int[] left = beautifulArray((n+1)/2);
     //Adding The Even nos.
@@ -381,6 +387,7 @@ public class FacebookHiFreq {
 //346 O(1), space O(N)
 class MovingAverage {
   int size, windowSum = 0, count = 0;
+  // Queue also fine
   Deque<Integer> queue = new ArrayDeque<>();
 
   public MovingAverage(int size) { this.size = size; }
@@ -389,9 +396,13 @@ class MovingAverage {
     ++count;
     // calculate the new sum by shifting the window
     queue.add(val);
-    int tail = count > size ? (int)queue.poll() : 0;
+    int head = count > size ? (int)queue.poll() : 0;
+    //the following also works, count-- will not affect result in this problem since there is no removing function in this class
+    // if(count > size) {head =(int) queue.poll(); count--;}
+    //else head=0;
 
-    windowSum = windowSum - tail + val;
+
+    windowSum = windowSum - head + val;
 
     return windowSum * 1.0 / Math.min(size, count);
   }

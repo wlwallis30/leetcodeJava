@@ -69,7 +69,7 @@ public class SurroundedRegions {
     }
   }
   void gateDFS(int[][]rooms, int i, int j, int val) {
-    // < val, means it already visited
+    // < val, means it already visited or hitting a wall with -1 as value
     if (i < 0 || i >= rooms.length || j < 0 || j >= rooms[i].length || rooms[i][j] < val) return;
     rooms[i][j] = val;
     gateDFS(rooms, i + 1, j, val + 1);
@@ -139,7 +139,7 @@ public class SurroundedRegions {
     return components;
   }
 
-  // node from 0 ~ n-1
+  // node from 0 ~ n-1, invalid: There are self-loops or repeated edges.
   // undirected graph, A-B-A is not a cyclic. DFS by stack, you can also use BFS by que
   //delete the opposite direction edges from the adjacency list to detect cycle while exclude trivial cycles like A-B-A
   public boolean validTree261Stack(int n, int[][] edges) {
@@ -169,6 +169,7 @@ public class SurroundedRegions {
         seen.add(neighbour);
         // Remove the link that goes in the opposite direction.
         // need to convert into Integer object, otherwise it is removing by index !!
+        //remove only removing the first occurrence. so if there is a repeated edge, the repeated one will not be removed, good!
         adjList[neighbour].remove((Integer)node);
       }
     }
@@ -283,6 +284,7 @@ public class SurroundedRegions {
     }
   }
 
+  //up, left, down, right, means the overlapped edge which should avoid counting
   public int islandPerimeter463(int[][] grid) {
     int rows = grid.length;
     int cols = grid[0].length;
@@ -293,7 +295,7 @@ public class SurroundedRegions {
       for (int c = 0; c < cols; c++) {
         if (grid[r][c] == 1) {
           if (r == 0) { up = 0; }
-          else { up = grid[r-1][c]; }
+          else { up = grid[r-1][c]; }//if above is water, up=0, if island, up=1
 
           if (c == 0) { left = 0; }
           else { left = grid[r][c-1]; }
@@ -317,6 +319,7 @@ public class SurroundedRegions {
     if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] == 0)
       return 0;
     grid[r][c] = 0;
+    // counting current area as 1, then + the dfs results
     return (1 + area(grid, r+1, c) + area(grid, r-1, c)
         + area(grid, r, c-1) + area(grid, r, c+1));
   }
@@ -336,6 +339,7 @@ public class SurroundedRegions {
     a[i][j] = 2;
     markOneIsland(a,i-1,j);markOneIsland(a,i+1,j);markOneIsland(a,i,j-1);markOneIsland(a,i,j+1);
   }
+  // there are only exactly 2 islands, dfs for mark one island + bfs for exploring the bridge
   public int shortestBridge934(int[][] a) {
     boolean found1st = false;
     Queue<int[]> q = new LinkedList<>();

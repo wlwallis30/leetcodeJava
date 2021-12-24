@@ -20,6 +20,7 @@ public class WordPattern {
     return true;
   }
 
+  //要求一一对应，char to two more words, or word to to two more char, in both cases, pattern breaks
   public boolean wordPattern290(String pattern, String s) {
     HashMap<Character, String> charStringMap = new HashMap<>();
     String[] words = s.split(" ");
@@ -74,13 +75,14 @@ public class WordPattern {
     return true;
   }
 
+  // one pass for dict, O(N*n), N is len of dict, n is average len of each word
   public boolean differByOne1554(String[] dict) {
     if(dict.length==0) return false;
     Set<String> set = new HashSet<>();
-    for(String d: dict){
-      for(int i=0; i<d.length(); i++){
+    for(String word: dict){
+      for(int i=0; i<word.length(); i++){
         // skipping the current char, make it to *,
-        String newStr = d.substring(0,i)+"*"+d.substring(i+1);
+        String newStr = word.substring(0,i)+"*"+word.substring(i+1);
         if(set.contains(newStr))
           return true;
         set.add(newStr);

@@ -93,6 +93,7 @@ public class ValidParenthesis {
     }
   }
 
+  //recommend to use this solution in interview
   public String minRemoveToMakeValid1249(String s) {
     Set<Integer> indexesToRemove = new HashSet<>();
     Deque<Integer> stack = new ArrayDeque<>();
@@ -177,7 +178,7 @@ public class ValidParenthesis {
         if(i+1<s.length() && s.charAt(i+1)==')'){
           i++; // hitting another ) @i+1, so we need to advance i
           if(leftOpen>0){ leftOpen--; }
-          else{ ans++; } //you need to add ( since no more leftOpen
+          else{ ans++; } //you need to add ( since no more leftOpen, leftOpen=0;
         }
         else{ // @i+1, another ( appear(will be addressed in next iteration)
               // OR i reached the end ==> we only take care of this
@@ -185,7 +186,7 @@ public class ValidParenthesis {
             leftOpen--;
             ans++; // need to add ) here to match and decrease leftOpen
           }
-          else{ ans+=2; } // leftOpen==0, we need to add two )
+          else{ ans+=2; } // leftOpen==0, we need to add one ( ad one )
         }
       }
     }

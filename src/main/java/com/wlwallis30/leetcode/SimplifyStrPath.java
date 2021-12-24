@@ -12,7 +12,7 @@ public class SimplifyStrPath {
     // when hitting "//", it will be splitted to an empty string!
     for (String directory : components) {
       if (directory.equals(".") || directory.isEmpty()) {}// or using continue;
-      else if (directory.equals(".."))  {if (!stack.isEmpty()) stack.pop();} // have to keep {}, since it will be another if!!
+      else if (directory.equals(".."))  {if (!stack.isEmpty()) stack.pop();} // have to keep {}, since it will be another if!!, e.g. "/../"
       else stack.add(directory); // Finally, a legitimate directory name, so we add it to our stack
     }
 

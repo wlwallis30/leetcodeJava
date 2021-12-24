@@ -4,7 +4,7 @@ public class ValidSudoku {
   public boolean isValidSudoku36(char[][] board) {
     int N = 9;
 
-    // Use an array to record the status
+    // Use an array to record the status, flag matrix
     int[][] rows = new int[N][N];
     int[][] cols = new int[N][N];
     int[][] boxes = new int[N][N];
