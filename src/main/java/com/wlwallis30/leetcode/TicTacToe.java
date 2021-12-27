@@ -60,7 +60,7 @@ public class TicTacToe {
           if (i == j) diag[0]++;
           if (i + j == 2) diag[1]++;
           if (rows[i] == 3 || cols[j] == 3 || diag[0] == 3 || diag[1] == 3) {
-            //need to intercept here
+            //need to intercept here, both win, so return false
             if (player2Win) {
               return false;
             }
@@ -73,6 +73,7 @@ public class TicTacToe {
           if (i == j) diag[0]--;
           if (i + j == 2) diag[1]--;
           if (rows[i] == -3 || cols[j] == -3 || diag[0] == -3 || diag[1] == -3) {
+            // both win, so return false
             if (player1Win) {
               return false;
             }
@@ -84,5 +85,6 @@ public class TicTacToe {
     // all invalid states inside the ().
     return !(player1 < player2 || Math.abs(player1-player2) > 1
         || (player1Win && player1 == player2) || (player2Win && player1 > player2));
+    // player1 win, player2 still play;    or player2 win, player1 still play
   }
 }

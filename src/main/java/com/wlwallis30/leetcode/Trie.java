@@ -58,12 +58,10 @@ public class Trie {
     TrieNode node = root;
     for (int i = 0; i < word.length(); i++) {
       char curLetter = word.charAt(i);
-      if (node.containChild(curLetter)) {
-        node = node.getChild(curLetter);
-      } else {
-        return false;
-      }
+      if (!node.containChild(curLetter)) return false;
+      node = node.getChild(curLetter);
     }
+
     return true;
   }
 
@@ -101,7 +99,7 @@ public class Trie {
       node.setWord();
     }
 
-    /** Returns if the word is in the node. */
+    /** Returns if the word is in the node. 由于有".", 所以需要递归或者stack*/
     public boolean searchInNode(String word, TrieNode node, int start) {
       if(node == null) return false;
       if(start == word.length()) return node.isWord();
