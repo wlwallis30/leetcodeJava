@@ -437,6 +437,7 @@ public class SurroundedRegions {
         if(grid[r][c] != 1) continue;
         //save the area of this ones island in unique index
         // getArea: mark each island in grid[][] with index started with 2, and when dfs also count the area and store it in area[]
+        // r=0, c=0 correspond to areaIndex of 2, i*j+
         areas[areaIndex] = getArea(grid, r, c, areaIndex);
         areaIndex++;
       }
@@ -489,30 +490,26 @@ public class SurroundedRegions {
 
   private boolean isOutsideGrid(int r, int c){ return r < 0 || r >= rows || c < 0 || c >= cols; }
 
+  //317 BFS的特性使得其非常适合建立距离场，而DFS由于是沿着一个方向一股脑的搜索，然后会面临着更新距离的问题，只有当递归函数都调用结束后
   private int bfs(int[][] grid, int row, int col, int totalHouses) {
     // Next four directions.
     int dirs[][] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-
     int rows = grid.length;
     int cols = grid[0].length;
     int distanceSum = 0;
     int housesReached = 0;
-
     // Queue to do a bfs, starting from (row, col) cell.
     Queue<int[]> q = new LinkedList<>();
     q.offer(new int[]{ row, col });
-
     // Keep track of visited cells.
     boolean[][] vis = new boolean[rows][cols];
     vis[row][col] = true;
-
     int steps = 0;
     while (!q.isEmpty() && housesReached != totalHouses) {
       for (int i = q.size(); i > 0; --i) {
         int[] curr = q.poll();
         row = curr[0];
         col = curr[1];
-
         // If this cell is a house, then add the distance from source to this cell
         // and we go past from this cell.
         if (grid[row][col] == 1) {
@@ -520,7 +517,6 @@ public class SurroundedRegions {
           housesReached++;
           continue;
         }
-
         // This cell was empty cell, hence traverse the next cells which is not a blockage.
         for (int[] dir : dirs) {
           int nextRow = row + dir[0];
@@ -533,25 +529,25 @@ public class SurroundedRegions {
           }
         }
       }
-
       // After traversing one level of cells, increment the steps by 1 to reach to next level.
       steps++;
     }
-
     // If we did not reach all houses, then any cell visited also cannot reach all houses.
     // Set all cells visted to 2 so we do NOT check them again and return MAX_VALUE.
+    // setting  grid[row][col] = 2;  will not affect the final result
     if (housesReached != totalHouses) {
-      for (row = 0; row < rows; row++) {
+      /*for (row = 0; row < rows; row++) {
         for (col = 0; col < cols; col++) {
           if (grid[row][col] == 0 && vis[row][col]) { grid[row][col] = 2; }
         }
-      }
+      } */
       return Integer.MAX_VALUE;
     }
 
     return distanceSum;
   }
 
+  //bfs
   public int shortestDistance317(int[][] grid) {
     int minDistance = Integer.MAX_VALUE;
     int rows = grid.length;
@@ -575,13 +571,15 @@ public class SurroundedRegions {
     return minDistance == Integer.MAX_VALUE? -1 : minDistance;
   }
 
-  /*
+  /* brute force: you can use the similar methods as above
+  you can meet at one of the houses, e.g [1,1] res=1;
   Case #1: 1-0-0-0-1  Case #2: 0-1-0-1-0:  between the left-most and right-most point
   Case #3: 1-0-0-0-0-0-0-1-1. check the distribution of 1
   But the best meeting point should be at x=7 and the total distance is 8.
   In fact, the median must be the optimal meeting point
-  Case #4: 1-1-0-0-1, the median is x=1, the best meeting point, if x=2, not best
-  Case #5: 1-1-0-0-1-1.  any of x=1 to x=4 points and the total distance is minimized
+  Case #4: 1-1-0-0-1, odd 1s, the median is x=1, the best meeting point, if x=2, not best
+  Case #5: 1-1-0-0-1-1. even 1s, any of x=1 to x=4 points and the total distance is minimized, from x=1 or x=4, moving to the other side will have 2*(+1) and 2*(-1) so 0.
+  O(mnlogmn) due to sorting size of (mn)
    */
   public int minTotalDistance296(int[][] grid) {
     List<Integer> rows = new ArrayList<>();
@@ -595,6 +593,7 @@ public class SurroundedRegions {
       }
     }
     // we adding row in a sorted order, but col are not, col are cyclic, so need to sort it
+    // e.g. case 1: rows={0,4}, half size is 1, so dist=4+0=4, as same as 2+2 from middle 0
     int row = rows.get(rows.size() / 2);
     Collections.sort(cols);
     int col = cols.get(cols.size() / 2);
@@ -661,6 +660,7 @@ public class SurroundedRegions {
 
     Set<String> visited = new HashSet<>();
     while(!pq.isEmpty()){
+      // unlike other PQ problems, you wanna try all possibilities due to obstacles
       int size = pq.size();
       for( int i=0; i < size ; i++){
         int [] node = pq.poll();
@@ -689,6 +689,10 @@ public class SurroundedRegions {
             int newBoxY = newCol + dir[1];
             if(!isValid(newBoxX,newBoxY, rowSize, colSize, grid)){ continue; }
 
+            //need to use dist of new box and target + prePushes+1 coz if you move to "correct" direction, box and target gets closer, hence dist smaller
+            // adding prePushes+1 will offset the dist decreasing, keeping total sum as close as to original box and target's dist
+            //if wrong direction, dist+pushes+1 will be large, so sinking in PQ.
+            // You need to reflect both current dist and pushes(just pushes or dist will not reflect minmum of pushes and correct direction)
             pq.offer( new int[]{dist(newBoxX,newBoxY,target[0],target[1]) + pushes + 1 , pushes +1 , newRow,newCol,newBoxX,newBoxY} );
           }else {
             // If the new cordinate not equal to Box, means you moved to empty cell "."
@@ -707,7 +711,7 @@ public class SurroundedRegions {
 
   private int dist(int x, int y, int tx, int ty){ return Math.abs(x-tx)+Math.abs(y-ty); }
 
-  //hard,
+  //hard, 489, 必须保持一个顺时针或者逆时针方向，否则可能在backtrack时候无限循环
   interface Robot {
     public boolean move();
     public void turnLeft();
@@ -730,15 +734,22 @@ public class SurroundedRegions {
     robot.turnLeft(); // turnRight also fine
   }
 
-  public void backtrack(int row, int col, int d) {
+  //题目中也说了让我们盲目 Blindfolded 一些，所以就盲目的写吧
+  public void backtrack(int row, int col, int dir) {
     visited2.add(new Pair(row, col));
     robot.clean();
     // going clockwise : 0: 'up', 1: 'right', 2: 'down', 3: 'left'
+    //由于递归函数传进来的 dir 是上一次转到的方向，那么此时我们 dir 加上i，为了防止越界，对4取余, 才能一致性保持顺时针
     for (int i = 0; i < 4; ++i) {
-      int newD = (d + i) % 4;
+      int newD = (dir + i) % 4;
       int newRow = row + directions[newD][0];
       int newCol = col + directions[newD][1];
 
+      //打扫一个方向的dfs，然后回来原来位置，在这一层右转，达到顺时针的策略
+      // consider:  1 0 1
+      //            0 0 0
+      //            1 0 1,
+      // robot is at center, it should move like: move up, clean come back, turn right, move right & clearn, come back, turn right, move down....
       if (!visited2.contains(new Pair(newRow, newCol)) && robot.move()) {
         backtrack(newRow, newCol, newD);
         goBack();

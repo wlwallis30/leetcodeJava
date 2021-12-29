@@ -54,7 +54,8 @@ public class ReverInteger {
   public boolean isNumber65(String s) {
     if(s.trim().isEmpty()) return false;
     // \d* is for \\d+\\.?([eE]) to avoid wrong result for 0.8, 0345.6, 0.183(these are valid num).
-    // 0. 1. is valid, but 1.e 1e is not valid
+    // 0. and 1. are valid, but 1.e 1e is not valid
+    // | has the scope extended to ( and ), so it is OR for \d+\.?  and  \.\d+, not just \. and \.
     String regex = "[-+]?(\\d+\\.?|\\.\\d+)\\d*([eE][+-]?\\d+)?";
     return s.trim().matches(regex);
   }

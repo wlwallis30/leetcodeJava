@@ -42,6 +42,8 @@ public class WordLadder {
     return 0;
   }
 
+  // bfs with queue + hashset, 由于需要return List<List<String>>, 所以需要一个Queue<List<String>> pathQ来追踪每个可能的path
+  // meanwhile also need a Set<String> to remove words in each step for same level/depth of queue
   public List<List<String>> ladderLength126(String beginWord, String endWord, List<String> wordList) {
     List<List<String>> res = new ArrayList<>();
     Set<String> wordSet = new HashSet<>(wordList);
