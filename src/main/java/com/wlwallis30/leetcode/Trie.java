@@ -143,7 +143,7 @@ public class Trie {
   }
 }
 
-//642
+//642: 普通trieNode就行简单修改： 1。 最低层的存储 full sentence 2。 每个trieNode维护 碰到它的 top3 list
 // https://www.youtube.com/watch?v=NX68_rf_gxE&t=204s
 class AutocompleteSystem {
   class TrieNode implements Comparable<TrieNode> {
@@ -154,7 +154,7 @@ class AutocompleteSystem {
 
     public TrieNode() {
       children = new TrieNode[128];
-      s = null; // only the bottom node will store the full sentence.
+      s = null; // only the bottom node will store the full sentence coz this problem ask to return the full sentence
       times = 0;
       top3 = new ArrayList<>();
     }
@@ -171,7 +171,8 @@ class AutocompleteSystem {
     // each level of trie node will have the corresponding its own top3,
     // e.g. "i love you" "island", node i will store both sentences, node " " will store the first sentence,
     // node "s" will store sentence of "island"
-    public void update(TrieNode leafNode) {
+    //this method is to update the top3 list with new leafNode/full sentence for this node
+    public void updateTop3(TrieNode leafNode) {
       if (!this.top3.contains(leafNode)) {
         this.top3.add(leafNode);
       }
@@ -212,14 +213,14 @@ class AutocompleteSystem {
       visited.add(tmp);
     }
 
-    //now reaching the leaf/bottom node
+    //now reaching the leaf/bottom node, no need to update times for non-leaf node
     tmp.s = sentence;
     tmp.times += t;
 
     TrieNode leaf = tmp;
     //among all visited previous parent nodes and current leaf node, need to update the top3
     for (TrieNode node : visited) {
-      node.update(leaf);
+      node.updateTop3(leaf);
     }
   }
 

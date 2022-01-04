@@ -218,6 +218,7 @@ class LFUCache {
 
 //588
 class FileSystem {
+  //this class is like a trie structure, separate Directory and File List
   class Dir {
     HashMap < String, Dir > dirMap = new HashMap < > ();
     HashMap < String, String > fileMap = new HashMap < > ();
@@ -233,11 +234,13 @@ class FileSystem {
       // going down to the last level b4 final
       for (int i = 1; i < d.length - 1; i++) {
         curDir = curDir.dirMap.get(d[i]);
-      } // check if the last part is a file or dir
+      }
+
+      // check if the last part is a file or dir
       if (curDir.fileMap.containsKey(d[d.length - 1])) {
         filesOrWithDir.add(d[d.length - 1]);
         return filesOrWithDir;
-      } else {
+      } else {// if it is still a dir
         curDir = curDir.dirMap.get(d[d.length - 1]);
       }
     }

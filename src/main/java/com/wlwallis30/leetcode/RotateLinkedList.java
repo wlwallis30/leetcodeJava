@@ -46,7 +46,7 @@ public class RotateLinkedList {
     }
   }
 
-  // reverse total 2 times, O(2N)
+  // reverse total 2 times, O(2N), easy to think of
   public void rotate189Reverse(int[] nums, int k) {
     int n = nums.length;
     k %= nums.length;

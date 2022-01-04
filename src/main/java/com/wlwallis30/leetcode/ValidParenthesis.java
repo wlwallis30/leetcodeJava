@@ -167,6 +167,7 @@ public class ValidParenthesis {
     return closeCount + openCount;
   }
 
+  // diff from 921, here ()) is a valid match
   public int minInsertions1541(String s) {
     int leftOpen=0;
     int ans=0;
@@ -194,7 +195,7 @@ public class ValidParenthesis {
     return ans;
   }
 
-  /*
+  /* 301
   left_count which represents the number of left parentheses that have been added to the expression we are building.
   right_count which represents the number of right parentheses that have been added to the expression we are building.
    */

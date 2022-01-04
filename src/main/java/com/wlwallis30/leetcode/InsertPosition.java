@@ -32,6 +32,7 @@ public class InsertPosition {
   boolean isBadVersion(int version) { return true;} //fake API
 
   // better use right=mid + (lef<right) in while since you are finding the boundaries
+  //also refer to 33
   int[] searchRange34(int[] nums, int target) {
     int[] res = new int[2];
     Arrays.fill(res, -1);
