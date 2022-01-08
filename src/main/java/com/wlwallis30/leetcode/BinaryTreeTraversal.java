@@ -617,14 +617,15 @@ public class BinaryTreeTraversal {
   }
 
   //level order + hashtable, refer to 314, similar
+  // 结点值的顺序还有要求，if column相同，则按结点值从小到大排
   public List<List<Integer>> verticalTraversal987(TreeNode root) {
     List<List<Integer>> output = new ArrayList<>();
     if (root == null) { return output; }
 
-    // step 1). BFS traversal
+    // step 1). BFS traversal, col: [..<row, val>..]
     Map<Integer, ArrayList<Pair<Integer, Integer>>> columnTable = new HashMap<>();
     int minColumn = 0, maxColumn = 0;
-    // tuples of <column, <row, value>>
+    // tuples of <node, <row, col>>
     Queue<Pair<TreeNode, Pair<Integer, Integer>>> queue = new ArrayDeque<>();
     int row = 0, column = 0;
     queue.offer(new Pair<>(root, new Pair<>(row, column)));

@@ -70,8 +70,8 @@ public class SearchInRotatedSortArray {
   //constrains: nums[-1] = nums[n] = -∞, you can assume this. nums[i] != nums[i + 1]. Peak must exist
   //如果第二个数字比第一个数字小，说明此时第一个数字就是一个局部峰值；否则就往后继续遍历，现在是个递增趋势，如果此时某个数字小于前面那个数字，说明前面数字就是一个局部峰值
   public int findPeakElement162Linear(int[] nums) {
-    for (int i = 1; i < nums.length; ++i) {
-      if (nums[i] < nums[i - 1]) return i - 1;
+    for (int i = 0; i < nums.length-1; ++i) {
+      if (nums[i] > nums[i + 1]) return i;
     }
     return nums.length - 1;
   }

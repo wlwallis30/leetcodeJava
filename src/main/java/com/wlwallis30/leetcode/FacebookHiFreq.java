@@ -42,6 +42,7 @@ public class FacebookHiFreq {
   }
 
   // java's char and int are so hard to use for conversion
+  //肯定最好的高位上的小数字和低位上的大数字进行置换
   int maximumSwap670(int num) {
     char[] res = Integer.toString(num).toCharArray();
     char[] back = Integer.toString(num).toCharArray(); // can not assign res to back, it will just copy the array ref to back

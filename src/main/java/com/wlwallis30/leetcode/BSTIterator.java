@@ -18,9 +18,36 @@ public class BSTIterator {
     int res = cur.val;
     if(cur != null) {
       cur=cur.right;
-      while(cur != null) { treeStack.push(cur); cur=cur.left; } }
-
+      while(cur != null) { treeStack.push(cur); cur=cur.left; }
+    }
     return res;
+  }
+}
+
+//173, inorder flattened list
+class BSTIterator1 {
+  ArrayList<Integer> nodesSorted;
+  int index;
+
+  public BSTIterator1(TreeNode root) {
+    this.nodesSorted = new ArrayList<Integer>();
+    this.index = -1;
+    this._inorder(root);
+  }
+
+  private void _inorder(TreeNode root) {
+    if (root == null) { return; }
+    this._inorder(root.left);
+    this.nodesSorted.add(root.val);
+    this._inorder(root.right);
+  }
+
+  public int next() {
+    return this.nodesSorted.get(++this.index);
+  }
+
+  public boolean hasNext() {
+    return this.index < this.nodesSorted.size()-1;
   }
 }
 

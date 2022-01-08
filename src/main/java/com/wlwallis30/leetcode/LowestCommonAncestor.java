@@ -58,7 +58,7 @@ public class LowestCommonAncestor {
 
   //both moving, shorter head move faster to end, jump to another head.
   //e.g. shorter has 4, longer has 5, intersect at the second from end. so in the end, both move 8 steps
-  //  3+1+4 = 4+1+3, that is why we jump...
+  //  3+1+4 = 4+1+3, that is why we jump... more common, a,c and b, c are length of two paths, a+c+b=b+c+a
   // please refer to the problem 160, this LCA is as same as 160
   public Node lowestCommonAncestor1650(Node p, Node q) {
     Node p1 = p, p2 = q;

@@ -186,7 +186,7 @@ public class TwoSum {
     for (int i = 0; i < nums.length; i++) {
       sum += nums[i];
       // 3 4 7 2 -3 1 4 2, target = 7
-      //(0,1) (3, 1) (7, 1) (14,1 later will become 2), (16,1), (13, 1), (14, 1->2), (14, 2->3), (18, 1), (20, 1)
+      //(0,1) (3, 1) (7, 1) (14,1 later will become 2), (16,1), (13, 1), (14, 1->2), (18, 1), (20, 1)
       if (sumOccurMap.containsKey(sum - target)) count += sumOccurMap.get(sum - target);
       sumOccurMap.put(sum, sumOccurMap.getOrDefault(sum, 0) + 1);
     }
@@ -194,6 +194,7 @@ public class TwoSum {
   }
 
   // a % c = b % c ==>  (a-b) % c = 0, building a hashmap with the mod as key and idx as value
+  // [..4, 3, 3..] k=6, mod:4, mod:1, mod:4, so 3+3 can be divided by 6
   public boolean checkSubarraySum523(int[] nums, int k) {
     // maintain a hash map to store <sum % k, index>
     Map<Integer, Integer> modIdx = new HashMap<>();
@@ -226,6 +227,9 @@ class RandomPickWeight {
     System.out.println(Arrays.toString(w));
   }
 
+  //比如若权重数组为 [1, 3, 2] 的话，那么累加和数组为 [1, 4, 6]，整个的权重和为6，我们 rand() % 6，
+  // 可以随机出范围 [0, 5] 内的数，随机到 0 则为第一个点，随机到 1，2，3 则为第二个点，
+  // 随机到 4，5 则为第三个点，所以我们随机出一个数字x后，然后再累加和数组中查找第一个大于随机数x的数字
   public int pickIndex528() {
     double target = this.totalSum * Math.random();
     int low = 0, high = this.prefixSums.length-1;

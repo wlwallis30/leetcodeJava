@@ -1,6 +1,7 @@
 package com.wlwallis30.leetcode;
 
 public class GenericAlgo {
+  //bottom up, recursive
   public void mergeSort(int[] nums, int left, int right) {
     if(left < right) {
       int mid = (left + right) / 2;
@@ -41,6 +42,7 @@ public class GenericAlgo {
     }
   }
 
+  //top down, recursive
   void QuickSort(int[] nums, int left, int right) {
     if (nums.length == 0 || left > right) return;
     int i = left, j = right;

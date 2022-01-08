@@ -16,7 +16,7 @@ public class WordAbbreviation {
         counter = counter*10+abb[i]-'0';
       }
     }
-    // we finished abbr, but might not finish the word if so, return false.
+    // we finished abbr, but might not finish the word if so, return false. counter might zero or positive, both + wPos need to be == w.length
     return wPos+counter == w.length;
   }
 }

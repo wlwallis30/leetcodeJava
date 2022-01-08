@@ -91,13 +91,13 @@ public class RemoveDupInSortedArray {
   // removing the adjacent dup, stack, using stringBuilder as stack
   public String removeDuplicates1047Stack(String S) {
     StringBuilder sb = new StringBuilder();
-    int sbLength = 0;
+    int sbLength;
     for(char character : S.toCharArray()) {
+      sbLength = sb.length();
       if (sbLength != 0 && character == sb.charAt(sbLength - 1))
-        sb.deleteCharAt(sbLength-- - 1);
+        sb.deleteCharAt(sbLength - 1);
       else {//this condition is as same as 1209's
         sb.append(character);
-        sbLength++;
       }
     }
     return sb.toString();

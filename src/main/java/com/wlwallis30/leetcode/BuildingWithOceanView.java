@@ -53,6 +53,7 @@ public class BuildingWithOceanView {
   }
 
   //optimized monotonic stack without using stack, just the maxheigh
+  //you only need to find the max height when you look to the right
   public int[] findBuildingsOpti(int[] heights) {
     int n = heights.length;
     List<Integer> list = new ArrayList<>();
