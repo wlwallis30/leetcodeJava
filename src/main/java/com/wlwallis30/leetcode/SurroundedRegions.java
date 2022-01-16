@@ -98,6 +98,7 @@ public class SurroundedRegions {
       for (int i = 0; i <  4; ++ i) {
         int r = row + deltaRow[i];
         int c = col + deltaCol[i];
+        //rooms[r][c] != Integer.MAX_VALUE means hitting the wall or gate or previously visited with smaller distance!!
         if (r < 0 || c < 0 || r >= m || c >= n || rooms[r][c] != Integer.MAX_VALUE) { continue; }
         rooms[r][c] = rooms[row][col] + 1;
         q.add(new int[] { r, c });

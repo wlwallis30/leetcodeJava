@@ -72,7 +72,7 @@ public class WordBreak {
     memo = new HashMap<>();
     _wordBreak_topdown(s);
 
-    // chain up words together
+    // chain up words together, since it is topdown, cat is expended after [dog, sand], it is reversed
     List<String> ret = new ArrayList<>();
     for (List<String> words : memo.get(s)) {
       StringBuilder sentence = new StringBuilder();
@@ -100,10 +100,11 @@ public class WordBreak {
       memo.put(s, solutions);
     }
 
-    for (int endIndex = 1; endIndex <= s.length(); ++endIndex) {
-      String word = s.substring(0, endIndex);
+    //endidx is as same as the 139's len
+    for (int len= 1; len<= s.length(); ++len) {
+      String word = s.substring(0, len);
       if (wordSet.contains(word)) {
-        List<List<String>> subsentences = _wordBreak_topdown(s.substring(endIndex));
+        List<List<String>> subsentences = _wordBreak_topdown(s.substring(len));
         for (List<String> subsentence : subsentences) {
           List<String> newSentence = new ArrayList<>(subsentence);
           newSentence.add(word);

@@ -2,6 +2,7 @@ package com.wlwallis30.leetcode;
 
 public class BSTRelated {
   // the tree is binary search tree
+  //if a target value lesser than root could be closer to the right subtree value, then it is the closest to the root first not the right subtree value
   int closestValue270(TreeNode root, double target) {
     int res = root.val;
     while(root != null)
@@ -12,6 +13,18 @@ public class BSTRelated {
 
     return res;
   }
+
+  public int closestValue270Recur(TreeNode root, double target) {
+        int res = root.val;
+        if (target < root.val && root.left!=null) {
+            int l = closestValue270Recur(root.left, target);
+            if (Math.abs(res - target) >= Math.abs(l - target)) res = l;
+        } else if (target > root.val && root.right!=null) {
+            int r = closestValue270Recur(root.right, target);
+            if (Math.abs(res - target) >= Math.abs(r - target)) res = r;
+        }
+        return res;
+    }
 
   // 938
   public int rangeSumBST(TreeNode root, int L, int R) {

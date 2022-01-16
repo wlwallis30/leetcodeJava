@@ -159,6 +159,7 @@ public class SearchIn2DMatrix {
     return false;
   }
   static int moves[][] = {{1,0},{0,1},{-1,0},{0,-1}};
+  //用prevX， prevY的原因： 因为要是用vis[x][y]来判断是否循环，所以不能用vis[x][y] 放在条件里判断，否则无法进入下一层call。用prevXY来追踪就好了
   public boolean isMoveBack(char grid[][], int x, int y, boolean[][] visited, int prevX, int prevY){
     //转了一圈又回来了，return true
     if(visited[x][y]) return true;

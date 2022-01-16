@@ -194,7 +194,28 @@ public class Palindrom {
     return dfsAsStack(head);
   }
 
-  //fast and slow  pointers.
+  public boolean isPalinLinedList234Stack(ListNode head) {
+    if (head == null) return true;
+    // wrong, can not infer: Stack<Integer> stack = new LinkedList<>();
+    LinkedList<Integer> stack = new LinkedList<>();
+    ListNode cur = head;
+    while(cur!=null) {
+      stack.push(cur.val);
+      cur = cur.next;
+    }
+
+    cur = head;
+    //等于比较了两遍，but it is OK
+    while(cur!=null) {
+      int val = stack.pop();
+      if(val != cur.val) return false;
+      cur = cur.next;
+    }
+
+    return true;
+  }
+
+  //fast and slow  pointers. reverse 2nd half, O(1)
   public boolean isPalinLinedList_234_1(ListNode head) {
     if (head == null) return true;
 
@@ -206,6 +227,7 @@ public class Palindrom {
       slow = slow.next;
     }
     // now firstHalfEnd = slow;
+    //reversing the second half
     ListNode prev2 = null;
     ListNode curr = slow.next;
     while (curr != null) {
@@ -269,14 +291,15 @@ public class Palindrom {
     return ans;
   }
 
-  //bottom up DP,
+  //bottom up DP, refer to 680 which is only for at most one char to remove
   public boolean isValidPalindrome1216(String s, int k) {
-    int memo[][] = new int[s.length()][s.length()];
+    int memo[][] = new int[s.length()][s.length()]; //初始化都为零 memo[i][i]=0
     // Generate all combinations of `start` and `end` in the correct order.
     //refer to 5, outer loop is end, inner loop is start, but start begins differently
     for(int end=1; end<s.length(); ++end)
       for(int start=end-1; start>=0; --start) {
         //start need to begin from close to end first, if 'start' begin from 0, it is not bottom up coz end is new and memo[start + 1][end] is not known yet
+        //即便发生了 start+1>end-1, also OK, 因为初始化为零，e.g. end=1, start=end-1=0
         if (s.charAt(start) == s.charAt(end)) memo[start][end] = memo[start + 1][end - 1];
 
           // Case 2: Character at `start` does not equal character at `end`.

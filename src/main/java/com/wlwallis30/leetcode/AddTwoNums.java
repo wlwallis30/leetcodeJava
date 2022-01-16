@@ -64,7 +64,7 @@ public class AddTwoNums {
 				int highIdx = i + j, lowIdx = i + j+ 1;
 				int sum = vals[lowIdx] + mul;
 				vals[highIdx] += sum / 10;
-				vals[lowIdx] = sum % 10;
+				vals[lowIdx] = sum % 10; // += is wrong coz we need to keep a one digit on every position.
 			}
 		}
 		

@@ -1,5 +1,6 @@
 package com.wlwallis30.leetcode;
 
+import com.sun.source.tree.Tree;
 import java.util.*;
 import javafx.util.Pair;
 
@@ -215,8 +216,7 @@ public class BinaryTreeTraversal {
         maxHeight2 = parentHeight;
       }
       // calculate the distance between the two farthest leaves nodes.
-      int distance = maxHeight1 + maxHeight2;
-      this.diameter1 = Math.max(this.diameter1, distance);
+      this.diameter1 = Math.max(this.diameter1, maxHeight1 + maxHeight2);
     }
 
     return maxHeight1;
@@ -268,6 +268,21 @@ public class BinaryTreeTraversal {
       // LCA now
       if (left == deepest && right == deepest) { res = node; }
       return Math.max(left, right);
+    }
+
+    //recommend this one, much better in terms of format and structures. also works for 1123
+    TreeNode subtreeWithAllDeepest865Better(TreeNode root) {
+      return helper1(root).getValue();
+    }
+
+    Pair<Integer, TreeNode> helper1(TreeNode node) {
+      if(node==null) return new Pair<>(0, null);
+      Pair<Integer, TreeNode> left = helper1(node.left), right = helper1(node.right);
+      int depL = left.getKey(), depR = right.getKey();
+      int maxDep = Math.max(depL, depR);
+      TreeNode lca = (depL==depR) ? node: (depL>depR ? left.getValue(): right.getValue());
+
+      return new Pair<>(maxDep+1, lca);
     }
   }
 
@@ -481,6 +496,7 @@ public class BinaryTreeTraversal {
 
   Map<TreeNode, TreeNode> parentMap;
   // observe the pattern from a tree, problem is similar to level order traversal when you think target is the root, the tree is a graph
+  // coz we have parent map now, then we need a visited set to avoid visit again
   public List<Integer> distanceK863(TreeNode root, TreeNode target, int K) {
     parentMap = new HashMap<>();
     dfs(root, null);
@@ -596,6 +612,7 @@ public class BinaryTreeTraversal {
     return res;
   }
 
+  //方法巧妙，不判断null，将left right都推入栈
   public boolean isCompleteTree958(TreeNode root) {
     if(root==null) return true;
 

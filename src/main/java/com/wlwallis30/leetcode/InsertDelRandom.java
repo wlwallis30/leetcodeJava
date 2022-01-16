@@ -22,7 +22,8 @@ class RandomizedSet {
     if (valIdxMap.containsKey(val)) return false;
 
     valIdxMap.put(val, list.size());
-    list.add(list.size(), val);
+    //list.add(list.size(), val);
+    list.add(val);
     return true;
   }
 

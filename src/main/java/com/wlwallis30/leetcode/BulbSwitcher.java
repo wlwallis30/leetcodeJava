@@ -8,5 +8,6 @@ public class BulbSwitcher {
     // res*res<=n
     while(res<=n/res) res++;
     return res-1;
+    //return sqrt(n); also works
   }
 }

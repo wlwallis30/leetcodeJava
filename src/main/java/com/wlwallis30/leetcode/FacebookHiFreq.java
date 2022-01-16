@@ -169,6 +169,9 @@ public class FacebookHiFreq {
 
   //cutting ribbon: k ribbons of all the same positive integer length.
   // very important https://medium.com/swlh/binary-search-find-upper-and-lower-bound-3f07867d81fb
+  //the number of items is even, there are two ways to pick, lower or upper, [6, 7, 8, 9], mid could be 7 or 8, depends on what you seek for, lower or uppper
+  //when the question asks for lower bound, if mid works, then r should be mid not mid-1 because mid might be the answer., e.g. mid =7
+  //when the question asks for upper bound, if mid works, then l should be mid not mid+1 because mid might be the answer. e.g mid=8
   public int maxLength1891(int[] ribbons, int k) {
     int low = 0;
     int high = Integer.MIN_VALUE;
@@ -387,6 +390,7 @@ public class FacebookHiFreq {
 }
 //346 O(1), space O(N)
 class MovingAverage {
+  //size is actually the cap
   int size, windowSum = 0, count = 0;
   // Queue also fine
   Deque<Integer> queue = new ArrayDeque<>();
@@ -397,17 +401,17 @@ class MovingAverage {
     ++count;
     // calculate the new sum by shifting the window
     queue.add(val);
-    int head = count > size ? (int)queue.poll() : 0;
+    //int head = count > size ? (int)queue.poll() : 0;
     //the following also works, count-- will not affect result in this problem since there is no removing function in this class
-    // if(count > size) {head =(int) queue.poll(); count--;}
-    //else head=0;
-
+    int head;
+    if(count > size) {head =(int) queue.poll(); count--;}
+    else head=0;
 
     windowSum = windowSum - head + val;
-
     return windowSum * 1.0 / Math.min(size, count);
   }
 
+  //use set, then you can use containsAll to check all chars contained in the set
   public String nextClosestTime681(String time) {
     Set<Character> initial = getAllChars(time);
     int hh = Integer.parseInt(time.substring(0, 2)), mm = Integer.parseInt(time.substring(3));
@@ -422,6 +426,7 @@ class MovingAverage {
         hh = 0;
         mm = 0;
       }
+      //"1:34", "12:9" are all invalid.
       String tmp = (hh < 10 ? "0" : "") + hh + ":" + (mm < 10 ? "0" : "") + mm;
       if (initial.containsAll(getAllChars(tmp))) {
         result = tmp;
@@ -438,7 +443,7 @@ class MovingAverage {
     return set;
   }
 
-  // O(N^2), space O(N), if brute force for point A, B, and search for diagonal C, D, it will be N^4
+  //find two points on diagonal line:  O(N^2), space O(N), if brute force for point A, B, and search for diagonal C, D, it will be N^4
   public int minAreaRect939(int[][] points) {
     HashMap<Integer, Set<Integer>> hashmap = new HashMap<>();
 

@@ -87,12 +87,34 @@ public class MissingRange {
     // e.g. [2,3,4,7,11] k=5, left=4, right=3, return  3+1+5
     return right+1+k;
   }
-  // 1060, Return how many numbers are missing until nums[idx], [4, 5, 8], missing = num[idx]-num[0]-(idx-0)
-  int missing(int idx, int[] nums) {
-    return nums[idx] - nums[0] - idx;
+
+  public int findKthPositive1539BinarySearchStandardFormat(int[] arr, int k) {
+    int left = 0, right = arr.length - 1;
+    while (left < right) {
+      int pivot = left + (right - left) / 2;
+      // If number of positive integers
+      // which are missing before arr[pivot]
+      // is less than k -->
+      // continue to search on the right.
+      if (arr[pivot] - pivot - 1 < k) {
+        left = pivot + 1;
+        // Otherwise, go left.
+      } else {
+        right = pivot;
+      }
+    }
+
+    // e.g. [2,3,4,7,11] k=5, left=4, arr[left]-(left+1) =6, which >5,  should return  4+5
+    //[2,3,4,7,11] k:5, [1,2,3,4] k:2, to check if the k is outside of nums' length
+    return arr[left]-(left+1) < k? left+1+k: left + k;
   }
 
-  // O(N), one pass
+  // 1060, Return how many numbers are missing until nums[idx], [4, 5, 8], missing = num[idx]-num[0]-(idx-0)
+  int missing(int idx, int[] nums) {
+    return nums[idx] - nums[0] - (idx - 0);
+  }
+
+  // O(N), one pass. asking for kth missing number starting from the leftmost number of the array.
   public int missingElement1060(int[] nums, int k) {
     int n = nums.length;
     // If kth missing number is larger than the last element of the array
@@ -107,6 +129,7 @@ public class MissingRange {
     return nums[idx - 1] + k - missing(idx - 1, nums);
   }
 
+  //recommend this
   public int missingElement1060BinarySearch(int[] nums, int k) {
     int n = nums.length;
     if (k > missing(n - 1, nums))

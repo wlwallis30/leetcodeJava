@@ -79,11 +79,11 @@ public class AccountMerge {
     // consider, [name1, a, b], [name1, c, d], [name1, a, c] or [name1, a, b], [name1, d, c], [name1, a, c]
     // the union step here and the following step of combining TOGETHER will finally union same account into one root
     for (List<String> account: accounts) {
-      String p1 = find(parents, account.get(1));
+      String parent1 = find(parents, account.get(1));
       for (int i = 2; i<account.size(); i++) {
-        String p2 = find(parents, account.get(i));
+        String parent2 = find(parents, account.get(i));
         //union
-        parents.put(p2, p1);
+        parents.put(parent2, parent1);
       }
     }
 

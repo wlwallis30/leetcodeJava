@@ -62,7 +62,7 @@ public class RandomPickIdx {
   }
 
   /** Returns a random node's value. */
-  public int getRandom328() {
+  public int getRandom382() {
     int count = 0, chosenValue = 0;
     ListNode curr = this.head;
     while (curr != null) {

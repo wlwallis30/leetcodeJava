@@ -168,7 +168,7 @@ public class LongSubStrNoRepeatChar {
 		return right - left;
 	}
 
-	// more intuitive, sliding window
+	// more intuitive, sliding window, maintain window where bw left and right, there are k zeros.
 	public int longestOnes1004And487Better(int[] nums, int K) {
 		int left = 0, max = 0, zeros = 0;
 		if(nums == null || nums.length == 0){ return 0; }
@@ -177,13 +177,15 @@ public class LongSubStrNoRepeatChar {
 			// Increase count of zero whenever you see one
 			if(nums[right]==0){ zeros++; }
 
-			// Shrink the window until zeros are equal less than required k
+			//[1,1,1,0,0,0] k=2
+			// Shrink the window until zeros are equal less than required k: reposition left to the proper idx where only k zeroes bw left and right
+			// left=4 and right=5 when hitting last 2 zeros. dont worry, previous right-left+1 already record the length max 1s so far.
 			while(left <= right && zeros > K){
 				if(nums[left] == 0){ zeros--; }
 				left++;
 			}
 
-			// At every step record the length of the window
+			// At every step record the length of the window,
 			max = Math.max(max, right - left +1);
 		}
 
@@ -217,6 +219,7 @@ public class LongSubStrNoRepeatChar {
 		return maxWindow;
 	}
 
+	//maybe this is better when interviewing
 	public List<Integer> findClosestElements658Comparator(int[] arr, int k, int x) {
 		List<Integer> sortedArr = new ArrayList<Integer>();
 		for (int num: arr) { sortedArr.add(num); }
@@ -256,7 +259,7 @@ public class LongSubStrNoRepeatChar {
 
 		// While the window size is less than k, right-1 -(left+1) +1 < k
 		while (right - (left+1) < k) {
-			// Be careful to not go out of bounds
+			// Be careful to not go out of bounds, when hitting left=-1, then we just keep expending to right++, vice versa, wont hit logic abs(..) below, it is safe
 			if (left == -1) { right++; continue; }
 			if(right == arr.length) { left--; continue;}
 

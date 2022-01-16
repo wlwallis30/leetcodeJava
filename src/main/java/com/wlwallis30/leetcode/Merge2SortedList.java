@@ -120,30 +120,21 @@ public class Merge2SortedList {
 
     ListNode prev = head;
     ListNode curr = head.next;
-    boolean toInsert = false;
 
     // in the case of whole list value is 3 and insertVal is 10, it will hit first if and invalid and keep moving
-    do {
-      if (prev.val <= insertVal && insertVal <= curr.val) {
+    while (curr != head) {
+      if (prev.val <= insertVal && insertVal <= curr.val) break;
         // Case 1).
-        toInsert = true;
-      } else if (prev.val > curr.val) {
+      else if (prev.val > curr.val && (insertVal >= prev.val || insertVal <= curr.val)) break;
         // Case 2). either bigger than the tail, or smaller than the head, e.g. 9->1, inerser 10 or 0 here
-        if (insertVal >= prev.val || insertVal <= curr.val)
-          toInsert = true;
-      }
-
-      //valid even when whole list is 3 and insert val is also 3, coz we return here.
-      if (toInsert) {
-        prev.next = new ListNode(insertVal, curr);
-        return head;
-      }
 
       prev = curr;
       curr = curr.next;
-    } while (prev != head);
+    }
 
     // Case 3). case of whole list value is 3 and insertVal is 10 or 1
+    // OR you reach the head again (curr=head), you can just insert here since we have tried all previous steps
+    // OR you reach here because of break
     prev.next = new ListNode(insertVal, curr);
     return head;
   }

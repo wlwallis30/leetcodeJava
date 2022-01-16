@@ -57,6 +57,7 @@ public class BinaryTreePathSum {
   int sumNumbersDFS(TreeNode root, int sum) {
     if (root == null) return 0;
     sum = sum  + root.val;
+    //多写，要么可以减支要么可以避免犯错， you can not return: sum + sumNumbersDFS(root.left, sum*10) + sumNumbersDFS(root.right, sum*10);
     if (root.left == null && root.right == null) return sum;
     return sumNumbersDFS(root.left, sum*10) + sumNumbersDFS(root.right, sum*10);
   }

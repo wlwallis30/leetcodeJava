@@ -41,12 +41,13 @@ public class TwoSum {
     throw new IllegalArgumentException("No two sum solution");
   }
 
+  //three pointers
   public List<List<Integer>> threeSum_15(int[] nums) {
     List<List<Integer>> res = new LinkedList<>();
     if (nums.length < 3) return res;
     Arrays.sort(nums);
     for (int i = 0; i < nums.length - 2; ++i) {
-      if (nums[i] > 0) break;
+      if (nums[i] > 0) break;//after sorting, impossible to have num[i] + num after that = 0;
       if (i > 0 && nums[i] == nums[i - 1]) continue;
       int left = i + 1, right = nums.length - 1;
       while (left < right) {
@@ -260,6 +261,7 @@ class NumArray {
     return sum[j + 1] - sum[i];
   }
 
+  //prefixSum, but no need to use array to record prefixSum
   public int pivotIndex724(int[] nums) {
     int sum = 0, leftsum = 0;
     for (int x: nums) sum += x;
@@ -269,9 +271,37 @@ class NumArray {
     }
     return -1;
   }
+
+  //prefix + hashMap
+  public int maxSubArrayLen325(int[] nums, int k) {
+    int prefixSum = 0;
+    int res = 0;
+    HashMap<Integer, Integer> indices = new HashMap<>();
+    for (int i = 0; i < nums.length; i++) {
+      prefixSum += nums[i];
+
+      // Check if all of the numbers seen so far sum to k.
+      if (prefixSum == k) {
+        res = i + 1;
+      }
+      // If any subarray seen so far sums to k, then update the length of the longest_subarray.
+      //  sum of some part =  prefixSum-k, sum of some part= k,   these two parts sum = prefixSum
+      if (indices.containsKey(prefixSum - k)) {
+        res = Math.max(res, i - indices.get(prefixSum - k));
+      }
+
+      // Only add the current prefix_sum index pair to the map if the prefix_sum is not already in the map.
+      //跳过原因是，这样可以是的subarray更长
+      if (!indices.containsKey(prefixSum)) {
+        indices.put(prefixSum, i);
+      }
+    }
+
+    return res;
+  }
 }
 
-//304
+//304, 一开始我们设想用dp[r][c] = dp[r][c-1] + dp[r-1][c] + matrix[r][c] - dp[r-1][c-1]， 但因为r-1, c-1会越界，所以我们让dp多一行多一列，303的道理也是类似
 class NumMatrix {
   private int[][] dp;
 

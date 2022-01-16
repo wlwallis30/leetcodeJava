@@ -120,6 +120,27 @@ public class MeetingRoom {
     return usedRooms;
   }
 
+  //better, straight, https://www.youtube.com/watch?v=_soCy7iBJUU
+  public String addBoldTag616SlidingWindow(String s, String[] dict) {
+    boolean[] bold = new boolean[s.length()];
+    for(int start=0, end=0; start<s.length(); ++start){
+      for(String word: dict){
+        if(s.startsWith(word, start)){
+          end = Math.max(end, start+word.length());
+        }
+      }
+      bold[start] = end>start;
+    }
+    StringBuilder sb = new StringBuilder();
+    for(int i=0; i<s.length();++i){
+      if(bold[i] && (i==0 || !bold[i-1])) sb.append("<b>");
+      sb.append(s.charAt(i));
+      if(bold[i] && (i==s.length()-1 || !bold[i+1])) sb.append("</b>");
+    }
+
+    return sb.toString();
+  }
+
   public String addBoldTag616(String s, String[] dict) {
     StringBuilder ans = new StringBuilder();
     int i = 0;
