@@ -69,16 +69,18 @@ public class WordLadder {
             if (wordSet.contains(next)) {
               List<String> nextPath = new ArrayList<>(curPath);
               nextPath.add(next);
-              if (next.equals(endWord))  { res.add(nextPath); }
+              if (next.equals(endWord))  { res.add(nextPath); }//endWord should be in the set, otherwise no path to endWord
 
               pathQ.add(nextPath);
-              toRemove.add(next);
+              toRemove.add(next);//wordSet.remove(next) NOT working: only get one final path since you removed endWord
+              //ans should be [["hit","hot","dot","dog","cog"],["hit","hot","lot","log","cog"]], if you use wordSet.remove here, you only get one final path
             }
           }
           // HAVE TO UNDO FOR NEXT CHANGE OF LETTER
           current[j] = tmp;
         }
       }
+      //only removing when this whole level is done, otherwise you will only get one final path since you removed endWord by wordSet.remove(next)
       toRemove.forEach(word -> { wordSet.remove(word); } );
       // also works toRemove.forEach(wordSet::remove);
     }

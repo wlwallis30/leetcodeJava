@@ -82,18 +82,18 @@ public class AccountMerge {
       String parent1 = find(parents, account.get(1));
       for (int i = 2; i<account.size(); i++) {
         String parent2 = find(parents, account.get(i));
-        //union
+        //union, make parent2's node parent to parent1
         parents.put(parent2, parent1);
       }
     }
 
     //now combine the union sets
     for (List<String> account: accounts) {
-      String p1 = find(parents, account.get(1));
-      if (!unions.containsKey(p1)) {
-        unions.put(p1, new TreeSet<>());
+      String rootParent = find(parents, account.get(1));
+      if (!unions.containsKey(rootParent)) {
+        unions.put(rootParent, new TreeSet<>());
       }
-      Set<String> emailSets = unions.get(p1);
+      Set<String> emailSets = unions.get(rootParent);
       for (int i = 1; i<account.size(); i++) {
         emailSets.add(account.get(i));
       }

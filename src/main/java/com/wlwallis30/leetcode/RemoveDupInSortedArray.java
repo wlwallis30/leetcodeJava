@@ -89,6 +89,7 @@ public class RemoveDupInSortedArray {
   }
 
   // removing the adjacent dup, stack, using stringBuilder as stack
+  // "abbbaca" will output abaca
   public String removeDuplicates1047Stack(String S) {
     StringBuilder sb = new StringBuilder();
     int sbLength;

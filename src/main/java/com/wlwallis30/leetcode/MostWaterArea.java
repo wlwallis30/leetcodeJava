@@ -51,8 +51,8 @@ public class MostWaterArea {
     int left_max = 0, right_max = 0;
     while (left < right) {
       if (height[left] < height[right]) {
-        if(height[left] >= left_max) left_max = height[left];
-        else ans += (left_max - height[left]);
+        if(height[left] >= left_max) left_max = height[left];// left >= leftmax, 阻断left位子的蓄水，所以不能算ans
+        else ans += (left_max - height[left]);//只计算left side 的蓄水
         ++left;
       }//moving to opposite direction since smaller of max is on the right
       else {

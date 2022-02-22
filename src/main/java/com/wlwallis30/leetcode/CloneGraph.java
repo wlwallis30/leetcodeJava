@@ -95,6 +95,7 @@ final class RandomList {
     return node;
   }
 
+  // space o(N) come from hashmap
   HashMap<Node, Node> visited = new HashMap<Node, Node>();
   public Node copyRandomList138Iteration(Node head) {
     if (head == null) { return null; }

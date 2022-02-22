@@ -40,6 +40,7 @@ public class Merge2SortedList {
     return lists[0];
   }
 
+  // going backward for nums1 since the back are zeros
   public void merge2SortedArray_88(int[] nums1, int m, int[] nums2, int n) {
     int count = m + n - 1;
     --m; --n;

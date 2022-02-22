@@ -91,8 +91,8 @@ public class FacebookHiFreq {
   public boolean isToeplitzMatrix766(int[][] matrix) {
     for (int r = 0; r < matrix.length; ++r)
       for (int c = 0; c < matrix[0].length; ++c)
-        if (r > 0 && c > 0 && matrix[r-1][c-1] != matrix[r][c])
-          //if (r <matrix.length-1 && c<matrix[0].length-1 && matrix[r+1][c+1] != matrix[r][c]) also works
+        //if (r > 0 && c > 0 && matrix[r-1][c-1] != matrix[r][c])  also works
+        if (r <matrix.length-1 && c<matrix[0].length-1 && matrix[r+1][c+1] != matrix[r][c])
           return false;
     return true;
   }
@@ -323,6 +323,7 @@ public class FacebookHiFreq {
     return dp[finalDay];
   }
 
+  // check 498
   public int[] findDiagonalOrder1424(List<List<Integer>> nums) {
     int count = 0;
     List<Stack<Integer>> listOfStack = new ArrayList<>();
@@ -402,7 +403,7 @@ class MovingAverage {
     // calculate the new sum by shifting the window
     queue.add(val);
     //int head = count > size ? (int)queue.poll() : 0;
-    //the following also works, count-- will not affect result in this problem since there is no removing function in this class
+    //the following also works: count-- will not affect result in this problem since there is no removing function in this class
     int head;
     if(count > size) {head =(int) queue.poll(); count--;}
     else head=0;

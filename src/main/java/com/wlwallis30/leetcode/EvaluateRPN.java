@@ -91,6 +91,7 @@ public class EvaluateRPN {
       if (Character.isDigit(currentChar)) { currentNumber = (currentNumber * 10) + (currentChar - '0'); }
 
       // hitting operators or hitting the end of string, we should calc or push num for calc
+      // see a operation or end of string, we operate with previous operator.
       if (!Character.isDigit(currentChar) && !Character.isWhitespace(currentChar) || i == len - 1) {
         if (operation == '-') { stack.push(-currentNumber); }
         else if (operation == '+') { stack.push(currentNumber); }
@@ -158,24 +159,24 @@ public class EvaluateRPN {
   // basic calculator II, compare to 227, this does not have * /
   // only push when hitting (, only pop when ). when hitting + -, just do the calculation since no */, no need to push
   public int calculate224(String s) {
-    Stack<Integer> stack = new Stack<>();
-    int operand = 0;
+    Stack<Integer> stack = new Stack<>();// stack holding temp on-going results and the sign b4 (, e.g. 4 - (2+3), then 4 and -1 are in stack
+    int curNum = 0;
     int result = 0; // For the on-going result
     int sign = 1;  // 1 means positive, -1 means negative
 
-    // when hitting + - ) we need to calculate and reset operand = 0, when hitting (, we need to push result and sign and reset them
+    // when hitting + - ) we need to calculate and reset curNum = 0, when hitting (, we need to push result and sign and reset them
     for (int i = 0; i < s.length(); i++) {
       char ch = s.charAt(i);
-      if (Character.isDigit(ch)) { operand = 10 * operand + (ch - '0');
+      if (Character.isDigit(ch)) { curNum = 10 * curNum + (ch - '0');
       } else if (ch == '+') {
-        result += sign * operand;
+        result += sign * curNum;
         sign = 1;
-        // Reset operand
-        operand = 0;
+        // Reset curNum
+        curNum = 0;
       } else if (ch == '-') {
-        result += sign * operand;
+        result += sign * curNum;
         sign = -1;
-        operand = 0;
+        curNum = 0;
       } else if (ch == '(') {
         // Push the result and sign on to the stack, for later
         stack.push(result);
@@ -183,15 +184,15 @@ public class EvaluateRPN {
         sign = 1;
         result = 0;
       } else if (ch == ')') {
-        result += sign * operand;
+        result += sign * curNum;
         // ')' marks end of expression within a set of parenthesis as stack.pop() is the sign before the parenthesis
         result *= stack.pop();
-        // (operand on stack) + (sign on stack * (result from parenthesis))
+        // (curNum on stack) + (sign on stack * (result from parenthesis))
         result += stack.pop();
-        operand = 0;
+        curNum = 0;
       }
     }
-    //dont forget we still have the last operand and sign to add to result
-    return result + (sign * operand);
+    //dont forget we still have the last curNum and sign to add to result
+    return result + (sign * curNum);
   }
 }

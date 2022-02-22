@@ -178,22 +178,26 @@ public class TwoSum {
     return count;
   }
 
-  // first, people can think of culmulative sum, then upgrade to hashmap
+  // first, people can think of culmulative sum/prefix sum, then upgrade to hashmap
+  // some previous prefix sum + target = current prefix sum, keep moving keep finding the sub_arrays whose sum = target
   public int subarraySum560_map(int[] nums, int target) {
     int count = 0, sum = 0;
     HashMap <Integer, Integer> sumOccurMap = new HashMap<>();
-    //init condition for sum = 0
+    //init condition for sum = 0, cnt be 1 not 0, check 3, 4 in the example below, hitting 4, the cnt should be 2
     sumOccurMap.put(0, 1);
     for (int i = 0; i < nums.length; i++) {
       sum += nums[i];
       // 3 4 7 2 -3 1 4 2, target = 7
-      //(0,1) (3, 1) (7, 1) (14,1 later will become 2), (16,1), (13, 1), (14, 1->2), (18, 1), (20, 1)
+      //(0,1) (3, 1) (7, 1) (14,1 later will become 2), (16,1), (13, 1), (14, 1->2), (18, 1), (20, 1), final cnt is 4
+      // you can play with // 3 4 7 2 -3 1 4 3, target = 7 as well
+      // (0,1) (3, 1) (7, 1) (14,1 later will become 2), (16,1), (13, 1), (14, 1->2), (18, 1), (21, 1), then final cnt should be 5 since 14 has 2 cnt
       if (sumOccurMap.containsKey(sum - target)) count += sumOccurMap.get(sum - target);
       sumOccurMap.put(sum, sumOccurMap.getOrDefault(sum, 0) + 1);
     }
     return count;
   }
 
+  //also refer to the above problem
   // a % c = b % c ==>  (a-b) % c = 0, building a hashmap with the mod as key and idx as value
   // [..4, 3, 3..] k=6, mod:4, mod:1, mod:4, so 3+3 can be divided by 6
   public boolean checkSubarraySum523(int[] nums, int k) {
@@ -228,7 +232,8 @@ class RandomPickWeight {
     System.out.println(Arrays.toString(w));
   }
 
-  //比如若权重数组为 [1, 3, 2] 的话，那么累加和数组为 [1, 4, 6]，整个的权重和为6，我们 rand() % 6，
+  //比如若权重数组为 [1, 3, 2] 的话，那么累加和数组为 [1, 4, 6]，整个的权重和为6，我们 rand() * 6，
+  // 0 <= Math.random() < 1
   // 可以随机出范围 [0, 5] 内的数，随机到 0 则为第一个点，随机到 1，2，3 则为第二个点，
   // 随机到 4，5 则为第三个点，所以我们随机出一个数字x后，然后再累加和数组中查找第一个大于随机数x的数字
   public int pickIndex528() {

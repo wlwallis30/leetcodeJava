@@ -430,6 +430,7 @@ public class SurroundedRegions {
     rows = grid.length;
     cols = grid[0].length;
 
+    //grid area will be marked by 2, 3, 4 if original are 1s, so rows*cols+2
     int[] areas = new int[rows * cols + 2];
     int areaIndex = 2;
 
@@ -453,7 +454,7 @@ public class SurroundedRegions {
       for(int c = 0; c < cols; c++){
         if(grid[r][c] != 0) continue;
 
-        Set<Integer> seenIsland = new HashSet();
+        Set<Integer> seenIsland = new HashSet<>();
         int area = 1;
         for(int[] dir : DIRECTIONS){
           int x = r + dir[0];
@@ -580,6 +581,7 @@ public class SurroundedRegions {
   In fact, the median must be the optimal meeting point
   Case #4: 1-1-0-0-1, odd 1s, the median is x=1, the best meeting point, if x=2, not best
   Case #5: 1-1-0-0-1-1. even 1s, any of x=1 to x=4 points and the total distance is minimized, from x=1 or x=4, moving to the other side will have 2*(+1) and 2*(-1) so 0.
+  case 4,5 实际上也涵盖了case 1,2,3, 只需考虑奇偶个1的情况就好
   O(mnlogmn) due to sorting size of (mn)
    */
   public int minTotalDistance296(int[][] grid) {
@@ -746,6 +748,7 @@ public class SurroundedRegions {
       int newRow = row + directions[newD][0];
       int newCol = col + directions[newD][1];
 
+      // move() will always try to move into the next cell which robot is facing
       //打扫一个方向的dfs，然后回来原来位置，在这一层右转，达到顺时针的策略
       // consider:  1 0 1
       //            0 0 0

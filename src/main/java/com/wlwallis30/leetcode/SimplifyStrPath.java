@@ -16,7 +16,7 @@ public class SimplifyStrPath {
       else stack.add(directory); // Finally, a legitimate directory name, so we add it to our stack
     }
 
-    // Stich together all the directory names together
+    // Stitch together all the directory names together
     StringBuilder result = new StringBuilder();
     // 15 ways to iterate in stack: https://www.techiedelight.com/iterate-through-stack-java/
     for (String dir : stack) {//iterator is in the order which reverse the order of stack

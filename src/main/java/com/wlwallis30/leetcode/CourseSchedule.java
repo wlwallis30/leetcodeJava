@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.*;
 
 public class CourseSchedule {
-  // BFS, topology sort, queue
+  // BFS, topology sort, queue, use this, better than DFS
   // check example of [[4, 3], [0,4], [2,0], [1,2], [0,1]], after 3, 4  out of queue, 0,1,2 node all have degree 1, then queue is empty and num!=0
   public boolean canFinish207(int numCourses, int[][] prerequisites) {
     Map<Integer, List<Integer>> graph = new HashMap<>();
@@ -56,7 +56,7 @@ public class CourseSchedule {
     return false;
   }
 
-  // BFS + inDegree
+  // BFS + inDegree, use this
   public int[] findOrder210(int numCourses, int[][] prerequisites) {
     Map<Integer, List<Integer>> adjList = new HashMap<>();
     int[] indegree = new int[numCourses];
@@ -99,15 +99,15 @@ public class CourseSchedule {
     return new int[0];
   }
 
-  //topology sort
+  //topology sort: adjList + indegree + BFS
   public String alienOrder269(String[] words) {
     // Step 0: Create data structures and find all unique letters.
-    Map<Character, List<Character>> adjList = new HashMap<>();
+    Map<Character, List<Character>> adjMap= new HashMap<>();
     Map<Character, Integer> indegree = new HashMap<>();
     for (String word : words) {
       for (char c : word.toCharArray()) {
         indegree.put(c, 0);
-        adjList.put(c, new ArrayList<>());
+        adjMap.put(c, new ArrayList<>());
       }
     }
 
@@ -117,12 +117,12 @@ public class CourseSchedule {
       String word2 = words[i + 1];
       // Check that word2 is not a prefix of word1.
       if (word1.length() > word2.length() && word1.startsWith(word2)) {
-        return "";
+        return "";//given a wrong order
       }
       // Find the first non match and insert the corresponding relation.
       for (int j = 0; j < Math.min(word1.length(), word2.length()); j++) {
         if (word1.charAt(j) != word2.charAt(j)) {
-          adjList.get(word1.charAt(j)).add(word2.charAt(j));
+          adjMap.get(word1.charAt(j)).add(word2.charAt(j));
           indegree.put(word2.charAt(j), indegree.get(word2.charAt(j)) + 1);
           break;//important to break here.
         }
@@ -140,7 +140,7 @@ public class CourseSchedule {
     while (!queue.isEmpty()) {
       Character c = queue.remove();
       sb.append(c);
-      for (Character next : adjList.get(c)) {
+      for (Character next : adjMap.get(c)) {
         indegree.put(next, indegree.get(next) - 1);
         if (indegree.get(next).equals(0)) {
           queue.add(next);

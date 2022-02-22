@@ -159,6 +159,7 @@ public class BinaryTreeTraversal {
     if(node == null) return 0;
     int leftPath = longestPath(node.left);
     int rightPath = longestPath(node.right);
+    // some middle node could have very long left and right sub tree
     diameter = Math.max(diameter, leftPath + rightPath);
 
     // return the longest one between left_path and right_path;
@@ -634,7 +635,7 @@ public class BinaryTreeTraversal {
   }
 
   //level order + hashtable, refer to 314, similar
-  // 结点值的顺序还有要求，if column相同，则按结点值从小到大排
+  // 结点值的顺序还有要求，top row first, then lower rows, then if column相同，则按结点值从小到大排
   public List<List<Integer>> verticalTraversal987(TreeNode root) {
     List<List<Integer>> output = new ArrayList<>();
     if (root == null) { return output; }
@@ -692,12 +693,12 @@ public class BinaryTreeTraversal {
 
   // refer to 987, vertical traversal
   public List<List<Integer>> verticalOrder314(TreeNode root) {
-    List<List<Integer>> output = new ArrayList();
+    List<List<Integer>> output = new ArrayList<>();
     if (root == null) { return output; }
 
-    Map<Integer, ArrayList> columnTable = new HashMap();
+    Map<Integer, ArrayList<Integer>> columnTable = new HashMap<>();
     // Pair of node and its column offset
-    Queue<Pair<TreeNode, Integer>> queue = new ArrayDeque();
+    Queue<Pair<TreeNode, Integer>> queue = new ArrayDeque<>();
     int column = 0;
     queue.offer(new Pair(root, column));
 

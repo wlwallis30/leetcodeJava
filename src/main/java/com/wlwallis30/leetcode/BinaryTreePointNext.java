@@ -121,8 +121,8 @@ public class BinaryTreePointNext {
   public List<Integer> rightSideView199(TreeNode root) {
     if (root == null) return new ArrayList<Integer>();
 
-    Queue<TreeNode> queue = new ArrayDeque(){{ offer(root); }};
-    List<Integer> rightside = new ArrayList();
+    Queue<TreeNode> queue = new ArrayDeque<>(){{ offer(root); }};
+    List<Integer> rightside = new ArrayList<>();
 
     while (!queue.isEmpty()) {
       int levelLength = queue.size();

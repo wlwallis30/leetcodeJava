@@ -4,7 +4,7 @@ import java.util.*;
 
 public class KthLargeInArray {
   public int findKthLargest215(int[] nums, int k) {
-    // init heap 'the smallest element first'
+    // init heap 'the smallest element first', min heap
     PriorityQueue<Integer> heap = new PriorityQueue<>((n1, n2) -> n1 - n2);
     // keep k largest elements in the heap
     for (int num: nums) {
@@ -25,7 +25,7 @@ public class KthLargeInArray {
   }
   public int partition(int[] nums, int left, int right) {
     int pivot = nums[left], l = left + 1, r = right;
-    // e.g. [3, 1, 4, 5], left=0, l=1, r=3, so while loop should <=, not <,
+    // e.g. [3, 1, 4, 5], left=0, l=1, r=3, so while loop should <=, not < since you need to swap 3 and 4 finally
     while (l <= r) {
       if (nums[l] < pivot && nums[r] > pivot) {
         Solution.swap(nums, l++, r--);
@@ -42,7 +42,7 @@ public class KthLargeInArray {
     // O(N) time
     Map<Integer, Integer> count = new HashMap<>();
     for (int num: nums) { count.put(num, count.getOrDefault(num, 0) + 1); }
-    // init heap 'the less frequent element first'
+    // init heap 'the less frequent element first', min heap
     Queue<Integer> heap = new PriorityQueue<>( (n1, n2) -> count.get(n1) - count.get(n2));
 
     // 2. keep k top frequent elements in the heap O(N log k) < O(N log N) time
