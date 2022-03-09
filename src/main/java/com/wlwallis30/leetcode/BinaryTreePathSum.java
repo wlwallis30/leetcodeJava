@@ -119,7 +119,7 @@ public class BinaryTreePathSum {
     return false;
   }
 
-  // stack
+  // stack of node
   TreeNode str2tree536(String s) {
     if (s.isEmpty()) return null;
     Stack<TreeNode> stack = new Stack<>();

@@ -10,7 +10,7 @@ class DLinkedNode {
 }
 // LRUCache146
 public class LRUCache {
-  //when adding a new node.
+  //when adding a new node. next points to the older one, actually does not matter if next or prev points to older, you just need to fix the rule
   private void addToHead(DLinkedNode node) {
     //Always add the new node right after head.
     node.prev = head;
@@ -42,10 +42,10 @@ public class LRUCache {
     return res;
   }
 
-  private Map<Integer, DLinkedNode> cache = new HashMap<>();
+  private Map<Integer, DLinkedNode> cache = new HashMap<>();// this structure is for cache
   private int size;
   private int capacity;
-  private DLinkedNode head, tail;
+  private DLinkedNode head, tail;//this structure is for LRU/eviction purpose
 
   public LRUCache(int capacity) {
     this.size = 0;

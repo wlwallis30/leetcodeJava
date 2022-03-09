@@ -220,6 +220,7 @@ public class FacebookHiFreq {
     int p1 = 0, p2=0;
     List<List<Integer>> res = new ArrayList<>();
 
+    //The full arrays that encoded1 and encoded2 represent are the same length. so p1 is enough in the condition
     while(p1 < encoded1.length) {
       int len = Math.min(encoded1[p1][1], encoded2[p2][1]);
       int mult = encoded1[p1][0] * encoded2[p2][0];

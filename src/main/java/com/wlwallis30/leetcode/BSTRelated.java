@@ -14,6 +14,7 @@ public class BSTRelated {
     return res;
   }
 
+  //The number of nodes in the tree is in the range [1, many]
   public int closestValue270Recur(TreeNode root, double target) {
         int res = root.val;
         if (target < root.val && root.left!=null) {

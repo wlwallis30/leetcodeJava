@@ -52,7 +52,7 @@ public class WordBreak {
     boolean[] dp = new boolean[s.length() + 1];
     dp[0] = true;
     for (int len = 1; len <= s.length(); len++) {
-      //curStart index, where dp[curStart] retore the previous substring with length of "curStart" num
+      //curStart index, where dp[curStart] store the previous substring with length of "curStart" num
       // e.g. dp[4] = true, means Cats with len of 4 is in dictionary, currently we start to look substring from index of 4
       for (int curStart = 0; curStart < len; curStart++) {
         if (dp[curStart] && wordDictSet.contains(s.substring(curStart, len))) {

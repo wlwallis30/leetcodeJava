@@ -134,7 +134,7 @@ public class Merge2SortedList {
     }
 
     // Case 3). case of whole list value is 3 and insertVal is 10 or 1
-    // OR you reach the head again (curr=head), you can just insert here since we have tried all previous steps
+    // OR you reach the head again (curr=head), you can just insert here since we have tried all previous steps, when curr=1, prev=9
     // OR you reach here because of break
     prev.next = new ListNode(insertVal, curr);
     return head;

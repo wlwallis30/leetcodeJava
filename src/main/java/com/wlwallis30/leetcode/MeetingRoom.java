@@ -125,6 +125,7 @@ public class MeetingRoom {
   public String addBoldTag616SlidingWindow(String s, String[] dict) {
     boolean[] bold = new boolean[s.length()];
     for(int start=0, end=0; start<s.length(); ++start){
+      //try diff words from this start position and extend end when possible
       for(String word: dict){
         if(s.startsWith(word, start)){
           end = Math.max(end, start+word.length());

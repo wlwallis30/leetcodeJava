@@ -7,7 +7,7 @@ public class RandomPickIdx {
   private Random rand;
   private int[] nums;
 
-  // 398, refer to 380 which is not reservoir sampling
+  // 398, refer to 380 which is not reservoir sampling, also refer to 528
   //水塘抽样的前提都是set非常大
   public RandomPickIdx (int[] nums) {
     this.rand = new Random();
@@ -39,7 +39,7 @@ public class RandomPickIdx {
   public int pick_reservoir(int target) {
     int n = this.nums.length;
     int count = 0;
-    int idx = 0;
+    int resIdx = 0;
     for (int i = 0; i < n; ++i) {
       // if nums[i] is equal to target, i is a potential candidate
       if (this.nums[i] == target) {
@@ -48,10 +48,10 @@ public class RandomPickIdx {
         // we pick the current number with probability 1 / count (reservoir sampling)
         // from any point when  nextInt(count) ==0, we pick the new i(like swapping in reservoir sampling), so that is 1/curCount possibility.
         // if the following rounds, nextInt(count) != 0, then not picking the next "i"s, then it form 1/i * i/(i+1) * (i+1)/(i+2) ....* (n-2)/(n-1) * (n-1)/n = 1/n
-        if (rand.nextInt(count) == 0) { idx = i; }
+        if (rand.nextInt(count) == 0) { resIdx = i; }
       }
     }
-    return idx;
+    return resIdx;
   }
 
   // 382
