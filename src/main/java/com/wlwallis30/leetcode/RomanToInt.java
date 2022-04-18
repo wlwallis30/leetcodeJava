@@ -12,6 +12,7 @@ public class RomanToInt {
    */
   public int romanToInt_13(String str) {
     Map<Character, Integer> romanMap = new HashMap<>();
+    //Map<Character, Integer> xyz = Map.of('M', 100,  'D', 500); also works
     romanMap.put('M', 1000);
     romanMap.put('D', 500);
     romanMap.put('C', 100);

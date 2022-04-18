@@ -9,7 +9,7 @@ public class LongSubStrNoRepeatChar {
 		int[] charPosMap = new int[256];
 		Arrays.fill(charPosMap, 0);
 		int res = 0, left = 0;
-		// left: the new story begin where left, charPosMap record the previous char's position + 1( plus 1 means, the position if you meet the repeated char)
+		// left: the new story begin where left, charPosMap record the previous char's position + 1( plus 1 means, the position + 1 is where to cal if you meet the repeated char)
 		// so everytime, need to find the max of left and current char's prev position+1 as the starting point to calculate length
 		for(int right = 0; right < inputStr.length(); right++) {
 			left = Math.max(left, charPosMap[inputStr.charAt(right)]);

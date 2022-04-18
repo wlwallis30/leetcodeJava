@@ -2,6 +2,7 @@ package com.wlwallis30.leetcode;
 
 public class MaxSubArray {
   //dp
+  // any subarray whose sum is positive is worth keeping, nums = [-2,1000000000,-3,4,-1,2,1,-5,4]
   public int maxSubArray_53(int[] nums) {
     // Initialize our variables using the first element.
     int curMax = nums[0];
