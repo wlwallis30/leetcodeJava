@@ -147,8 +147,7 @@ public class RemoveDupInSortedArray {
 
   // contains duplicate
   public boolean containsDuplicate217(int[] nums) {
-    Set<Integer> set = new HashSet<>(nums.length);
-    //Set<Integer> set1 = new HashSet<>();
+    Set<Integer> set = new HashSet<>();
     for (int x: nums) {
       if (set.contains(x)) return true;
       set.add(x);
