@@ -280,3 +280,66 @@ class FileSystem {
     return curDir.fileMap.get(d[d.length - 1]);
   }
 }
+
+//362
+class HitCounter {
+  private Queue<Integer> hitsQ;
+
+  public HitCounter() {
+    this.hitsQ = new LinkedList<Integer>();
+  }
+
+  public void hit(int timestamp) {
+    this.hitsQ.add(timestamp);
+  }
+
+  /** Return the number of hitsQ in the past 5 minutes.
+   @param timestamp - The current timestamp (in seconds granularity). */
+  public int getHits(int timestamp) {
+    while (!this.hitsQ.isEmpty()) {
+      int diff = timestamp - this.hitsQ.peek();
+      if (diff >= 300) this.hitsQ.remove();
+      else break;
+    }
+    return this.hitsQ.size();
+  }
+}
+
+//937
+class RecordDataLog {
+  public String[] reorderLogFiles(String[] logs) {
+
+    //Comparator<String> myComp = new Comparator<String>() {
+    //            public int compare(String log1, String log2) also works
+    Comparator<String> myComp = (log1, log2) -> {
+      // split each log into two parts: <identifier, content>
+      String[] split1 = log1.split(" ", 2);
+      String[] split2 = log2.split(" ", 2);
+
+      boolean isDigit1 = Character.isDigit(split1[1].charAt(0));
+      boolean isDigit2 = Character.isDigit(split2[1].charAt(0));
+
+      // case 1). both logs are letter-logs
+      if (!isDigit1 && !isDigit2) {
+        // first compare the content
+        int cmp = split1[1].compareTo(split2[1]);
+        if (cmp != 0)
+          return cmp;
+        // logs of same content, compare the identifiers
+        return split1[0].compareTo(split2[0]);
+      }
+      // case 2). one of logs is digit-log
+      if (!isDigit1 && isDigit2)
+        // the letter-log comes before digit-logs
+        return -1;
+      else if (isDigit1 && !isDigit2)
+        return 1;
+      else
+        // case 3). both logs are digit-log
+        return 0;
+    };
+
+    Arrays.sort(logs, myComp);
+    return logs;
+  }
+}
