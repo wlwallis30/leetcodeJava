@@ -9,7 +9,7 @@ package com.wlwallis30.leetcode;
 //import com.sun.istack.internal.NotNull;
 
 /*
- * Two sum 1: 15, 16, 18, 167, 170, 259, 560, 523, 528, 303, 304, 724.......total: 13
+ * Two sum 1: 15, 16, 18, 167, 170, 259, 560, 523, 528, 303, 304, 724, 325.......total: 14
  * Add two numbers 2: 67, 43, 66, 369, 371, 415.... total: 7
  * Length of longest sub string 3: 159, 239, 340, 128, 298, 485, 487, 1004, 424, 658, 76.....total: 12
  * Find median for two sorted arrays 4........total: 1
@@ -59,7 +59,7 @@ package com.wlwallis30.leetcode;
  * spiral matrix 54: 59   total: 2
  * rotate linkedlist by k nodes 61: 189    total:2
  * unique path 62: 63, 64     total: 3
- * search in 2D matrix 74: 240, 1428, 1091, 1559, 935, 1102    total: 7
+ * search in 2D matrix 74: 240, 1428, 1091, 1559, 935, 1102, 704    total: 8
  * set matrix to zero 73: 289    total: 2
  * sort colors 75: (148)    total: 1
  * simplify dir path 71:    total: 1
@@ -97,13 +97,13 @@ package com.wlwallis30.leetcode;
  * Facebook high frequency alone: 636, 670, 791, 766, 498, 1011, 1891, 1344, 605,1868, 621, 767, 983,346,1424, 896,932, 681,939,691   total: 20
  * random pick index 398:  328, (528)      total: 2
  * WordAbbreviation 408:      total: 1
- * nested integer list sum: 339   total: 1
+ * nested integer list sum: 339, 364   total: 2
  * tic tac toe 348: 794   total: 2
  * bulb switcher 319:    total: 1
  * insert delete random 380:  total: 1
  * word ladder 126: 127     total: 2
  * trie 208: 211, 642     total: 3
- *********************Similar problem catalogs: total: 327
+ *********************Similar problem catalogs: total: 330
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 // stack, queue, arrayDequeue

@@ -35,7 +35,8 @@ public class SearchIn2DMatrix {
       else end = mid;
     }
 
-    if (start == m) return false;
+    // start will never equal to m from the above, so remove the following
+    // if (start == m) return false;
     //if (matrix[start][n - 1] == target) return true;
 
     int theRow = start;
@@ -48,11 +49,13 @@ public class SearchIn2DMatrix {
       if (matrix[theRow][mid] < target) start = mid + 1;
       else end = mid;
     }
-    return start != n && matrix[theRow][start] == target;
+    // start will never be n, so removing
+    //return start != n && matrix[theRow][start] == target;
+    return matrix[theRow][start] == target;
   }
 
   //左下角和右上角的数。左下角的 18，往上所有的数变小，往右所有数增加,
-  //当然也可以把起始数放在右上角
+  //当然也可以把起始数放在右上角, this is like a gradient idea, only bottom left or top right has + - gradient
   // O(m+n) coz row can be increased m times, col for n times in while loop
   public boolean searchMatrix240(int[][] matrix, int target) {
     // start our "pointer" in the bottom-left
@@ -77,6 +80,7 @@ public class SearchIn2DMatrix {
     List<Integer> dimensions();
   }
 
+  // O(m x log(n))
   public int leftMostColumnWithOne1428(BinaryMatrix binaryMatrix) {
     int rows = binaryMatrix.dimensions().get(0);
     int cols = binaryMatrix.dimensions().get(1);
@@ -95,6 +99,28 @@ public class SearchIn2DMatrix {
     }
     // If smallest_index is still set to cols, then there were no 1's in the grid.
     return smallestIndex == cols ? -1 : smallestIndex;
+  }
+
+  // O(m+n)
+  public int leftMostColumnWithOne1428Better(BinaryMatrix binaryMatrix) {
+    int rows = binaryMatrix.dimensions().get(0);
+    int cols = binaryMatrix.dimensions().get(1);
+
+    // Set pointers to the top-right corner.
+    int currentRow = 0;
+    int currentCol = cols - 1;
+
+    // Repeat the search until it goes off the grid.
+    while (currentRow < rows && currentCol >= 0) {
+      if (binaryMatrix.get(currentRow, currentCol) == 0) {
+        currentRow++;
+      } else {
+        currentCol--;
+      }
+    }
+
+    // If we never left the last column, this is because it was all 0's.
+    return (currentCol == cols - 1) ? -1 : currentCol + 1;
   }
 
   private static final int[][] directions =
@@ -148,6 +174,7 @@ public class SearchIn2DMatrix {
     return neighbours;
   }
 
+  // DFS
   public boolean containsCycle1559(char[][] grid) {
     boolean visited[][] = new boolean[grid.length][grid[0].length];
     for(int i = 0; i < grid.length; i++){
@@ -160,6 +187,7 @@ public class SearchIn2DMatrix {
   }
   static int moves[][] = {{1,0},{0,1},{-1,0},{0,-1}};
   //用prevX， prevY的原因： 因为要是用vis[x][y]来判断是否循环，所以不能用vis[x][y] 放在条件里判断，否则无法进入下一层call。用prevXY来追踪就好了
+  // if you use vis[nextX][nextY] to see if it come from prev cell, then you can not go to next call of possible loop.
   public boolean isMoveBack(char grid[][], int x, int y, boolean[][] visited, int prevX, int prevY){
     //转了一圈又回来了，return true
     if(visited[x][y]) return true;
@@ -271,19 +299,21 @@ public class SearchIn2DMatrix {
         // maxheap store the min along the path, but since it is max heap, the top one will guarantee it will generate the max path
         int minTillNow = Math.min(A[neighborRow][neighborCol], preMinInPath);
         queue.offer(new int[]{neighborRow, neighborCol, minTillNow});
+        // push all valid co ordinate neighbors in the PQ
+        // reason: [[3, 4, 6, 1] [3, 5, 1, 1], [2, 1, 1, 1], [2, 2, 8, 9]], 3->4->6 then it will hit 1, but 3->2->2 will hit 2 down the path
       }
     }
     return -1;
   }
 
   public int search704(int[] nums, int target) {
-    int pivot, left = 0, right = nums.length - 1;
-    while (left <= right) {
-      pivot = left + (right - left) / 2;
-      if (nums[pivot] == target) return pivot;
-      if (target < nums[pivot]) right = pivot - 1;
-      else left = pivot + 1;
+    int mid, left = 0, right = nums.length - 1;
+    while (left < right) {
+      mid = left + (right - left) / 2;
+      if (nums[mid] < target) left = mid + 1;
+      else right = mid;
     }
-    return -1;
+    if (nums[left] == target) return left;
+    else return -1;
   }
 }

@@ -8,3 +8,4 @@ bin/**
 /bin/
 src/main/main.iml
 src/test/test.iml
+practice/**

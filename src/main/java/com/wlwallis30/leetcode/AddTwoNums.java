@@ -39,8 +39,9 @@ public class AddTwoNums {
 			int bitB = n >= 0 ? strB.charAt(n--) - '0' : 0;
 
 			int sum = bitA + bitB + carry;
-			res = Integer.toString(sum % 2) + res;
-			
+			res = String.valueOf(sum % 2) + res;
+//		use StringBuilder:	res.insert(0, String.valueOf(sum % 2));
+
 			carry = sum / 2;
 		}
 		
@@ -70,7 +71,8 @@ public class AddTwoNums {
 		
 		for(int val: vals) {
 		  //the highest num is store at 0 idx, it might be 0, e.g. [0, 2, 1, 3], so you need to skip 0
-			if(!res.isEmpty() || val != 0) res = res + Integer.toString(val);
+			// if val == 0 && res.isEmpty(), then it is the first 0, we skip/continue, therefore the following:
+			if(!res.isEmpty() || val != 0) res = res + String.valueOf(val);
 		}
 		return res.isEmpty() ? "0": res;
     }

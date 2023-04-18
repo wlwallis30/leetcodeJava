@@ -203,10 +203,10 @@ public class LongSubStrNoRepeatChar {
 			map.put(ch, map.get(ch) + 1);
 
 			// IMPORTANT: maxRepeat is not the accurate number of dominant character which might change, It is the historical maximum count
-			//maxCnt 相当于卡了一个窗口大小，我们并不希望窗口变小，虽然窗口在滑动，但是之前是出现过跟窗口大小相同的符合题意的子串，缩小窗口没有意义，并不会使结果 res 变大，所以我们才不更新 maxCnt
+			//maxRepeat 相当于卡了一个窗口大小，我们并不希望窗口变小，虽然窗口在滑动，但是之前是出现过跟窗口大小相同的符合题意的子串，缩小窗口没有意义，并不会使结果 res 变大，所以我们才不更新 maxRepeat
 			maxRepeat = Math.max(maxRepeat, map.get(ch));
 
-			//不更新 maxCnt
+			//不更新 maxCnt, while and if both worked
 			if(right - left + 1 - maxRepeat > k) {
 				char remove = s.charAt(left);
 				map.put(remove, map.get(remove) - 1);
@@ -255,7 +255,8 @@ public class LongSubStrNoRepeatChar {
 		// reason of using left+1, right-1, because closest one might already has idx 0 or length-1
 		//[1,2,3,4,5] k=4 x=-1, then left=0, when you expand a bit by left = left-1, left then < 0, bad. so we target [left+1, right-1]
 		left -= 1;
-		right = left + 1; // right point to the original left, not the above
+		right = left + 1; // right point to the original left, not the above.
+		// now left+1 > right-1 is invalid range(also excluding the closest, so we are not choosing either left or right now, later while loop will decide)
 
 		// While the window size is less than k, right-1 -(left+1) +1 < k
 		while (right - (left+1) < k) {

@@ -211,7 +211,11 @@ public class TwoSum {
       if (sum == 0 && i > 0) { return true; }
       // case 2: regular case
       if (modIdx.containsKey(sum) && i - modIdx.get(sum) > 1) { return true; }
-      if (!modIdx.containsKey(sum)) { modIdx.put(sum, i); }
+      // without if, [5,3,0,0] k = 3 will keep moving (5: 0) to (5: 1) to (5: 2), etc, and when hitting 0, will not satisfy >1
+      if (!modIdx.containsKey(sum)) {
+        modIdx.put(sum, i);
+//        System.out.println(modIdx.entrySet());
+      }
     }
     return false;
   }
@@ -322,6 +326,7 @@ class NumMatrix {
 
   public int sumRegion(int row1, int col1, int row2, int col2) {
     return dp[row2 + 1][col2 + 1] - dp[row1][col2 + 1] - dp[row2 + 1][col1] + dp[row1][col1];
+//    return dp[row2 + 1][col2 + 1] - dp[row1-1+1][col2 + 1] - dp[row2 + 1][col1-1+1] + dp[row1-1+1][col1-1+1];
   }
 }
 

@@ -64,6 +64,21 @@ public class RemoveDupInSortedArray {
     return keepPos + 1;
   }
 
+  // this is much better in interview
+  public int removeDup_80Better(int[] nums) {
+    int  keepPos = 1, count = 1;
+    for (int probe = 1; probe < nums.length; probe++) {
+      // If the current element is a duplicate, increment the count.
+      if (nums[probe] == nums[probe - 1]) { count++; }
+      else { count = 1; }
+        // Reset the count since we encountered a different element than the previous one.
+
+      // For a count <= 2, we copy the element over thus overwriting the element at index "j" in the array
+      if (count <= 2) { nums[keepPos++] = nums[probe]; }
+    }
+    return keepPos;
+  }
+
   public ListNode removeElements_203(ListNode head, int val) {
     ListNode dummy = new ListNode(0);
     dummy.next = head;
