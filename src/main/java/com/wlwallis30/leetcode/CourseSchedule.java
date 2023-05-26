@@ -190,6 +190,7 @@ public class CourseSchedule {
     int[] color = new int[n];
     Arrays.fill(color, -1);
 
+    // using this for loop to explore possible disconnected nodes. in while loop it will get all connected nodes from a starting node i
     for (int start = 0; start < n; ++start) {
       if (color[start] == -1) {
         // queue is also OK

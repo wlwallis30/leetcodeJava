@@ -117,12 +117,10 @@ public class TwoSum {
               --right;
           } else if (sum > target) {
             --right;
-            while (nums[right] == nums[right + 1] && left < right)
-              --right;
+            while (nums[right] == nums[right + 1] && left < right) --right;
           } else {
             ++left;
-            while (nums[left] == nums[left - 1] && left < right)
-              ++left;
+            while (nums[left] == nums[left - 1] && left < right) ++left;
           }
         }
       }
@@ -207,7 +205,7 @@ public class TwoSum {
     for (int i = 0; i < nums.length; i++) {
       sum += nums[i];
       sum %= k;
-      // // case 1: culmulitive sum % k = 0, [23,2,4,6,6], k=7
+      // // case 1: culmulitive sum % k = 0, [23,2,4,6,6,...], k=7
       if (sum == 0 && i > 0) { return true; }
       // case 2: regular case
       if (modIdx.containsKey(sum) && i - modIdx.get(sum) > 1) { return true; }

@@ -47,6 +47,7 @@ public class WordBreak {
 
   // DP way is more like a human being's thinkg, check cat, then start the substring2 "sanddog" to check with dict
   // two substrings, idx range of [0, curStart-1] and [curStart, len-1]
+  // O(n^3)
   public boolean wordBreak139DP(String s, List<String> wordDict) {
     Set<String> wordDictSet = new HashSet<>(wordDict);
     boolean[] dp = new boolean[s.length() + 1];

@@ -38,6 +38,7 @@ public class UniquePath {
     return dp[n-1];
   }
 
+  // since we dont know where is the rock, so we need to start from row=0 and col=0
   int uniquePathsWithObstacles63(int[][] obstacleGrid) {
     if(obstacleGrid.length == 0 || obstacleGrid[0].length == 0) return 0;
     if(obstacleGrid[0][0]==1) return 0;
@@ -52,6 +53,7 @@ public class UniquePath {
       {
         if(obstacleGrid[row][col]==1) dpEachRowSteps[col] = 0;
         else if(col>0) dpEachRowSteps[col]+=dpEachRowSteps[col-1];
+        //then now: col = 0 && not a rock, we do nothing, dp[0] was initialized to 1 already.
       }
     }
 

@@ -21,6 +21,7 @@ public class CombinationSum {
     if(target ==0) res.add(new ArrayList<>(out));
     else
     {
+      // distinct num and we can use one num for many times, so CSDFS(res, i,...)
       for(int i=start; i< candidates.length;++i)
       {
         out.add(candidates[i]);
@@ -53,6 +54,7 @@ public class CombinationSum {
       for(int i=start; i< candidates.length;++i)
       {
         //candidates = [2,5,2,1,2], target = 5, one ans is [1,2,2], to avoid used twice for 2s, need to skip coz we will do it in dfs(res, i+1)
+        // num might have dup, but we can use one num only once so...backtrackIdxSkip(res, i+1..)
         if(i>start && candidates[i] == candidates[i-1]) continue;
         out.add(candidates[i]);
         backtrackIdxSkip(res, i+1, out, candidates, target-candidates[i]);

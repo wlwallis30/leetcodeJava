@@ -20,6 +20,7 @@ public class SurroundedRegions {
     }
   }
   void solveDFS(char[][]board, int i, int j) {
+    // you can also use some boundary condition as problem 200 with checking if (m or n<0, etc) && (board[i][j] == 'X' or '$') return;
     if (board[i][j] == 'O') {
       board[i][j] = '$';
       if (i > 0 && board[i - 1][j] == 'O') solveDFS(board, i - 1, j);
@@ -98,7 +99,8 @@ public class SurroundedRegions {
       for (int i = 0; i <  4; ++ i) {
         int r = row + deltaRow[i];
         int c = col + deltaCol[i];
-        //rooms[r][c] != Integer.MAX_VALUE means hitting the wall or gate or previously visited with smaller distance!!
+        //rooms[r][c] != Integer.MAX_VALUE means hitting the wall or gate or previously visited with smaller distance
+        // (that is why BFS can save time to O(m*n) instead of the above DFS with O(m*n * m*n))!!
         if (r < 0 || c < 0 || r >= m || c >= n || rooms[r][c] != Integer.MAX_VALUE) { continue; }
         rooms[r][c] = rooms[row][col] + 1;
         q.add(new int[] { r, c });
@@ -418,6 +420,8 @@ public class SurroundedRegions {
     dfs(row - 1, col, 'U');
     dfs(row, col + 1, 'R');
     dfs(row, col - 1, 'L');
+    // this is necessary since in some cases, without this '0' on each depth of DFS, the code might be same
+    // e.g. [[1,1,0],[0,1,1],[0,0,0],[1,1,1],[0,1,0]] both islands will have 0RDR without this extra '0'
     currentIsland.append('0');
   }
 

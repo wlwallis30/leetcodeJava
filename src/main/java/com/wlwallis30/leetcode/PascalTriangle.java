@@ -76,7 +76,7 @@ public class PascalTriangle {
     return bottomUpDp.get(0);
   }
 
-  //O(1)
+  //space O(1)
   public int minimumTotalTopDown(List<List<Integer>> triangle) {
     for (int row = 1; row < triangle.size(); row++) {
       for (int col = 0; col <= row; col++) {

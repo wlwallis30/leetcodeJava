@@ -18,6 +18,7 @@ public class AddDigits {
     return num;
   }
 
+  // n=d0+d1*10^1+d2*10^2+...+dk*10^k = (d0+d1+d2+...+dk)+9⋅(d1*1+d2*11+...+dk*11..1)
   public int addDigits_258Math(int num) {
     if (num == 0) return 0;
     if (num % 9 == 0) return 9;

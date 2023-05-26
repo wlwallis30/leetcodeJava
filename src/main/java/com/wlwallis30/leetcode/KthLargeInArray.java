@@ -7,6 +7,7 @@ public class KthLargeInArray {
     // init heap 'the smallest element first', min heap
     PriorityQueue<Integer> heap = new PriorityQueue<>((n1, n2) -> n1 - n2);
     // keep k largest elements in the heap
+    // for more intuitive, heap.add all nums first, then use another loop to heap.poll()
     for (int num: nums) {
       heap.add(num);
       if (heap.size() > k) heap.poll();
@@ -19,8 +20,8 @@ public class KthLargeInArray {
     while (true) {
       int pos = partition(nums, left, right);
       if (pos == k - 1) return nums[pos];
-      if (pos > k - 1) right = pos - 1;
-      else left = pos + 1;
+      if (pos > k - 1) right = pos - 1; // the wanted num is in the left part
+      else left = pos + 1; // the wanted num is in the right part
     }
   }
   public int partition(int[] nums, int left, int right) {
@@ -65,6 +66,7 @@ public class KthLargeInArray {
     for (String word: words) { count.put(word, count.getOrDefault(word, 0) + 1); }
     // init heap 'the less frequent element first'
     // If same frequency, compare the string. Reverse lexicographical order in the top of the heap.
+    // in another word, "bigger" string on top or heap FIRST, e.g. love, i:  "i".compareTo("love") < 0, then arrange "love" first.
     Queue<String> heap = new PriorityQueue<>( (w1, w2) -> {
       int comp =  count.get(w1) - count.get(w2);
       if (comp != 0) return comp;

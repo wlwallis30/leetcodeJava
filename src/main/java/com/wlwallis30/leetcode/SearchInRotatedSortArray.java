@@ -2,12 +2,29 @@ package com.wlwallis30.leetcode;
 
 public class SearchInRotatedSortArray {
   //search the target in rotated array, 先判断那边是有序的，然后看target是否在有序的那一半，否则看另外一边的情况
+  /*
+  http://www.cnblogs.com/grandyang/p/4325648.html
+ left          mid          right
+ 0　　1　　2　　4　　5　　6　　7  nums[mid] < nums[right]
+
+7　　0　　1　　 2　　4　　5　　6  nums[mid] < nums[right]
+
+6　　7　　0　　 1　　2　　4　　5 nums[mid] < nums[right]
+
+5　　6　　7　　 0　　1　　2　　4 nums[mid] < nums[right]
+
+4　　5　　6　　7　　0　　1　　2  nums[mid] > nums[right]
+
+2　　4　　5　　6　　7　　0　　1  nums[mid] > nums[right]
+
+1　　2　　4　　5　　6　　7　　0  nums[mid] > nums[right]
+   */
   public int search33(int[] nums, int target) {
     int n = nums.length;
     if (n == 0)
       return -1;
     int left = 0, right = n - 1;
-    //another format of binary search, <= in while, with == in one of the conditions
+    //another format of binary search, <= in while, with == in one of the conditions: mid=left+1, or mid=right-1
     while (left <= right) {
       int mid = (left + right) / 2;
       if (nums[mid] == target)

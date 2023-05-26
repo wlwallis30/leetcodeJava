@@ -35,7 +35,8 @@ public class BSTRelated {
     return root.val + rangeSumBST(root.left, L, R) + rangeSumBST(root.right, L, R);
   }
 
-  // the smallest (head) and the pre(last) nodes. Node.left used to be the previous node, right to be next
+  // the smallest (head) and the pre(last) nodes. Node.left used to be previous node(smaller val), right to be next(bigger node val)
+  // (node.left points to smaller node, node.right to bigger one as original BST did, except the head and tail)
   Node head = null;
   Node pre = null;
   public Node treeToDoublyList426(Node root) {

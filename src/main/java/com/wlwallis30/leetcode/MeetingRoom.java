@@ -5,7 +5,8 @@ import java.util.*;
 public class MeetingRoom {
 
   public int[][] merge56(int[][] intervals) {
-    Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+    //Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+    Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
     LinkedList<int[]> merged = new LinkedList<>();
     for (int[] interval : intervals) {
       if (merged.isEmpty() || merged.getLast()[1] < interval[0]) { merged.add(interval); }

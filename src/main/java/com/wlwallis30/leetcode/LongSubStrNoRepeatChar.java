@@ -204,6 +204,7 @@ public class LongSubStrNoRepeatChar {
 
 			// IMPORTANT: maxRepeat is not the accurate number of dominant character which might change, It is the historical maximum count
 			//maxRepeat 相当于卡了一个窗口大小，我们并不希望窗口变小，虽然窗口在滑动，但是之前是出现过跟窗口大小相同的符合题意的子串，缩小窗口没有意义，并不会使结果 res 变大，所以我们才不更新 maxRepeat
+			// 可以替换的字符数 = 子字符串的总长度减去出现次数最多的字符的个数
 			maxRepeat = Math.max(maxRepeat, map.get(ch));
 
 			//不更新 maxCnt, while and if both worked

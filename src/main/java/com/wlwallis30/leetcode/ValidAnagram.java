@@ -18,7 +18,7 @@ public class ValidAnagram {
   // only contains lowercase letters
   public List<List<String>> groupAnagrams49(String[] strs) {
     if (strs.length == 0) return new ArrayList();
-    Map<String, List> res = new HashMap<>();
+    Map<String, List<String>> res = new HashMap<>();
     int[] charCnt = new int[26];
     for (String s : strs) {
       Arrays.fill(charCnt, 0);
@@ -31,7 +31,7 @@ public class ValidAnagram {
         sb.append('$');
       }
       String key = sb.toString();
-      if (!res.containsKey(key)) res.put(key, new ArrayList());
+      if (!res.containsKey(key)) res.put(key, new ArrayList<>());
       res.get(key).add(s);
     }
     return new ArrayList(res.values());
@@ -51,7 +51,7 @@ public class ValidAnagram {
     for(String word: strings) {
       StringBuilder code = new StringBuilder();
       for(int i=0; i<word.length(); ++i) {
-        Character charCode = (char)((word.charAt(i) + 26 - word.charAt(0))%26 + 'a');
+        Character charCode = (char)((word.charAt(i) + 26 - word.charAt(0))%26 + 'a'); // all codes will be based on 'a' as first char
         code.append(charCode).append('$');
       }
       //if(!codeStrMap.containsKey(code.toString())) { codeStrMap.put(code.toString(), new ArrayList<>());} you need to use toString(), otherwise it is diff SB object!!!

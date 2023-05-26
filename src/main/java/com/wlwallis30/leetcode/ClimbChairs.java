@@ -3,7 +3,7 @@ package com.wlwallis30.leetcode;
 public class ClimbChairs {
   /*
                             3
-                       +1 /  \  +2
+                       +2 /  \  +1
                         /     \
                       dp[2]   dp[1]
                      / \       /

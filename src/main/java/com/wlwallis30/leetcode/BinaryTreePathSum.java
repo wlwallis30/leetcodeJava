@@ -25,7 +25,7 @@ public class BinaryTreePathSum {
       this.recurseTree(node.left, remainingSum - node.val, pathNodes, res); // no worries left is null, it will returned by null from next call
       this.recurseTree(node.right, remainingSum - node.val, pathNodes, res);
     }
-    // tried adding b4, removing it
+    // tried adding b4, removing it, backtracking, this is important
     pathNodes.remove(pathNodes.size() - 1);
   }
 

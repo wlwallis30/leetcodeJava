@@ -30,6 +30,7 @@ public class BinaryTreePointNext {
     Queue<Node> levelOrderQue = new LinkedList<>();
     levelOrderQue.add(root);
     // each level
+    // while(!levelOrderQue.isEmpty())
     while (levelOrderQue.size() > 0) {
       int size = levelOrderQue.size();
       for(int i = 0; i < size; i++) {

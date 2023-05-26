@@ -27,7 +27,7 @@ public class NextPermutation {
         return;
       }
     }
-    // if it is the last permutation like  4 3 2 1
+    // if it is the last permutation like  4 3 2 1 (where j=i, that is why we need j>=i in the above)
     Solution.reverse(nums, 0);
   }
 
@@ -83,6 +83,8 @@ public class NextPermutation {
       for(int i=0; i<nums.length; ++i) {
         if(visited[i] == 0) {
           // 这里的前一个数 visited 值为0，并不代表前一个数字没有被处理过，也可能是递归结束后恢复状态时将 visited 值重置为0了
+          // e.g when [1, 2, 2] is one result, then 2 and 2 are popped, we are back to the top level of calling tree with result has [1], i=2,
+          // now, then we dont wanna do putting [1,2] again since it is repeated pattern, and visited[1] = 0, coming from the resetting.
           //https://www.cnblogs.com/grandyang/p/4359825.html
           // we dont wanna repeat for same nums, previously : if num[i-1]==num[i], & if visit[i-1]=1, now visit[i]=0 b4 setting to 1, so [1,2,2] formed
           // but if visit[i-1]=0, and we set visit[i]=1, we just repeat the pattern since two num are same

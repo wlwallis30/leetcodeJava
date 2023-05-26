@@ -68,7 +68,7 @@ public class MissingRange {
     return arr[n - 1] + k;
   }
 
-  //[1, 2, 3, 4, 5], no missing integer. k=5
+  //[1, 2, 3, 4, 5], no missing integer in cur array need to consider [5, 6, 7,...]. k=5
   //[2, 3, 4, 7, 11], so total missing counts: arr[idx] - (idx+1). select pivot index in the middle of the array
   public int findKthPositive1539BinarySearch(int[] arr, int k) {
     int left = 0, right = arr.length - 1;
@@ -106,6 +106,7 @@ public class MissingRange {
 
     // e.g. [2,3,4,7,11] k=5, left=4, arr[left]-(left+1) =6, which >5,  should return  4+5
     //[2,3,4,7,11] k:5, [1,2,3,4] k:2, to check if the k is outside of nums' length
+    //  finally pivot = left, arr[left]-(left+1) compare with k, either missing is within left or right of pivot, the num calculations are bit diff.
     return arr[left]-(left+1) < k? left+1+k: left + k;
   }
 
@@ -137,6 +138,7 @@ public class MissingRange {
 
     int left = 0, right = n - 1, pivot;
     // find left = right index such that missing(left - 1) < k <= missing(left)
+    // we search for lower bound and the first nums[0] will be the start for search, so left>0 finally, so no worries about nums[left-1]
     while (left<right) {
       pivot = left + (right - left) / 2;
       if (missing(pivot, nums) < k) left = pivot + 1;

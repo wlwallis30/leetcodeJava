@@ -103,7 +103,8 @@ package com.wlwallis30.leetcode;
  * insert delete random 380:  total: 1
  * word ladder 126: 127     total: 2
  * trie 208: 211, 642     total: 3
- *********************Similar problem catalogs: total: 330
+ * Atlassian: 353(snake game), 359 (362),1366, 911, 757, 1166, 441, 1817, 1639   total: 10
+ *********************Similar problem catalogs: total: 340
  */
 // single-linked list where java LinkedList is a double linked list via Deque
 // stack, queue, arrayDequeue
@@ -116,6 +117,10 @@ package com.wlwallis30.leetcode;
   Remove   remove()                poll()
   Examine  element()               peek()
    */
+// binary search from Grand Yang's explanation: https://www.cnblogs.com/grandyang/p/6854825.html  (right 初始化为 nums.size() - 1, 也可以用 left<right)
+// 如果我们 right 初始化为 nums.size() - 1， and if using left <= right，并且right的赋值要写成 right = mid - 1.
+// also check: https://medium.com/swlh/binary-search-find-upper-and-lower-bound-3f07867d81fb
+
 
 public class Solution {
   static void swap(char[] str, int i, int j) {

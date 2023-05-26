@@ -85,6 +85,7 @@ public class EvaluateRPN {
     Stack<Integer> stack = new Stack<>();
     int currentNumber = 0;
     // operator before the second operand, 2*3+1, store * to op before hitting 3, calc when hitting +, and reset op and num
+    // operation actually is the prev operation
     char operation = '+';
     for (int i = 0; i < len; i++) {
       char currentChar = s.charAt(i);

@@ -36,7 +36,7 @@ public class CloneGraph {
   // BFS/queue
   public Node cloneGraph133Queue(Node node) {
     if (node == null) { return node; }
-    HashMap<Node, Node> visited = new HashMap();
+    HashMap<Node, Node> visited = new HashMap(); // you can use <Integer, Node> since val is unique
 
     // original node's queue to clone
     LinkedList<Node> queue = new LinkedList<> ();
@@ -47,9 +47,9 @@ public class CloneGraph {
 
     // Start BFS traversal
     while (!queue.isEmpty()) {
-      // Pop a node say "n" from the from the front of the queue.
+      // Pop a node say "x" from the from the front of the queue.
       Node curNode = queue.remove();
-      // Iterate through all the neighbors of the node "n"
+      // Iterate through all the neighbors of the node "x"
       for (Node neighbor: curNode.neighbors) {
         if (!visited.containsKey(neighbor)) {
           cloned = new Node(neighbor.val, new ArrayList<>());
@@ -57,7 +57,7 @@ public class CloneGraph {
           // Add the newly encountered node to the queue.
           queue.add(neighbor);
         }
-        // Add the clone of the neighbor to the neighbors of the clone node "n".
+        // Add the clone of the neighbor to the neighbors of the clone node "x".
         cloned = visited.get(curNode);
         cloned.neighbors.add(visited.get(neighbor));
       }

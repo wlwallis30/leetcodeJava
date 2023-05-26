@@ -7,9 +7,10 @@ public class ReverseLinkedList {
     if(head == null || head.next == null) return head;
     ListNode pre=null;
     ListNode cur=head;
+    ListNode next;
     while(cur != null)
     {
-      ListNode next=cur.next;
+      next=cur.next;
       cur.next=pre;
       pre=cur;
       cur=next;
@@ -92,7 +93,7 @@ public class ReverseLinkedList {
     if(root == null || root.left == null) return root;
 
     TreeNode res = upsideDownBinaryTree156(root.left);
-    root.left.left= root.right;
+    root.left.left= root.right; // dont use res.left = root.right at the bottom level coz it is just for bottom level.
     root.left.right=root;
 
     root.left=null;
@@ -100,6 +101,7 @@ public class ReverseLinkedList {
     return res;
   }
 
+  // the iterative way is top down approach.
   TreeNode upsideDownBinaryTree156Iteration(TreeNode root) {
     TreeNode cur=root, nowLeft=null, nowRight=null, next;
     while(cur != null) {

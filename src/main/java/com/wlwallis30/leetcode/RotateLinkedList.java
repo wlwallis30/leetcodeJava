@@ -54,6 +54,7 @@ public class RotateLinkedList {
     Solution.reverse(nums, 0, n-k-1);
     Solution.reverse(nums, n-k, n - 1);
     Solution.reverse(nums, 0, n - 1);
+    // you can also do: reverse(nums, 0, n-1), then revers(nums, 0, k-1), then reverse(nums, k, n-1), better
   }
 
   public void rotate189CyclicJumpK(int[] nums, int k) {

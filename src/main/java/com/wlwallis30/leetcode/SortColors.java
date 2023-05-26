@@ -12,12 +12,15 @@ public class SortColors {
     }
   }
 
+  // 3 pointers， red pointer needs to hold red boundary nums[i<red]=0 , blue needs to hold blue boundari nums[i>blue]=0, cur is exploring
   void sortColors75Onepass(int[] nums) {
     int red = 0, blue = nums.length - 1, cur = 0;
     // need to be cur <= blue, think about [1 1 1 1 0 2 2] case, red is very low idx, so you need compare cur and blue to end while loop
     // < not enough, also need =, to guarantee cur and blue both point to a 0, e.g. [1 2 0] -> [1 0 2]
     while (cur <= blue) {
       if (nums[cur] == 0) Solution.swap(nums, cur++, red++);
+      // not sure after swaping, cur points to 1 or 0, so we do not advance until next iteration to find out
+      // e.g. [2, 2, 1, 0, 1]
       else if (nums[cur] == 2) Solution.swap(nums, cur, blue--);
       else ++cur;
       //at first, cur and red = 0, so wont encounter swap two 0s at different idx

@@ -42,7 +42,7 @@ public class LowestCommonAncestor {
   public TreeNode LCA(TreeNode root, TreeNode p, TreeNode q) {
     if (root == null) return root;
     // if put the count++ block here, [3,5,1,6,2,0,8,null,null,7,4] 5 4,
-    // final result will return null since it will only get 5 and stop calling the left or right tree
+    // final result will return null since it will only get 5 as the LCA(which is correct as in 236) but stop counting by calling left/right sub tree
 
     TreeNode left = LCA(root.left, p, q);
     if (left !=null  && left != p && left != q) return left;

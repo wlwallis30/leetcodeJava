@@ -107,7 +107,7 @@ class LRUCache146LHM extends LinkedHashMap<Integer, Integer>{
   }
 }
 
-//LFU 460
+//LFU 460, freqMap is also using LRU, <Integer, DoubleLinkedList> to hold the freqMap
 class LFUCache {
   final int capacity;
   int curSize;
@@ -286,7 +286,7 @@ class HitCounter {
   private Queue<Integer> hitsQ;
 
   public HitCounter() {
-    this.hitsQ = new LinkedList<Integer>();
+    this.hitsQ = new LinkedList<>();
   }
 
   public void hit(int timestamp) {

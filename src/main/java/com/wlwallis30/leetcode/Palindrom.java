@@ -265,6 +265,7 @@ public class Palindrom {
       }
     }
 
+    // case: not need to delete a char
     return true ;
   }
 

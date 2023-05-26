@@ -95,7 +95,7 @@ public class MaxSubArray {
     int n = nums.length;
     // max for i-2 and i-1
     int max_2 = nums[0];
-    int max_1 = Math.max(nums[0], nums[1]);
+    int max_1 = Math.max(nums[0], nums[1]); // NOT nums[1], we can also let max_1&2=0 and start with i=0, using same formula.
     for(int i = 2; i < n; ++i) {
       int tmpMax = Math.max(max_2 + nums[i], max_1);
       max_2 = max_1;

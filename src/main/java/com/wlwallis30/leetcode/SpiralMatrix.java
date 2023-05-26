@@ -42,6 +42,45 @@ public class SpiralMatrix {
     return res;
   }
 
+  // no need to pre calc the ringStep
+  List<Integer> spiralOrder54Better(int[][] matrix) {
+    List<Integer> res = new ArrayList<>();
+    if (matrix.length == 0 || matrix[0].length == 0) return res;
+    int m = matrix.length, n = matrix[0].length;
+
+    // the boundaries
+    int up = 0, down = m - 1, left = 0, right = n - 1;
+    while (true) {
+      for (int j = left; j <= right; ++j) res.add(matrix[up][j]);
+      if (++up > down) break;
+      for (int i = up; i <= down; ++i) res.add(matrix[i][right]);
+      if (--right < left) break;
+      for (int j = right; j >= left; --j) res.add(matrix[down][j]);
+      if (--down < up) break;
+      for (int i = down; i >= up; --i) res.add(matrix[i][left]);
+      if (++left > right) break;
+    }
+    return res;
+  }
+
+  int[][] spiralOrder59Better(int n) {
+    int[][] res = new int[n][n];
+
+    // the boundaries
+    int up = 0, down = n - 1, left = 0, right = n - 1, val = 1;
+    while (true) {
+      for (int j = left; j <= right; ++j) res[up][j] = val++;
+      if (++up > down) break;
+      for (int i = up; i <= down; ++i) res[i][right] = val++;
+      if (--right < left) break;
+      for (int j = right; j >= left; --j) res[down][j] = val++;
+      if (--down < up) break;
+      for (int i = down; i >= up; --i) res[i][left] = val++;
+      if (++left > right) break;
+    }
+    return res;
+  }
+
   public int[][] generateMatrix59(int n) {
     int ring = (n + 1) / 2;
     int height = n;// width = n;

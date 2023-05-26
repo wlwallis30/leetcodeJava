@@ -25,6 +25,7 @@ public class LargestNum {
     String largestNumberStr = new String();
     for (String numAsStr : asStrs) { largestNumberStr += numAsStr; }
 
+    //array consists of only zeroes
     return asStrs[0].equals("0") ? "0": largestNumberStr;
   }
 }

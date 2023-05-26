@@ -3,7 +3,7 @@ package com.wlwallis30.leetcode;
 public class SetMatrixTo0s {
   //space O(m+n)的方法是，用一个长度为m的一维数组记录各行中是否有0(in place: 用第一列)，
   // 用一个长度为n的一维数组记录各列中是否有0(in place: 用第一行), 所以在存储前，需要先记录第一行和列是否要置0
-  //but need O(1)!!
+  //but need O(1)!! so we can use the first row and first col as these 2 arrays, but b4 doing so, we need to record if they have 0 originally.
   void setZeroes73(int[][] matrix) {
     if (matrix.length == 0 || matrix[0].length == 0 || matrix == null) return;
     int m = matrix.length, n = matrix[0].length;

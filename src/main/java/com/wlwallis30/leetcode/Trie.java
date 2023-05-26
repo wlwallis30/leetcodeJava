@@ -119,22 +119,24 @@ public class Trie {
         return searchInNode(word, node, start+1);
       }
     }
-    /* bad structure,(ch=='.') and (!node.containChild(ch) need to be nested, otherwise add[a], search[.a] will fail due to separating these 2 conditions.
-    and node not moving to next level, so return true
+
+    // also works with for loop, another format/structure, maybe better, consistent with 208
+    public boolean searchInNode(String word, TrieNode node) {
       if(node == null) return false;//preventing trouble of null pointer
       for (int i = 0; i < word.length(); ++i) {
         char ch = word.charAt(i);
+        //System.out.println("idx:" + i + "  char:" + ch + "$$$");
         if(ch=='.') {
           // '.' case:  check all possible nodes at this level
+          // System.out.println("recursive call, links: "+ node.links[1]);  some element of the links array is null, so after checking all children, return false.
           for (TrieNode child: node.links) { if((searchInNode(word.substring(i + 1), child))) return true; }
-        } else if (!node.containChild(ch)) { return false; }
-        else {
-          // if the character is found go down to the next level in root
-          node = node.getChild(ch);
+          return false;
         }
+        else if (!node.containChild(ch)) { return false; }
+        else { node = node.getChild(ch); }
       }
       return node.isWord();
-     */
+    }
 
     /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     public boolean search(String word) {
@@ -142,6 +144,52 @@ public class Trie {
     }
   }
 }
+
+/* using hash map to implement trie
+class TrieNode {
+  Map<Character, TrieNode> map = new HashMap<>();
+  boolean isWordEnd = false;
+  TrieNode() { }
+   }
+class WordDictionary {
+    private TrieNode root;
+    public WordDictionary() { this.root = new TrieNode(); }
+
+  public void addWord(String word) {
+    TrieNode node = root;
+    for (int i = 0; i < word.length(); i++) {
+      char ch = word.charAt(i);
+      if (node.map.containsKey(ch)) {
+        node = node.map.get(ch);
+      } else {
+        TrieNode newNode = new TrieNode();
+        node.map.put(ch, newNode);
+        node = newNode;
+      }
+    }
+    node.isWordEnd = true;
+  }
+  public boolean search(String word) {
+    return search(word, 0, root);
+  }
+
+  private boolean search(String word, int i, TrieNode node) {
+    if (i == word.length())
+      return node.isWordEnd;
+    char ch = word.charAt(i);
+    if (ch == '.') {
+      for (Character character : node.map.keySet()) {
+        if (search(word, i + 1, node.map.get(character))) return true;
+      }
+      return false;
+    } else {
+      if (node.map.containsKey(ch)) { return search(word, i + 1, node.map.get(ch));
+      }
+    }
+    return false;
+  }
+}
+ */
 
 //642: 普通trieNode就行简单修改： 1。 最低层的存储 full sentence 2。 每个trieNode维护 碰到它的 top3 list
 // https://www.youtube.com/watch?v=NX68_rf_gxE&t=204s

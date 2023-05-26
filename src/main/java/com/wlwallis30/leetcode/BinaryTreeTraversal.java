@@ -149,6 +149,7 @@ public class BinaryTreeTraversal {
       levelOrderDFS(node.right, curLevel + 1);
   }
 
+  // refert to 104 max_path, we just need to add a static global diameter to store
   private int diameter;
   public int diameterOfBinaryTree543(TreeNode root) {
     diameter = 0;
@@ -191,7 +192,7 @@ public class BinaryTreeTraversal {
   }
 
 
-  //1522
+  //1522, low freq
   class NchildNode {
     public int val;
     public List<NchildNode> children;
@@ -455,6 +456,7 @@ public class BinaryTreeTraversal {
     return current_depth;
   }
 
+  // better solution in interview
   public List<List<Integer>> levelOrder_102Que(TreeNode root) {
     List<List<Integer>> levels = new ArrayList<List<Integer>>();
     if (root == null) return levels;
